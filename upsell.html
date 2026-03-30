@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offre Spéciale — yhi-conciergerie Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F9F5EE;--cream:#F3EDE0;--gold:#B8973A;--gold2:#D4AF6A;
+  --ink:#18181A;--muted:#7A7A80;--rule:#E0D8CC;
+  --night:#0C0F14;--night2:#141820;--white:#fff;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--night);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── COUNTDOWN ── */
+#countdown-bar{
+  background:linear-gradient(90deg,#8B0000,#C41E3A);
+  padding:10px 24px;text-align:center;
+  font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:white;
+  display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
+}
+.cd-timer{
+  display:flex;gap:6px;align-items:center;
+}
+.cd-block{
+  background:rgba(255,255,255,.15);padding:4px 10px;border-radius:2px;
+  font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:white;
+  min-width:32px;text-align:center;
+}
+.cd-sep{color:rgba(255,255,255,.5)}
+
+/* ── HERO ── */
+.up-hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:80px 40px 60px;text-align:center;overflow:hidden;
+}
+.up-hero::before{
+  content:'';position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80') center/cover;
+  opacity:.06;
+}
+/* Animated gradient background */
+.up-hero::after{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(184,151,58,.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(184,151,58,.05) 0%, transparent 60%);
+  animation:heroGlow 6s ease-in-out infinite alternate;
+}
+@keyframes heroGlow{from{opacity:.5}to{opacity:1}}
+
+.up-inner{position:relative;z-index:2;max-width:800px}
+
+/* ✅ confirmation badge */
+.confirm-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);
+  color:#4ade80;padding:8px 20px;border-radius:20px;
+  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:32px;
+  animation:fadeIn .6s ease;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+.up-eyebrow{
+  font-size:.62rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold2);display:block;margin-bottom:16px;
+}
+.up-hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,7vw,5.5rem);font-weight:300;
+  letter-spacing:.04em;line-height:.95;color:white;margin-bottom:20px;
+}
+.up-hero h1 em{font-style:italic;color:var(--gold2)}
+.up-sub{
+  font-size:.92rem;line-height:1.75;color:rgba(255,255,255,.5);
+  max-width:580px;margin:0 auto 48px;font-weight:300;
+}
+.up-price-teaser{
+  display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:40px;flex-wrap:wrap;
+}
+.up-old-price{
+  font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;
+  color:rgba(255,255,255,.25);text-decoration:line-through;
+}
+.up-new-price{
+  font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--gold2);line-height:1;
+}
+.up-price-lbl{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+
+.btn-upsell{
+  display:inline-flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--night);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;
+  padding:20px 52px;border-radius:2px;text-decoration:none;border:none;cursor:pointer;
+  transition:transform .2s,box-shadow .3s;
+  box-shadow:0 6px 30px rgba(184,151,58,.5);
+  font-family:'Jost',sans-serif;
+}
+.btn-upsell:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 12px 40px rgba(184,151,58,.6)}
+.btn-skip{
+  display:block;margin-top:20px;
+  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.22);cursor:pointer;border:none;background:none;
+  transition:color .25s;font-family:'Jost',sans-serif;
+}
+.btn-skip:hover{color:rgba(255,255,255,.45)}
+
+/* ── WHAT YOU GET ── */
+.wyg-section{padding:100px 60px;background:var(--night2)}
+@media(max-width:768px){.wyg-section{padding:70px 24px}}
+.wyg-inner{max-width:1100px;margin:0 auto}
+.wyg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px}
+@media(max-width:900px){.wyg-grid{grid-template-columns:1fr}}
+.wyg-card{background:rgba(255,255,255,.03);padding:36px;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;transition:all .4s}
+.wyg-card:hover{background:rgba(255,255,255,.06);border-color:rgba(212,175,106,.2)}
+.wyg-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2),transparent);
+  opacity:0;transition:opacity .4s;
+}
+.wyg-card:hover::before{opacity:1}
+.wyg-num{
+  font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;
+  color:rgba(212,175,106,.08);line-height:1;margin-bottom:-8px;
+}
+.wyg-icon{font-size:1.8rem;margin-bottom:14px;display:block}
+.wyg-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:white;margin-bottom:10px}
+.wyg-desc{font-size:.82rem;line-height:1.7;color:rgba(255,255,255,.4);font-weight:300}
+
+/* ── COMPARISON TABLE ── */
+.comp-section{padding:100px 60px;background:var(--night)}
+@media(max-width:768px){.comp-section{padding:70px 24px}}
+.comp-inner{max-width:860px;margin:0 auto}
+.comp-table{width:100%;border-collapse:collapse;margin-top:48px}
+.comp-table th{
+  padding:16px 20px;text-align:center;
+  font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;font-weight:600;
+}
+.comp-table th:first-child{text-align:left}
+.comp-table th.premium{color:var(--gold2);border-bottom:2px solid var(--gold)}
+.comp-table th.basic{color:rgba(255,255,255,.3);border-bottom:1px solid rgba(255,255,255,.08)}
+.comp-table td{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.05);font-size:.82rem;font-weight:300}
+.comp-table td:first-child{color:rgba(255,255,255,.6)}
+.comp-table td:not(:first-child){text-align:center}
+.comp-table tr:hover td{background:rgba(255,255,255,.02)}
+.check-yes{color:var(--gold2);font-size:1rem}
+.check-no{color:rgba(255,255,255,.2)}
+.comp-table td.premium-col{background:rgba(184,151,58,.05)}
+
+/* ── GUIDES PREVIEW ── */
+.preview-section{padding:80px 60px;background:var(--night2)}
+@media(max-width:768px){.preview-section{padding:60px 24px}}
+.preview-inner{max-width:1100px;margin:0 auto}
+.preview-scroll{
+  display:flex;gap:3px;overflow-x:auto;padding-bottom:12px;margin-top:40px;
+  scrollbar-width:thin;scrollbar-color:var(--gold) transparent;
+}
+.preview-scroll::-webkit-scrollbar{height:3px}
+.preview-scroll::-webkit-scrollbar-track{background:transparent}
+.preview-scroll::-webkit-scrollbar-thumb{background:var(--gold)}
+.prev-card{
+  flex:0 0 220px;position:relative;aspect-ratio:2/3;overflow:hidden;
+}
+.prev-card img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.prev-card:hover img{transform:scale(1.06)}
+.prev-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(12,15,20,.8) 0%,transparent 60%);
+}
+.prev-card-text{
+  position:absolute;bottom:0;left:0;right:0;padding:16px;z-index:2;
+}
+.prev-dest{font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold2);margin-bottom:4px}
+.prev-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;color:white}
+
+/* ── SOCIAL PROOF ── */
+.social-section{padding:80px 60px}
+@media(max-width:768px){.social-section{padding:60px 24px}}
+.social-inner{max-width:900px;margin:0 auto;text-align:center}
+.social-grid{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+.social-num{text-align:center}
+.sn-val{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--gold2);line-height:1}
+.sn-lbl{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:6px}
+
+/* ── FAQ ── */
+.faq-section{padding:80px 60px;background:var(--night2)}
+@media(max-width:768px){.faq-section{padding:60px 24px}}
+.faq-inner{max-width:700px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.07);overflow:hidden}
+.faq-q{
+  width:100%;padding:20px 0;display:flex;align-items:center;justify-content:space-between;
+  background:none;border:none;cursor:pointer;color:rgba(255,255,255,.8);
+  font-family:'Jost',sans-serif;font-size:.88rem;font-weight:500;text-align:left;gap:16px;
+  transition:color .25s;
+}
+.faq-q:hover{color:var(--gold2)}
+.faq-icon{color:var(--gold);font-size:1.2rem;flex-shrink:0;transition:transform .3s}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{
+  max-height:0;overflow:hidden;
+  font-size:.82rem;line-height:1.7;color:rgba(255,255,255,.4);font-weight:300;
+  transition:max-height .4s ease,padding .4s;
+}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:20px}
+
+/* ── FINAL CTA ── */
+.final-cta{
+  padding:120px 60px;text-align:center;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,var(--night) 0%,#0d1520 100%);
+}
+.final-cta::before{
+  content:'';position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(184,151,58,.08) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  animation:pulse 4s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.1)}}
+.final-cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.final-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;color:white;line-height:1.1;margin-bottom:16px}
+.final-title em{font-style:italic;color:var(--gold2)}
+.final-sub{font-size:.88rem;color:rgba(255,255,255,.4);margin-bottom:48px;line-height:1.7}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);z-index:9999;background:rgba(12,15,20,.95);border:1px solid rgba(212,175,106,.3);color:white;padding:14px 28px;border-radius:2px;font-size:.75rem;opacity:0;pointer-events:none;transition:all .4s;border-left:3px solid var(--gold);backdrop-filter:blur(8px);white-space:nowrap}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.eyebrow{font-size:.57rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold2);display:block;margin-bottom:12px}
+.section-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;color:white;line-height:1.15;margin-bottom:6px}
+.section-heading em{font-style:italic;color:var(--gold2)}
+.gold-rule{width:48px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:18px 0 28px}
+</style>
+</head>
+<body>
+
+<!-- URGENCY BAR -->
+<div id="countdown-bar">
+  🔥 Offre exclusive — valable encore &nbsp;
+  <div class="cd-timer">
+    <div class="cd-block" id="cd-h">00</div><div class="cd-sep">:</div>
+    <div class="cd-block" id="cd-m">14</div><div class="cd-sep">:</div>
+    <div class="cd-block" id="cd-s">59</div>
+  </div>
+  &nbsp; · Abonnement illimité à −67%
+</div>
+
+<!-- HERO UPSELL -->
+<section class="up-hero">
+  <div class="up-inner">
+    <div class="confirm-badge">✅ Paiement confirmé · Guide envoyé par email</div>
+    <span class="up-eyebrow">Offre exclusive · Une seule fois</span>
+    <h1>Attendez —<br><em>une offre pour vous</em></h1>
+    <p class="up-sub">Puisque vous voyagez avec nous, accédez à TOUS nos guides en illimité pour le prix d'un seul. Votre prochain voyage est déjà là.</p>
+
+    <div class="up-price-teaser">
+      <div>
+        <div class="up-old-price">149€/an</div>
+      </div>
+      <div>
+        <div class="up-new-price">49€</div>
+        <div class="up-price-lbl">une seule fois · accès à vie</div>
+      </div>
+    </div>
+
+    <button class="btn-upsell" onclick="acceptUpsell()">
+      ✦ &nbsp; Oui, je veux l'accès illimité — 49€
+    </button>
+    <button class="btn-skip" onclick="skipUpsell()">Non merci, je reste avec un seul guide</button>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="wyg-section">
+  <div class="wyg-inner">
+    <span class="eyebrow">Ce que vous obtenez</span>
+    <h2 class="section-heading">Accès <em>illimité</em> à tout</h2>
+    <div class="gold-rule"></div>
+    <div class="wyg-grid">
+      <div class="wyg-card">
+        <div class="wyg-num">47</div>
+        <span class="wyg-icon">📚</span>
+        <div class="wyg-title">Tous les guides</div>
+        <p class="wyg-desc">Accès immédiat aux 47 guides actuels et à tous les nouveaux guides publiés chaque mois.</p>
+      </div>
+      <div class="wyg-card">
+        <span class="wyg-icon">🔄</span>
+        <div class="wyg-title">Mises à jour incluses</div>
+        <p class="wyg-desc">Chaque guide est mis à jour régulièrement. Vous recevez automatiquement la dernière version.</p>
+      </div>
+      <div class="wyg-card">
+        <span class="wyg-icon">📱</span>
+        <div class="wyg-title">Web + PDF + Mobile</div>
+        <p class="wyg-desc">Consultez en ligne, téléchargez en PDF, accédez sur mobile. Tout est inclus, partout.</p>
+      </div>
+      <div class="wyg-card">
+        <span class="wyg-icon">⚡</span>
+        <div class="wyg-title">Nouveaux guides chaque mois</div>
+        <p class="wyg-desc">Notre équipe publie 3-4 nouveaux guides par mois. Vous y accédez automatiquement.</p>
+      </div>
+      <div class="wyg-card">
+        <span class="wyg-icon">🗺️</span>
+        <div class="wyg-title">Cartes & itinéraires</div>
+        <p class="wyg-desc">Cartes Google interactives, itinéraires optimisés, planifications heure par heure.</p>
+      </div>
+      <div class="wyg-card">
+        <span class="wyg-icon">💬</span>
+        <div class="wyg-title">Support prioritaire</div>
+        <p class="wyg-desc">Questions sur votre voyage ? Notre équipe répond en moins de 24h pour les membres Premium.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comp-section">
+  <div class="comp-inner">
+    <span class="eyebrow" style="color:var(--gold2)">Comparaison</span>
+    <h2 class="section-heading">Guide seul <em>vs</em> Accès Illimité</h2>
+    <div class="gold-rule"></div>
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="basic">Guide seul</th>
+          <th class="premium">✦ Accès Illimité</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Guides inclus</td>
+          <td>1 guide</td>
+          <td class="premium-col"><span class="check-yes">47 guides</span></td>
+        </tr>
+        <tr>
+          <td>Nouveaux guides</td>
+          <td><span class="check-no">✗</span></td>
+          <td class="premium-col"><span class="check-yes">✓ Automatique</span></td>
+        </tr>
+        <tr>
+          <td>Mises à jour</td>
+          <td><span class="check-no">✗</span></td>
+          <td class="premium-col"><span class="check-yes">✓ À vie</span></td>
+        </tr>
+        <tr>
+          <td>Accès web illimité</td>
+          <td><span class="check-no">✗ (PDF uniquement)</span></td>
+          <td class="premium-col"><span class="check-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td>Cartes interactives</td>
+          <td><span class="check-no">✗</span></td>
+          <td class="premium-col"><span class="check-yes">✓</span></td>
+        </tr>
+        <tr>
+          <td>Support prioritaire</td>
+          <td><span class="check-no">✗</span></td>
+          <td class="premium-col"><span class="check-yes">✓ 24h</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;color:white;padding-top:20px">Prix</td>
+          <td style="padding-top:20px">14,90€ – 24,90€/guide</td>
+          <td class="premium-col" style="padding-top:20px"><span style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold2)">49€ · une fois</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- GUIDES PREVIEW SCROLL -->
+<section class="preview-section">
+  <div class="preview-inner">
+    <span class="eyebrow" style="color:var(--gold2)">Inclus dans l'abonnement</span>
+    <h2 class="section-heading">Un avant-goût de <em>votre bibliothèque</em></h2>
+    <div class="preview-scroll">
+      <div class="prev-card"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80" alt="Bali"><div class="prev-card-text"><div class="prev-dest">Indonésie</div><div class="prev-name">Bali 10J</div></div></div>
+      <div class="prev-card"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&q=80" alt="Tokyo"><div class="prev-card-text"><div class="prev-dest">Japon</div><div class="prev-name">Tokyo 7J</div></div></div>
+      <div class="prev-card"><img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=400&q=80" alt="Santorin"><div class="prev-card-text"><div class="prev-dest">Grèce</div><div class="prev-name">Santorin</div></div></div>
+      <div class="prev-card"><img src="https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=400&q=80" alt="Marrakech"><div class="prev-card-text"><div class="prev-dest">Maroc</div><div class="prev-name">Marrakech</div></div></div>
+      <div class="prev-card"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=80" alt="Alpes"><div class="prev-card-text"><div class="prev-dest">France</div><div class="prev-name">Chamonix</div></div></div>
+      <div class="prev-card"><img src="https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=400&q=80" alt="Maldives"><div class="prev-card-text"><div class="prev-dest">Maldives</div><div class="prev-name">Paradise 7J</div></div></div>
+      <div class="prev-card"><img src="https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?w=400&q=80" alt="Lisbonne"><div class="prev-card-text"><div class="prev-dest">Portugal</div><div class="prev-name">Lisbonne</div></div></div>
+      <div class="prev-card"><img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400&q=80" alt="Cartagena"><div class="prev-card-text"><div class="prev-dest">Colombie</div><div class="prev-name">Cartagena</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="social-section">
+  <div class="social-inner">
+    <span class="eyebrow" style="color:var(--gold2)">Ils nous font confiance</span>
+    <h2 class="section-heading">Des milliers de <em>voyageurs</em> satisfaits</h2>
+    <div class="gold-rule" style="margin:18px auto 28px"></div>
+    <div class="social-grid">
+      <div class="social-num"><div class="sn-val" data-c="2840">0</div><div class="sn-lbl">Clients</div></div>
+      <div class="social-num"><div class="sn-val" data-c="47">0</div><div class="sn-lbl">Destinations</div></div>
+      <div class="social-num"><div class="sn-val" data-c="98">0</div><div class="sn-lbl">% satisfaits</div></div>
+      <div class="social-num"><div class="sn-val" data-c="4">0</div><div class="sn-lbl">★ Moyenne</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <span class="eyebrow" style="color:var(--gold2)">Questions fréquentes</span>
+    <h2 class="section-heading">Vous avez des <em>questions</em> ?</h2>
+    <div class="gold-rule"></div>
+    <div id="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Qu'est-ce qui est inclus dans l'accès illimité ? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Tous nos guides actuels (47) et futurs, en PDF téléchargeable et en accès web. Les mises à jour sont automatiques. Vous avez accès à votre espace personnel depuis n'importe quel appareil.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">C'est vraiment sans abonnement mensuel ? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Oui, 49€ une seule fois pour un accès à vie. Pas d'abonnement récurrent, pas de surprise sur votre carte bancaire. Vous payez une fois, vous accédez pour toujours.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Comment accéder à mes guides après l'achat ? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Immédiatement après le paiement, vous recevez un email avec votre lien d'accès personnel. Tous vos guides sont disponibles en un clic, sans création de compte obligatoire.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Puis-je être remboursé si je ne suis pas satisfait ? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Nous offrons une garantie de 14 jours sans question. Si les guides ne vous conviennent pas, envoyez-nous un email et nous vous remboursons intégralement.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <div class="confirm-badge" style="margin-bottom:24px">⏰ Offre valable encore <span id="cta-timer">14:59</span></div>
+    <h2 class="final-title">Votre bibliothèque<br>de voyages vous attend — <em>49€</em></h2>
+    <p class="final-sub">Rejoignez 2 840 voyageurs qui ont déjà accès à tous nos guides. Offre disponible uniquement sur cette page.</p>
+    <button class="btn-upsell" onclick="acceptUpsell()" style="font-size:.75rem;padding:22px 60px">
+      ✦ &nbsp; Accès illimité à vie — 49€
+    </button>
+    <button class="btn-skip" onclick="skipUpsell()" style="margin-top:24px">Non merci, continuer sans l'offre</button>
+  </div>
+</section>
+
+<div id="toast"></div>
+
+<script>
+/* ── COUNTDOWN ── */
+let secs = 14*60+59;
+function updateCountdown(){
+  const h=Math.floor(secs/3600), m=Math.floor((secs%3600)/60), s=secs%60;
+  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+  const ctaT=document.getElementById('cta-timer');
+  if(ctaT)ctaT.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  if(secs>0)secs--;
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+/* ── COUNTERS ── */
+function cnt(el,target,dur=1800,suffix=''){
+  let s=null;const ease=t=>1-Math.pow(1-t,3);
+  const run=ts=>{if(!s)s=ts;const p=Math.min((ts-s)/dur,1);
+    el.textContent=Math.floor(ease(p)*target)+(p>=1?suffix:'');if(p<1)requestAnimationFrame(run);};
+  requestAnimationFrame(run);
+}
+const cObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const t=parseInt(e.target.dataset.c);
+      const suf=e.target.textContent.includes('%')?'%':e.target.textContent.includes('★')?'.8':'+';
+      cnt(e.target,t,1600,t>100?'+':t===98?'%':t===4?'.8':'');
+      cObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('[data-c]').forEach(el=>cObs.observe(el));
+
+/* ── ACTIONS ── */
+function acceptUpsell(){
+  const urlParams=new URLSearchParams(window.location.search);
+  showToast('⏳ Redirection vers Stripe...');
+  setTimeout(()=>{
+    // Real: redirect to Stripe checkout for upsell product
+    showToast('✅ Bienvenue dans yhi-conciergerie Premium !');
+    setTimeout(()=>window.location.href='index.html',2000);
+  },1500);
+}
+function skipUpsell(){
+  showToast('Guide en cours d\'envoi à votre email...');
+  setTimeout(()=>window.location.href='index.html',1800);
+}
+
+/* ── FAQ ── */
+function toggleFaq(btn){
+  const item=btn.parentElement;
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)item.classList.add('open');
+}
+
+/* ── TOAST ── */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),3000);
+}
+
+/* ── SCROLL REVEAL ── */
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='none';}});},{threshold:0.1});
+document.querySelectorAll('.wyg-card,.prev-card,.testi-card').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(20px)';
+  el.style.transition='opacity .7s ease, transform .7s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
