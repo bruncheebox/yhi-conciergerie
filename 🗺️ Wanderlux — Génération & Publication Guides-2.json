@@ -1,0 +1,597 @@
+{
+  "name": "🗺️ Wanderlux — Génération & Publication Guides",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-guide",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "735b621e-eb9d-4e18-936d-4ae862c84d78",
+      "name": "📥 Trigger — Nouvelle Demande",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1344,
+        96
+      ],
+      "webhookId": "wanderlux-generate-guide"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json.body || $input.first().json;\nconst prompt = body.prompt || '';\n\nconst durationMatch = prompt.match(/(\\d+)\\s*(?:jours?|days?|nuits?|nights?|semaines?|weeks?)/i);\nconst duration = durationMatch ? parseInt(durationMatch[1]) : 7;\n\nlet destination = prompt\n  .replace(/guide/gi, '')\n  .replace(/\\d+\\s*(?:jours?|days?|nuits?|nights?|semaines?|weeks?)/gi, '')\n  .replace(/[\\s]*[àa][\\s]*/gi, ' ')\n  .replace(/complet|premium|voyage|trip|travel/gi, '')\n  .trim()\n  .replace(/\\s+/g, ' ');\n\nconst slug = destination\n  .toLowerCase()\n  .normalize('NFD').replace(/[\\u0300-\\u036f]/g, '')\n  .replace(/[^a-z0-9\\s]/g, '')\n  .trim()\n  .replace(/\\s+/g, '-');\n\nlet price = 14.90;\nif (duration >= 10) price = 24.90;\nelse if (duration >= 7) price = 19.90;\nelse if (duration >= 5) price = 16.90;\n\nreturn [{\n  json: {\n    original_prompt: prompt,\n    destination: destination.trim() || 'Destination',\n    duration: duration,\n    slug: slug || 'guide-voyage',\n    price: price,\n    price_formatted: price.toFixed(2).replace('.', ',') + '€',\n    price_cents: Math.round(price * 100),\n    email: body.email || null,\n    created_at: new Date().toISOString(),\n    guide_id: 'guide_' + Date.now()\n  }\n}];"
+      },
+      "id": "44c2e4b3-d997-495c-97e5-416e8c197990",
+      "name": "🔍 Parser la Demande",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1120,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "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"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"claude-opus-4-6\",\n  \"max_tokens\": 8000,\n  \"messages\": [{\n    \"role\": \"user\",\n    \"content\": \"Génère un guide de voyage complet pour : {{ $json.original_prompt }}\\nDestination : {{ $json.destination }}\\nDurée : {{ $json.duration }} jours\\n\\nRéponds UNIQUEMENT en JSON pur valide, sans markdown, sans backticks, sans texte avant ou après.\\nStructure exacte :\\n{\\n  \\\"title\\\": \\\"Titre accrocheur du guide\\\",\\n  \\\"destination\\\": \\\"Nom complet\\\",\\n  \\\"duration\\\": {{ $json.duration }},\\n  \\\"tagline\\\": \\\"Phrase d'accroche poétique courte\\\",\\n  \\\"intro\\\": \\\"Paragraphe d'introduction inspirant (120 mots)\\\",\\n  \\\"highlights\\\": [\\\"Point fort 1\\\", \\\"Point fort 2\\\", \\\"Point fort 3\\\", \\\"Point fort 4\\\", \\\"Point fort 5\\\"],\\n  \\\"cover_keyword\\\": \\\"mot-clé anglais pour photo de couverture Unsplash\\\",\\n  \\\"days\\\": [\\n    {\\n      \\\"day\\\": 1,\\n      \\\"date_label\\\": \\\"Jour 1 — Arrivée\\\",\\n      \\\"title\\\": \\\"Titre de la journée\\\",\\n      \\\"hero_keyword\\\": \\\"mot-clé anglais pour image Unsplash\\\",\\n      \\\"schedule\\\": [\\n        {\\n          \\\"time\\\": \\\"09h00\\\",\\n          \\\"category\\\": \\\"arrivée\\\",\\n          \\\"name\\\": \\\"Nom lieu ou activité\\\",\\n          \\\"description\\\": \\\"Description détaillée 50 mots\\\",\\n          \\\"highlight\\\": false,\\n          \\\"tip\\\": \\\"Conseil pratique court\\\"\\n        }\\n      ],\\n      \\\"concierge_notes\\\": [\\\"Conseil 1\\\", \\\"Conseil 2\\\", \\\"Conseil 3\\\"]\\n    }\\n  ],\\n  \\\"practical_info\\\": {\\n    \\\"best_season\\\": \\\"Meilleure période\\\",\\n    \\\"budget_per_day\\\": \\\"Budget journalier estimé\\\",\\n    \\\"transport\\\": \\\"Comment se déplacer\\\",\\n    \\\"currency\\\": \\\"Monnaie locale\\\",\\n    \\\"language\\\": \\\"Langue locale\\\"\\n  },\\n  \\\"must_see\\\": [\\n    {\\n      \\\"name\\\": \\\"Incontournable 1\\\",\\n      \\\"type\\\": \\\"plage\\\",\\n      \\\"description\\\": \\\"Description 40 mots\\\",\\n      \\\"keyword\\\": \\\"mot-clé Unsplash\\\"\\n    }\\n  ]\\n}\"\n  }]\n}",
+        "options": {}
+      },
+      "id": "0a77c46b-8604-4127-a113-11aa165ec4c1",
+      "name": "✍️ Claude — Générer le Guide",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -896,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const response = $input.first().json;\nconst raw = response.content?.[0]?.text || '{}';\n\nlet cleaned = raw.trim();\nif (cleaned.startsWith('```json')) cleaned = cleaned.slice(7);\nif (cleaned.startsWith('```')) cleaned = cleaned.slice(3);\nif (cleaned.endsWith('```')) cleaned = cleaned.slice(0, -3);\ncleaned = cleaned.trim();\n\nlet guide;\ntry {\n  guide = JSON.parse(cleaned);\n} catch(e) {\n  const prev = $('🔍 Parser la Demande').first().json;\n  guide = {\n    title: 'Guide ' + prev.destination,\n    destination: prev.destination,\n    duration: prev.duration,\n    tagline: 'Votre aventure commence ici',\n    intro: 'Un voyage inoubliable vous attend dans cette destination extraordinaire.',\n    highlights: ['Paysages époustouflants', 'Cuisine locale', 'Culture authentique', 'Plages paradisiaques', 'Vie nocturne'],\n    cover_keyword: prev.destination + ' travel',\n    days: [],\n    practical_info: { best_season: 'Printemps/Automne', budget_per_day: '80-120€', transport: 'Voiture recommandée', currency: 'Euro', language: 'Local' },\n    must_see: []\n  };\n}\n\nconst prev = $('🔍 Parser la Demande').first().json;\n\nreturn [{\n  json: {\n    ...prev,\n    guide: guide,\n    guide_title: guide.title || prev.destination + ' ' + prev.duration + 'J',\n    guide_tagline: guide.tagline || ''\n  }\n}];"
+      },
+      "id": "89db83d0-96e4-4957-92d7-781399569454",
+      "name": "📦 Parser le JSON du Guide",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -672,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nconst g = data.guide;\n\nconst encKw = (kw) => encodeURIComponent((kw || 'travel') + ',travel');\n\nlet daysHtml = '';\nif (g.days && g.days.length > 0) {\n  g.days.forEach((day, i) => {\n    const imgUrl = `https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80&auto=format&fit=crop`;\n    let scheduleHtml = '';\n    if (day.schedule) {\n      day.schedule.forEach(item => {\n        const cls = item.highlight ? 'highlight' : (item.category === 'soirée' ? 'party' : '');\n        scheduleHtml += `<div class=\"tl-item ${cls}\"><div class=\"tl-time\">${item.time} — ${item.category}</div><div class=\"tl-name\">${item.name}</div><div class=\"tl-desc\">${item.description}</div>${item.tip ? `<div class=\"tl-chips\"><span class=\"tl-chip\">💡 ${item.tip}</span></div>` : ''}</div>`;\n      });\n    }\n    let notesHtml = '';\n    if (day.concierge_notes && day.concierge_notes.length > 0) {\n      notesHtml = `<div class=\"note rv\"><div class=\"note-head\"><div class=\"note-icon\">✦</div><div class=\"note-title\">Note de votre concierge — ${day.title}</div></div><ul>${day.concierge_notes.map(n => `<li>${n}</li>`).join('')}</ul></div>`;\n    }\n    daysHtml += `<div class=\"sep\"></div><div class=\"chapter\" id=\"j${day.day}\"><div class=\"ch-hero\" style=\"height:${i===0?'85':'92'}vh\"><div class=\"ch-hero-img\"><img src=\"${imgUrl}\" alt=\"${day.title}\" loading=\"${i===0?'eager':'lazy'}\"></div><div class=\"ch-hero-grad\"></div><div class=\"ch-hero-text\"><span class=\"ch-num\">${String(day.day).padStart(2,'0')}</span><span class=\"ch-eyebrow\">${day.date_label} · ${data.destination}</span><h2 class=\"ch-title\">${day.title.split(' ').slice(0,-1).join(' ')}<br><em>${day.title.split(' ').slice(-1)}</em></h2><p class=\"ch-tagline\">${(day.schedule?.[0]?.description || '').slice(0,110)}...</p></div></div><div class=\"ch-body\"><span class=\"eyebrow rv\">Programme heure par heure</span><div class=\"timeline sg\">${scheduleHtml}</div>${notesHtml}</div></div>`;\n  });\n}\n\nlet mustSeeHtml = '';\nif (g.must_see && g.must_see.length > 0) {\n  const spots = g.must_see.slice(0,3).map(ms => `<div class=\"spot ar-4-3\"><img src=\"https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80\" alt=\"${ms.name}\" loading=\"lazy\"><div class=\"spot-overlay\"><div class=\"spot-type\">${ms.type}</div><div class=\"spot-name\">${ms.name}</div><div class=\"spot-desc\">${ms.description}</div></div></div>`).join('');\n  mustSeeHtml = `<div class=\"sep\"></div><section style=\"padding:80px 64px;max-width:1140px;margin:0 auto\"><span class=\"eyebrow rv\">Les Incontournables</span><div class=\"gallery-title rv\">À ne pas manquer</div><div class=\"gal-3 rv-s\">${spots}</div></section>`;\n}\n\nconst pi = g.practical_info || {};\nconst practicalHtml = `<div style=\"background:var(--night2);padding:60px 64px\"><div style=\"max-width:1140px;margin:0 auto\"><span class=\"eyebrow\" style=\"color:var(--gold2)\">Informations Pratiques</span><div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin-top:28px\">${Object.entries(pi).filter(([,v])=>v).map(([k,v])=>`<div style=\"padding:20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)\"><div style=\"font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:8px\">${k.replace(/_/g,' ')}</div><div style=\"color:white;font-size:.88rem\">${v}</div></div>`).join('')}</div></div></div>`;\n\nconst coverImg = `https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&q=80`;\n\nconst html = `<!DOCTYPE html><html lang=\"fr\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>${g.title || data.guide_title} — YHI Conciergerie</title><meta name=\"description\" content=\"${g.tagline || ''}\"><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link href=\"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap\" rel=\"stylesheet\"><style>:root{--ivory:#F9F5EE;--cream:#F3EDE0;--gold:#B8973A;--gold2:#D4AF6A;--ink:#18181A;--muted:#7A7A80;--rule:#E0D8CC;--night:#0C0F14;--night2:#141820;--white:#fff;--ease:cubic-bezier(0.16,1,0.3,1);}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Jost',sans-serif;background:var(--ivory);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}img{display:block;width:100%;height:100%;object-fit:cover}</style></head><body><div id=\"pb\"></div><nav id=\"mn\"><a href=\"https://yhi-conciergerie.netlify.app\" class=\"nav-brand\">YHI Conciergerie</a><a href=\"#buy\" class=\"nav-buy\">Acheter — ${data.price_formatted}</a></nav><section class=\"cover\"><div class=\"cover-bg\"><img src=\"${coverImg}\" alt=\"${g.destination}\" loading=\"eager\"></div><div class=\"cover-inner\"><h1>${g.title||data.guide_title}</h1><p>${g.tagline}</p><button onclick=\"document.getElementById('buy').scrollIntoView({behavior:'smooth'})\">Acheter — ${data.price_formatted}</button></div></section>${daysHtml}${mustSeeHtml}${practicalHtml}<section id=\"buy\"><h2>${g.destination}</h2><div>${data.price_formatted}</div><button id=\"buy-btn\">Acheter maintenant — ${data.price_formatted}</button></section><footer><div>YHI Conciergerie</div></footer><script>document.getElementById('buy-btn').addEventListener('click',()=>{window.location.href='STRIPE_PAYMENT_URL';});<\\/script></body></html>`;\n\nreturn [{\n  json: {\n    ...data,\n    html: html,\n    page_filename: 'guides/' + data.slug + '.html',\n    page_url: 'https://yhi-conciergerie.netlify.app/guides/' + data.slug\n  }\n}];"
+      },
+      "id": "a97de2cd-c45f-4620-b63a-516aa1f06430",
+      "name": "🎨 Construire la Page HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.stripe.com/v1/products",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer sk_test_51TGfD72OElIpJpkQKDkBMjUDPKWmkWt4KlTY1ZYj9ZQJRUdvFQTC68mFiEWmZmSvIWN3Z1TDIVAA6Q5Vms4Nkcso00bSTt1Wv8"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "string",
+        "body": "=name={{ encodeURIComponent($json.guide_title) }}&description={{ encodeURIComponent($json.guide_tagline) }}&metadata[guide_id]={{ $json.guide_id }}&metadata[slug]={{ $json.slug }}&metadata[destination]={{ encodeURIComponent($json.destination) }}",
+        "options": {}
+      },
+      "id": "7e53cff1-41e6-4db2-8f09-670cbb98b209",
+      "name": "💳 Stripe — Créer Produit",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -448,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.stripe.com/v1/prices",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer sk_test_51TGfD72OElIpJpkQKDkBMjUDPKWmkWt4KlTY1ZYj9ZQJRUdvFQTC68mFiEWmZmSvIWN3Z1TDIVAA6Q5Vms4Nkcso00bSTt1Wv8"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "string",
+        "body": "=product={{ $json.id }}&unit_amount={{ $('🔍 Parser la Demande').first().json.price_cents }}&currency=eur",
+        "options": {}
+      },
+      "id": "edd4bd9a-b46d-4d86-afa7-e15264d85d50",
+      "name": "💰 Stripe — Créer Prix",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -224,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.stripe.com/v1/payment_links",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer sk_test_51TGfD72OElIpJpkQKDkBMjUDPKWmkWt4KlTY1ZYj9ZQJRUdvFQTC68mFiEWmZmSvIWN3Z1TDIVAA6Q5Vms4Nkcso00bSTt1Wv8"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "string",
+        "body": "=line_items[0][price]={{ $json.id }}&line_items[0][quantity]=1&after_completion[type]=redirect&after_completion[redirect][url]=https%3A%2F%2Fyhi-conciergerie.netlify.app%2Fupsell.html%3Fguide%3D{{ $('🔍 Parser la Demande').first().json.slug }}&metadata[guide_id]={{ $('🔍 Parser la Demande').first().json.guide_id }}",
+        "options": {}
+      },
+      "id": "7cba0e2b-1f2f-422f-9672-43264d988594",
+      "name": "🔗 Stripe — Payment Link",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        0,
+        192
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "mergeByPosition",
+        "options": {}
+      },
+      "id": "bacd99de-23b0-437e-93b6-916a80bf0e14",
+      "name": "🔀 Merge — HTML + Stripe",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        224,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Récupérer HTML et Stripe depuis leurs nodes respectifs\nconst htmlData = $('🎨 Construire la Page HTML').first().json;\nconst stripeData = $('🔗 Stripe — Payment Link').first().json;\n\nconst stripeUrl = stripeData.url || '#';\nconst html = htmlData.html.replace('STRIPE_PAYMENT_URL', stripeUrl);\n\nreturn [{\n  json: {\n    guide_id: htmlData.guide_id,\n    guide_title: htmlData.guide_title,\n    guide_tagline: htmlData.guide_tagline,\n    destination: htmlData.destination,\n    duration: htmlData.duration,\n    slug: htmlData.slug,\n    price: htmlData.price,\n    price_formatted: htmlData.price_formatted,\n    price_cents: htmlData.price_cents,\n    page_filename: htmlData.page_filename,\n    page_url: htmlData.page_url,\n    html: html,\n    stripe_payment_url: stripeUrl,\n    stripe_link_id: stripeData.id || ''\n  }\n}];"
+      },
+      "id": "9b637fa1-2e1b-49e8-a094-24f42035ec96",
+      "name": "💉 Injecter Lien Stripe",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nconst siteId = '07b30533-7ad5-409d-a47f-633e5fb27a74';\nconst token = 'nfp_VpVCWTaS2zoEL6uiU8RWw3fsrkkSDCXG3056';\nconst slug = data.slug;\nconst html = data.html;\n\n// Créer un ZIP en mémoire avec le fichier HTML\n// Netlify manual deploy accepte un ZIP via l'API\n\n// Structure ZIP minimale\nfunction createZip(filename, content) {\n  const contentBuf = Buffer.from(content, 'utf8');\n  const nameBuf = Buffer.from(filename);\n  \n  // Local file header\n  const localHeader = Buffer.alloc(30 + nameBuf.length);\n  localHeader.writeUInt32LE(0x04034b50, 0); // signature\n  localHeader.writeUInt16LE(20, 4);  // version needed\n  localHeader.writeUInt16LE(0, 6);   // flags\n  localHeader.writeUInt16LE(0, 8);   // compression (store)\n  localHeader.writeUInt16LE(0, 10);  // mod time\n  localHeader.writeUInt16LE(0, 12);  // mod date\n  localHeader.writeUInt32LE(0, 14);  // crc32 (skip)\n  localHeader.writeUInt32LE(contentBuf.length, 18); // compressed size\n  localHeader.writeUInt32LE(contentBuf.length, 22); // uncompressed size\n  localHeader.writeUInt16LE(nameBuf.length, 26); // filename length\n  localHeader.writeUInt16LE(0, 28);  // extra field length\n  nameBuf.copy(localHeader, 30);\n  \n  // Central directory\n  const centralDir = Buffer.alloc(46 + nameBuf.length);\n  centralDir.writeUInt32LE(0x02014b50, 0); // signature\n  centralDir.writeUInt16LE(20, 4);\n  centralDir.writeUInt16LE(20, 6);\n  centralDir.writeUInt16LE(0, 8);\n  centralDir.writeUInt16LE(0, 10);\n  centralDir.writeUInt16LE(0, 12);\n  centralDir.writeUInt16LE(0, 14);\n  centralDir.writeUInt32LE(0, 16);\n  centralDir.writeUInt32LE(contentBuf.length, 20);\n  centralDir.writeUInt32LE(contentBuf.length, 24);\n  centralDir.writeUInt16LE(nameBuf.length, 28);\n  centralDir.writeUInt16LE(0, 30);\n  centralDir.writeUInt16LE(0, 32);\n  centralDir.writeUInt16LE(0, 34);\n  centralDir.writeUInt16LE(0, 36);\n  centralDir.writeUInt32LE(0, 38);\n  centralDir.writeUInt32LE(0, 42);\n  nameBuf.copy(centralDir, 46);\n  \n  const localOffset = localHeader.length + contentBuf.length;\n  \n  // End of central directory\n  const eocd = Buffer.alloc(22);\n  eocd.writeUInt32LE(0x06054b50, 0);\n  eocd.writeUInt16LE(0, 4);\n  eocd.writeUInt16LE(0, 6);\n  eocd.writeUInt16LE(1, 8);\n  eocd.writeUInt16LE(1, 10);\n  eocd.writeUInt32LE(centralDir.length, 12);\n  eocd.writeUInt32LE(localOffset, 16);\n  eocd.writeUInt16LE(0, 20);\n  \n  return Buffer.concat([localHeader, contentBuf, centralDir, eocd]);\n}\n\n\nconst zipBuffer = createZip('guides/' + slug + '.html', html);\n\n// Déployer le ZIP sur Netlify\nconst response = await helpers.httpRequest({\n  method: 'POST',\n  url: 'https://api.netlify.com/api/v1/sites/' + siteId + '/deploys',\n  headers: {\n    'Authorization': 'Bearer ' + token,\n    'Content-Type': 'application/zip'\n  },\n  body: zipBuffer,\n  returnFullResponse: true,\n  ignoreHttpStatusErrors: true\n});\n\nconsole.log('Deploy status:', response.statusCode);\nconst body = typeof response.body === 'string' ? JSON.parse(response.body) : response.body;\nconsole.log('Deploy id:', body.id, 'state:', body.state);\n\nif (!body.id) throw new Error('Deploy failed: ' + JSON.stringify(body).slice(0, 300));\n\nreturn [{\n  json: {\n    ...data,\n    deploy_id: body.id,\n    deploy_state: body.state,\n    page_url: 'https://yhi-conciergerie.netlify.app/guides/' + slug\n  }\n}];"
+      },
+      "id": "1c74bce5-0c42-48af-8c74-6b63fe1c4ad3",
+      "name": "Netlify - Créer Deploy",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// ZIP déjà déployé dans l'étape précédente\n// Ce node transmet juste les données\nconst data = $input.first().json;\n\nreturn [{\n  json: {\n    guide_id: data.guide_id,\n    guide_title: data.guide_title,\n    guide_tagline: data.guide_tagline || '',\n    destination: data.destination,\n    duration: data.duration,\n    slug: data.slug,\n    price: data.price,\n    price_formatted: data.price_formatted,\n    stripe_payment_url: data.stripe_payment_url,\n    stripe_link_id: data.stripe_link_id || '',\n    netlify_deploy_id: data.deploy_id,\n    page_url: data.page_url\n  }\n}];"
+      },
+      "id": "f7ef5617-b194-4936-91c2-afe6de4a4db7",
+      "name": "Netlify - Upload HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.notion.com/v1/pages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            },
+            {
+              "name": "Notion-Version",
+              "value": "2022-06-28"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"parent\": { \"database_id\": \"333813f17d4280ab9269ec71775e719e\" },\n  \"properties\": {\n    \"title\": { \"title\": [{ \"text\": { \"content\": \"{{ $json.guide_title }}\" } }] },\n    \"Destination\": { \"rich_text\": [{ \"text\": { \"content\": \"{{ $json.destination }}\" } }] },\n    \"Durée (jours)\": { \"number\": {{ $json.duration }} },\n    \"Prix (€)\": { \"number\": {{ $json.price }} },\n    \"URL Guide\": { \"url\": \"{{ $json.page_url }}\" },\n    \"URL Stripe\": { \"url\": \"{{ $json.stripe_payment_url }}\" },\n    \"Slug\": { \"rich_text\": [{ \"text\": { \"content\": \"{{ $json.slug }}\" } }] },\n    \"Statut\": { \"select\": { \"name\": \"Publié\" } },\n    \"Créé le\": { \"date\": { \"start\": \"{{ $now.toISO().split('T')[0] }}\" } },\n    \"Guide ID\": { \"rich_text\": [{ \"text\": { \"content\": \"{{ $json.guide_id }}\" } }] }\n  }\n}",
+        "options": {}
+      },
+      "id": "00404458-0122-4259-bb7a-31ef97acad9a",
+      "name": "📋 Notion — Ajouter au Catalogue",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1344,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"guide_id\": \"{{ $('Netlify - Upload HTML').first().json.guide_id }}\",\n  \"title\": \"{{ $('Netlify - Upload HTML').first().json.guide_title }}\",\n  \"destination\": \"{{ $('Netlify - Upload HTML').first().json.destination }}\",\n  \"duration\": {{ $('Netlify - Upload HTML').first().json.duration }},\n  \"price\": \"{{ $('Netlify - Upload HTML').first().json.price_formatted }}\",\n  \"page_url\": \"{{ $('Netlify - Upload HTML').first().json.page_url }}\",\n  \"stripe_payment_url\": \"{{ $('Netlify - Upload HTML').first().json.stripe_payment_url }}\",\n  \"created_at\": \"{{ $now.toISO() }}\"\n}",
+        "options": {}
+      },
+      "id": "20a63d54-4c9c-4d6b-af71-8d965ee45199",
+      "name": "✅ Réponse Finale",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1568,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "stripe-payment",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "6d1e907e-2029-4a9f-8d84-2c570d90f1f3",
+      "name": "💳 Stripe Webhook — Paiement",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1344,
+        512
+      ],
+      "webhookId": "wanderlux-stripe-payment"
+    },
+    {
+      "parameters": {
+        "jsCode": "const event = $input.first().json.body || $input.first().json;\nif (event.type !== 'checkout.session.completed') {\n  return [{ json: { skip: true } }];\n}\nconst s = event.data?.object || {};\nreturn [{\n  json: {\n    customer_email: s.customer_details?.email || '',\n    customer_name: s.customer_details?.name || 'Voyageur',\n    guide_id: s.metadata?.guide_id || '',\n    slug: s.metadata?.slug || '',\n    amount: (s.amount_total || 0) / 100,\n    payment_id: s.id\n  }\n}];"
+      },
+      "id": "6f7dc8aa-ea07-4907-aaea-89148b4e8d88",
+      "name": "🔄 Traiter le Paiement",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1120,
+        512
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.resend.com/emails",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer VOTRE_CLE_RESEND"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"from\": \"YHI Conciergerie <bonjour@yhi-conciergerie.netlify.app>\",\n  \"to\": [\"{{ $json.customer_email }}\"],\n  \"subject\": \"🗺️ Votre guide est prêt, {{ $json.customer_name }} !\",\n  \"html\": \"<div style='font-family:Georgia,serif;max-width:600px;margin:0 auto;background:#F9F5EE'><div style='background:#0C0F14;padding:40px;text-align:center'><div style='font-size:2rem;color:white'>YHI Conciergerie</div></div><div style='padding:48px 40px'><h2 style='font-weight:300'>Bonjour {{ $json.customer_name }},</h2><p style='color:#7A7A80;margin:20px 0'>Votre guide est prêt !</p><a href='https://yhi-conciergerie.netlify.app/guides/{{ $json.slug }}' style='background:#B8973A;color:#0C0F14;padding:14px 32px;text-decoration:none;font-weight:700;display:inline-block'>Accéder à mon guide →</a></div></div>\"\n}",
+        "options": {}
+      },
+      "id": "d5200046-8728-44f5-8eab-b380fc4580fd",
+      "name": "📨 Envoyer le Guide au Client",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -896,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"received\": true}",
+        "options": {}
+      },
+      "id": "1a21eb9e-3899-443d-bb01-86f7e7277935",
+      "name": "✅ Confirmer Stripe",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -896,
+        608
+      ]
+    }
+  ],
+  "pinData": {
+    "📥 Trigger — Nouvelle Demande": [
+      {
+        "json": {
+          "headers": {
+            "host": "bruncheebox2.app.n8n.cloud",
+            "user-agent": "curl/8.7.1",
+            "content-length": "35",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "2a02:8429:4d63:1201:80a2:c7a9:4f0:e5ef",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "FR",
+            "cf-ray": "9e4a352cdca9b870-MXP",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "x-forwarded-for": "2a02:8429:4d63:1201:80a2:c7a9:4f0:e5ef, 172.69.68.24",
+            "x-forwarded-host": "bruncheebox2.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-gwc-94-547d786f49-b4hgr",
+            "x-is-trusted": "yes",
+            "x-real-ip": "2a02:8429:4d63:1201:80a2:c7a9:4f0:e5ef"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "prompt": "Guide 4 jours à Nice"
+          },
+          "webhookUrl": "https://bruncheebox2.app.n8n.cloud/webhook/generate-guide",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "📥 Trigger — Nouvelle Demande": {
+      "main": [
+        [
+          {
+            "node": "🔍 Parser la Demande",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🔍 Parser la Demande": {
+      "main": [
+        [
+          {
+            "node": "✍️ Claude — Générer le Guide",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "✍️ Claude — Générer le Guide": {
+      "main": [
+        [
+          {
+            "node": "📦 Parser le JSON du Guide",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📦 Parser le JSON du Guide": {
+      "main": [
+        [
+          {
+            "node": "🎨 Construire la Page HTML",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "💳 Stripe — Créer Produit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🎨 Construire la Page HTML": {
+      "main": [
+        [
+          {
+            "node": "🔀 Merge — HTML + Stripe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "💳 Stripe — Créer Produit": {
+      "main": [
+        [
+          {
+            "node": "💰 Stripe — Créer Prix",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "💰 Stripe — Créer Prix": {
+      "main": [
+        [
+          {
+            "node": "🔗 Stripe — Payment Link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🔗 Stripe — Payment Link": {
+      "main": [
+        [
+          {
+            "node": "🔀 Merge — HTML + Stripe",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "🔀 Merge — HTML + Stripe": {
+      "main": [
+        [
+          {
+            "node": "💉 Injecter Lien Stripe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "💉 Injecter Lien Stripe": {
+      "main": [
+        [
+          {
+            "node": "Netlify - Créer Deploy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Netlify - Créer Deploy": {
+      "main": [
+        [
+          {
+            "node": "Netlify - Upload HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Netlify - Upload HTML": {
+      "main": [
+        [
+          {
+            "node": "📋 Notion — Ajouter au Catalogue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "📋 Notion — Ajouter au Catalogue": {
+      "main": [
+        [
+          {
+            "node": "✅ Réponse Finale",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "💳 Stripe Webhook — Paiement": {
+      "main": [
+        [
+          {
+            "node": "🔄 Traiter le Paiement",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "🔄 Traiter le Paiement": {
+      "main": [
+        [
+          {
+            "node": "📨 Envoyer le Guide au Client",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "✅ Confirmer Stripe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "4cac21fa-89b6-494b-a115-aa567be3c89f",
+  "meta": {
+    "instanceId": "ff8b23881ece1e83eff70acfae4a67867859a30e35f3548811e438b87d1d59d6"
+  },
+  "id": "G62R53IWP5LrORGi",
+  "tags": []
+}
