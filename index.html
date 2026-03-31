@@ -3,706 +3,820 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YHI Conciergerie — Guides de Voyage Premium | Experts Locaux</title>
-<meta name="description" content="Des guides de voyage premium rédigés par des experts locaux. Itinéraires détaillés, adresses exclusives, conseils conciergerie. Téléchargement immédiat.">
-<meta name="keywords" content="guide voyage, voyage premium, itinéraire, conciergerie voyage, guide touristique, voyage sur mesure">
-<meta property="og:title" content="YHI Conciergerie — Guides de Voyage Premium">
-<meta property="og:description" content="Des guides de voyage premium rédigés par des experts locaux. Itinéraires détaillés, adresses exclusives.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://yhi-conciergerie.netlify.app">
-<link rel="canonical" href="https://yhi-conciergerie.netlify.app">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "YHI Conciergerie",
-  "url": "https://yhi-conciergerie.netlify.app",
-  "description": "Guides de voyage premium rédigés par des experts locaux",
-  "offers": {
-    "@type": "AggregateOffer",
-    "priceCurrency": "EUR",
-    "lowPrice": "12.90",
-    "highPrice": "29.90"
-  }
-}
-</script>
+<title>YHI Conciergerie — Guides de Voyage Premium</title>
+<meta name="description" content="Des guides de voyage d'exception, générés par IA et validés par des experts locaux. Chaque destination, chaque détail — pensé pour vous.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ivory:#F9F5EE;--cream:#F3EDE0;--gold:#B8973A;--gold2:#D4AF6A;
-  --ink:#18181A;--ink2:#2D2D30;--muted:#7A7A80;--rule:#E0D8CC;
-  --night:#0C0F14;--night2:#141820;--white:#fff;
-  --ease:cubic-bezier(0.16,1,0.3,1);
+:root {
+  --ivory: #F8F4EC;
+  --cream: #F0E9D8;
+  --gold: #B8973A;
+  --gold2: #D4AF6A;
+  --gold3: #E8C97A;
+  --ink: #14120E;
+  --ink2: #2A2620;
+  --muted: #7A7268;
+  --rule: #DDD5C0;
+  --night: #0C0A06;
+  --night2: #161310;
+  --night3: #1E1A14;
+  --ease: cubic-bezier(0.16,1,0.3,1);
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Jost',sans-serif;background:var(--ivory);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-img{display:block;width:100%;height:100%;object-fit:cover}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Jost', sans-serif; background: var(--ivory); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+img { display:block; width:100%; height:100%; object-fit:cover; }
+a { text-decoration: none; color: inherit; }
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--night); }
+::-webkit-scrollbar-thumb { background: var(--gold); }
+
+/* ── PROGRESS BAR ── */
+#pb { position:fixed; top:0; left:0; height:2px; width:0; background:linear-gradient(90deg,var(--gold),var(--gold3)); z-index:9999; transition:width .1s linear; }
 
 /* ── NAV ── */
-#nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 60px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,15,20,0);transition:all .5s var(--ease)}
-#nav.on{background:rgba(12,15,20,.94);backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,175,106,.12)}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:white;text-decoration:none}
-.nav-logo span{color:var(--gold2);font-style:italic}
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-link{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;transition:color .3s;font-weight:500}
-.nav-link:hover{color:var(--gold2)}
-.nav-cta{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:10px 24px;background:var(--gold);color:var(--night);border-radius:1px;text-decoration:none;transition:all .25s}
-.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
-@media(max-width:768px){#nav{padding:16px 24px}.nav-links .nav-link{display:none}}
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  padding: 0 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px;
+  background: transparent;
+  transition: all .5s var(--ease);
+}
+nav.scrolled {
+  background: rgba(12,10,6,.94);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(212,175,106,.1);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-weight: 400; letter-spacing: .22em;
+  text-transform: uppercase; color: white;
+}
+.nav-logo span { color: var(--gold2); font-style: italic; }
+.nav-links { display:flex; align-items:center; gap:36px; }
+.nav-links a {
+  font-size: .6rem; letter-spacing: .3em; text-transform: uppercase;
+  color: rgba(255,255,255,.5); font-weight: 500;
+  transition: color .3s;
+}
+.nav-links a:hover { color: var(--gold2); }
+.nav-lang {
+  display:flex; gap:8px; align-items:center;
+  font-size: .58rem; letter-spacing: .15em;
+}
+.nav-lang button {
+  background: none; border: none; cursor:pointer;
+  color: rgba(255,255,255,.35); font-family:'Jost',sans-serif;
+  font-size: .58rem; letter-spacing: .15em; padding: 4px 8px;
+  transition: color .3s; text-transform: uppercase;
+}
+.nav-lang button.active { color: var(--gold2); }
+.nav-cta {
+  font-size: .58rem; letter-spacing: .22em; text-transform: uppercase;
+  font-weight: 600; padding: 8px 20px;
+  border: 1px solid var(--gold); color: var(--gold);
+  transition: all .3s; border-radius: 1px;
+}
+.nav-cta:hover { background: var(--gold); color: var(--night); }
+.nav-burger { display:none; background:none; border:none; cursor:pointer; padding:8px; }
+.nav-burger span { display:block; width:22px; height:1px; background:white; margin:5px 0; transition:all .3s; }
 
 /* ── HERO ── */
-.hero{position:relative;height:100vh;min-height:720px;overflow:hidden;background:var(--night);display:flex;align-items:center}
-.hero-slides{position:absolute;inset:0}
-.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.8s ease;background-size:cover;background-position:center}
-.hero-slide.active{opacity:1}
-.hero-slide:nth-child(1){background-image:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=80')}
-.hero-slide:nth-child(2){background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1800&q=80')}
-.hero-slide:nth-child(3){background-image:url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1800&q=80')}
-.hero-slide:nth-child(4){background-image:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1800&q=80')}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(12,15,20,.88) 0%,rgba(12,15,20,.5) 55%,rgba(12,15,20,.15) 100%),linear-gradient(to top,rgba(12,15,20,.5) 0%,transparent 50%)}
-.hero-content{position:relative;z-index:2;padding:0 60px;max-width:820px}
-@media(max-width:768px){.hero-content{padding:0 24px}}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(212,175,106,.35);padding:7px 20px;border-radius:1px;font-size:.56rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold2);background:rgba(0,0,0,.28);backdrop-filter:blur(8px);margin-bottom:28px;animation:fadeUp .8s var(--ease) .3s both}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,8vw,6.5rem);font-weight:300;letter-spacing:.04em;line-height:.92;color:white;text-transform:uppercase;margin-bottom:20px;animation:fadeUp .9s var(--ease) .5s both}
-.hero h1 em{font-style:italic;color:var(--gold2)}
-.hero-sub{font-size:.92rem;line-height:1.75;color:rgba(255,255,255,.55);font-weight:300;max-width:520px;margin-bottom:40px;animation:fadeUp .8s var(--ease) .7s both}
-.hero-actions{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp .8s var(--ease) .9s both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--night);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;padding:16px 36px;border-radius:1px;text-decoration:none;transition:all .25s;box-shadow:0 4px 24px rgba(184,151,58,.4);border:none;cursor:pointer;font-family:'Jost',sans-serif}
-.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(184,151,58,.5)}
-.btn-outline{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;padding:16px 32px;border-radius:1px;text-decoration:none;transition:all .25s}
-.btn-outline:hover{border-color:var(--gold2);color:var(--gold2)}
-.hero-stats{position:absolute;bottom:48px;right:60px;z-index:2;display:flex;gap:40px;animation:fadeUp .8s var(--ease) 1.1s both}
-@media(max-width:768px){.hero-stats{display:none}}
-.stat{text-align:right}
-.stat-n{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--gold2);line-height:1}
-.stat-l{font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px}
-.scroll-cue{position:absolute;bottom:44px;left:60px;z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp .8s var(--ease) 1.2s both}
-.scroll-cue span{font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.28)}
-.scroll-line{width:1px;height:44px;background:linear-gradient(180deg,rgba(212,175,106,.6),transparent);animation:scPulse 2.4s ease-in-out infinite}
-@keyframes scPulse{0%,100%{opacity:.3}50%{opacity:1}}
+.hero {
+  position: relative; height: 100vh; min-height: 700px;
+  display: flex; align-items: flex-end;
+  background: var(--night); overflow: hidden;
+}
+.hero-bg { position:absolute; inset:0; overflow:hidden; }
+.hero-bg img {
+  width:100%; height:110%; object-fit:cover;
+  opacity: 0; transform: scale(1.08);
+  animation: heroIn 2s var(--ease) .3s forwards, heroDrift 25s ease-in-out 2.3s infinite alternate;
+}
+@keyframes heroIn { to { opacity: .55; transform: scale(1.04); } }
+@keyframes heroDrift { from { transform: scale(1.04) translateX(0); } to { transform: scale(1.08) translateX(-1.5%); } }
+.hero-grad {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(12,10,6,1) 0%, rgba(12,10,6,.5) 38%, rgba(12,10,6,.1) 65%, transparent 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 56px 80px;
+  max-width: 900px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items:center; gap:14px;
+  font-size: .56rem; letter-spacing: .5em; text-transform: uppercase;
+  color: var(--gold2); margin-bottom: 28px;
+  opacity: 0; animation: fadeUp .8s var(--ease) .8s forwards;
+}
+.hero-eyebrow::before, .hero-eyebrow::after { content:''; flex:1; width:40px; height:1px; background: linear-gradient(90deg, transparent, var(--gold2)); }
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4.5rem, 10vw, 8rem);
+  font-weight: 300; line-height: .9; letter-spacing: .04em;
+  text-transform: uppercase; color: white; margin-bottom: 28px;
+  opacity: 0; animation: fadeUp .9s var(--ease) 1s forwards;
+}
+.hero h1 em { font-style: italic; color: var(--gold2); display:block; }
+.hero-sub {
+  font-size: .82rem; color: rgba(255,255,255,.45); line-height: 1.8;
+  font-weight: 300; max-width: 520px; margin-bottom: 48px;
+  opacity: 0; animation: fadeUp .8s var(--ease) 1.2s forwards;
+}
+.hero-btns {
+  display: flex; gap:16px; flex-wrap:wrap;
+  opacity: 0; animation: fadeUp .8s var(--ease) 1.4s forwards;
+}
+.btn-primary {
+  display:inline-flex; align-items:center; gap:10px;
+  background: var(--gold); color: var(--night);
+  font-size: .6rem; letter-spacing: .25em; text-transform: uppercase;
+  font-weight: 700; padding: 16px 36px; border-radius:1px;
+  transition: all .3s; border:none; cursor:pointer; font-family:'Jost',sans-serif;
+  box-shadow: 0 8px 32px rgba(184,151,58,.4);
+}
+.btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-outline {
+  display:inline-flex; align-items:center; gap:10px;
+  border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.6);
+  font-size: .6rem; letter-spacing: .25em; text-transform: uppercase;
+  font-weight: 500; padding: 16px 32px; border-radius:1px;
+  transition: all .3s; cursor:pointer; font-family:'Jost',sans-serif; background:none;
+}
+.btn-outline:hover { border-color: var(--gold2); color: var(--gold2); }
+.hero-scroll {
+  position: absolute; bottom:40px; right:56px; z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  opacity: 0; animation: fadeUp .8s var(--ease) 1.8s forwards;
+}
+.hero-scroll span { font-size:.5rem; letter-spacing:.4em; text-transform:uppercase; color:rgba(255,255,255,.25); writing-mode:vertical-rl; }
+.scroll-line { width:1px; height:60px; background:linear-gradient(180deg,rgba(212,175,106,.8),transparent); animation:scrollPulse 2s ease-in-out infinite; }
+@keyframes scrollPulse { 0%,100%{opacity:.3;transform:scaleY(.7)} 50%{opacity:1;transform:scaleY(1)} }
+@keyframes fadeUp { to{opacity:1;transform:translateY(0)} from{opacity:0;transform:translateY(24px)} }
 
-/* ── TRUST BAR ── */
-.trust{background:var(--ink);padding:22px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
-@media(max-width:768px){.trust{padding:20px 24px;justify-content:center;gap:24px}}
-.trust-item{display:flex;align-items:center;gap:9px;color:rgba(255,255,255,.42);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
-.trust-icon{color:var(--gold);font-size:1rem}
+/* ── STATS BAND ── */
+.stats-band {
+  background: var(--night2);
+  border-bottom: 1px solid rgba(212,175,106,.1);
+  padding: 0 56px;
+  display: grid; grid-template-columns: repeat(4,1fr);
+}
+.stat-item {
+  padding: 40px 0; text-align:center;
+  border-right: 1px solid rgba(255,255,255,.05);
+  position:relative;
+}
+.stat-item:last-child { border-right:none; }
+.stat-num {
+  font-family:'Cormorant Garamond',serif;
+  font-size: 2.8rem; font-weight:300; color:white; line-height:1;
+  display:block; margin-bottom:8px;
+}
+.stat-num span { color:var(--gold2); }
+.stat-label { font-size:.56rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.3); }
 
-/* ── SECTIONS ── */
-.section{padding:100px 60px}
-@media(max-width:768px){.section{padding:70px 24px}}
-.section-inner{max-width:1280px;margin:0 auto}
-.eyebrow{font-size:.57rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-bottom:12px}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;line-height:1.15;color:var(--ink);margin-bottom:6px}
-.section-title em{font-style:italic;color:var(--gold)}
-.gold-line{width:48px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:18px 0 32px}
+/* ── SECTION STYLES ── */
+.section-header { text-align:center; margin-bottom:64px; }
+.eyebrow { font-size:.56rem; letter-spacing:.45em; text-transform:uppercase; color:var(--gold); font-weight:600; display:block; margin-bottom:14px; }
+.section-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,4vw,3.4rem); font-weight:300; color:var(--ink); line-height:1.1;
+}
+.section-title em { font-style:italic; color:var(--gold); }
+.section-title.light { color:white; }
+.section-title.light em { color:var(--gold2); }
+.rule { width:48px; height:1px; background:linear-gradient(90deg,var(--gold),transparent); margin:20px auto 0; }
 
-/* ── SCROLL REVEAL ── */
-.rv{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease),transform .9s var(--ease)}.rv.in{opacity:1;transform:none}
-.rv-l{opacity:0;transform:translateX(-32px);transition:opacity .9s var(--ease),transform .9s var(--ease)}.rv-l.in{opacity:1;transform:none}
-.rv-r{opacity:0;transform:translateX(32px);transition:opacity .9s var(--ease),transform .9s var(--ease)}.rv-r.in{opacity:1;transform:none}
-.rv-s{opacity:0;transform:scale(.95);transition:opacity .9s var(--ease),transform .9s var(--ease)}.rv-s.in{opacity:1;transform:none}
+/* ── FEATURED GUIDE ── */
+.featured { background:var(--night); padding:100px 56px; }
+.featured-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.featured-img {
+  position:relative; aspect-ratio:3/4; overflow:hidden;
+}
+.featured-img img { transition:transform 10s ease; }
+.featured-img:hover img { transform:scale(1.06); }
+.featured-badge {
+  position:absolute; top:28px; left:28px;
+  background:var(--gold); color:var(--night);
+  font-size:.52rem; letter-spacing:.3em; text-transform:uppercase;
+  font-weight:700; padding:6px 16px;
+}
+.featured-content { color:white; }
+.featured-dest { font-size:.58rem; letter-spacing:.4em; text-transform:uppercase; color:var(--gold2); margin-bottom:16px; }
+.featured-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.4rem,4vw,3.6rem); font-weight:300; line-height:1; margin-bottom:20px; }
+.featured-title em { font-style:italic; color:var(--gold2); }
+.featured-desc { font-size:.84rem; color:rgba(255,255,255,.45); line-height:1.85; font-weight:300; margin-bottom:36px; }
+.featured-pills { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:40px; }
+.pill { font-size:.56rem; letter-spacing:.18em; text-transform:uppercase; border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.5); padding:6px 16px; }
+.featured-footer { display:flex; align-items:center; justify-content:space-between; padding-top:32px; border-top:1px solid rgba(255,255,255,.08); }
+.featured-price { font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:300; color:var(--gold2); }
+.featured-price small { font-size:.65rem; font-family:'Jost',sans-serif; letter-spacing:.1em; color:rgba(255,255,255,.3); display:block; }
 
-/* ── GUIDE CARDS ── */
-.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px}
-.f-btn{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;padding:8px 20px;background:transparent;border:1px solid var(--rule);color:var(--muted);cursor:pointer;transition:all .25s;border-radius:1px;font-family:'Jost',sans-serif}
-.f-btn.active,.f-btn:hover{background:var(--gold);color:var(--night);border-color:var(--gold)}
-.guides-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:28px}
-@media(max-width:768px){.guides-grid{grid-template-columns:1fr;gap:20px}}
-.guide-card{background:var(--night2);overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s;cursor:pointer;position:relative}
-.guide-card:hover{transform:translateY(-8px);box-shadow:0 24px 64px rgba(12,15,20,.5)}
-.gc-img{position:relative;aspect-ratio:16/10;overflow:hidden}
-.gc-img img{width:100%;height:100%;object-fit:cover;transition:transform 8s ease,filter .5s}
-.guide-card:hover .gc-img img{transform:scale(1.08);filter:brightness(.78)}
-.gc-tag{position:absolute;top:16px;left:16px;z-index:2;font-size:.54rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;padding:5px 12px;border-radius:1px}
-.tag-new{background:var(--gold);color:var(--night)}
-.tag-hot{background:#C41E3A;color:white}
-.gc-body{padding:26px 28px 30px}
-.gc-dest{font-size:.56rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold2);margin-bottom:8px}
-.gc-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:white;line-height:1.15;margin-bottom:10px}
-.gc-desc{font-size:.78rem;line-height:1.68;color:rgba(255,255,255,.42);font-weight:300;margin-bottom:16px}
-.gc-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.gc-pill{font-size:.58rem;letter-spacing:.08em;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.42)}
-.gc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid rgba(255,255,255,.07)}
-.gc-price{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;color:var(--gold2)}
-.gc-btn{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:11px 22px;background:var(--gold);color:var(--night);border:none;cursor:pointer;transition:all .25s;border-radius:1px;font-family:'Jost',sans-serif;text-decoration:none;display:inline-block}
-.gc-btn:hover{background:var(--gold2);transform:scale(1.03)}
-.gc-stars{display:flex;align-items:center;gap:3px;margin-bottom:8px}
-.star{color:var(--gold);font-size:.75rem}
-.star-c{font-size:.68rem;color:rgba(255,255,255,.3);margin-left:4px}
+/* ── GUIDES GRID ── */
+.guides-section { padding:100px 56px; background:var(--ivory); }
+.guides-section .section-header { margin-bottom:48px; }
+.filter-bar { display:flex; gap:8px; justify-content:center; margin-bottom:56px; flex-wrap:wrap; }
+.filter-btn {
+  font-size:.56rem; letter-spacing:.22em; text-transform:uppercase;
+  padding:9px 24px; border:1px solid var(--rule); background:none; cursor:pointer;
+  color:var(--muted); font-family:'Jost',sans-serif; border-radius:1px; transition:all .3s;
+}
+.filter-btn.active, .filter-btn:hover { background:var(--ink); color:white; border-color:var(--ink); }
+.guides-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; max-width:1300px; margin:0 auto; }
+.guide-card {
+  position:relative; background:white; overflow:hidden;
+  cursor:pointer; transition:transform .4s var(--ease);
+}
+.guide-card:hover { transform:translateY(-6px); z-index:2; box-shadow:0 24px 64px rgba(0,0,0,.12); }
+.gc-img { position:relative; aspect-ratio:4/3; overflow:hidden; background:var(--night2); }
+.gc-img img { transition:transform 8s ease; }
+.guide-card:hover .gc-img img { transform:scale(1.08); }
+.gc-badge {
+  position:absolute; top:16px; left:16px;
+  font-size:.5rem; letter-spacing:.25em; text-transform:uppercase;
+  font-weight:700; padding:5px 14px;
+}
+.gc-badge.new { background:var(--gold); color:var(--night); }
+.gc-badge.hot { background:#E53E3E; color:white; }
+.gc-badge.top { background:var(--night); color:var(--gold2); border:1px solid var(--gold2); }
+.gc-body { padding:28px 28px 32px; }
+.gc-dest { font-size:.54rem; letter-spacing:.32em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; font-weight:600; }
+.gc-title { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:400; color:var(--ink); margin-bottom:10px; line-height:1.15; }
+.gc-desc { font-size:.76rem; color:var(--muted); line-height:1.75; margin-bottom:16px; font-weight:300; }
+.gc-pills { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:20px; }
+.gc-pill { font-size:.54rem; background:var(--cream); color:var(--muted); padding:4px 12px; border-radius:1px; }
+.gc-footer { display:flex; align-items:center; justify-content:space-between; padding-top:16px; border-top:1px solid var(--rule); }
+.gc-price { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:300; color:var(--ink); }
+.gc-price s { font-size:.9rem; color:var(--muted); margin-right:6px; font-family:'Jost',sans-serif; }
+.gc-btn {
+  font-size:.54rem; letter-spacing:.2em; text-transform:uppercase; font-weight:600;
+  padding:8px 20px; background:var(--gold); color:var(--night); border:none; cursor:pointer;
+  font-family:'Jost',sans-serif; transition:all .3s; border-radius:1px;
+}
+.gc-btn:hover { background:var(--gold2); }
+.guides-more { text-align:center; margin-top:56px; }
 
-/* ── FEATURED ── */
-.featured-guide{display:grid;grid-template-columns:1fr 1fr;min-height:600px;overflow:hidden;background:var(--night2)}
-@media(max-width:900px){.featured-guide{grid-template-columns:1fr}}
-.fg-img{position:relative;overflow:hidden;min-height:420px}
-.fg-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 9s ease}
-.fg-img:hover img{transform:scale(1.05)}
-.fg-new{position:absolute;top:24px;left:24px;z-index:2;background:var(--gold);color:var(--night);font-size:.54rem;letter-spacing:.3em;text-transform:uppercase;font-weight:700;padding:6px 14px}
-.fg-content{padding:64px 60px;display:flex;flex-direction:column;justify-content:center;position:relative}
-.fg-content::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold)}
-.fg-kicker{font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold2);margin-bottom:20px;display:flex;align-items:center;gap:12px}
-.fg-kicker::before{content:'';display:inline-block;width:28px;height:1px;background:var(--gold);flex-shrink:0}
-.fg-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;color:white;line-height:1.1;margin-bottom:20px}
-.fg-title em{font-style:italic;color:var(--gold2)}
-.fg-desc{font-size:.86rem;line-height:1.78;color:rgba(255,255,255,.48);font-weight:300;margin-bottom:32px}
-.fg-meta{display:flex;gap:20px;margin-bottom:36px;flex-wrap:wrap}
-.fg-meta-item{display:flex;align-items:center;gap:7px;font-size:.7rem;color:rgba(255,255,255,.38);letter-spacing:.05em}
-.fg-meta-item span:first-child{color:var(--gold2)}
-.fg-price-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-.fg-price{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--gold2)}
-@media(max-width:768px){.fg-content{padding:40px 28px}}
+/* ── HOW IT WORKS ── */
+.how { background:var(--night); padding:100px 56px; }
+.how-grid { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+.how-step { padding:56px 48px; background:var(--night2); text-align:center; position:relative; overflow:hidden; }
+.how-step::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity:0; transition:opacity .3s; }
+.how-step:hover::before { opacity:1; }
+.how-num { font-family:'Cormorant Garamond',serif; font-size:5rem; font-weight:300; color:rgba(212,175,106,.08); line-height:1; display:block; margin-bottom:-20px; }
+.how-icon { font-size:1.8rem; display:block; margin-bottom:20px; }
+.how-title { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:400; color:white; margin-bottom:12px; }
+.how-desc { font-size:.76rem; color:rgba(255,255,255,.35); line-height:1.75; font-weight:300; }
 
 /* ── BLOG ── */
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:40px}
-@media(max-width:900px){.blog-grid{grid-template-columns:1fr}}
-.blog-card{background:white;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s;text-decoration:none;color:var(--ink);display:block}
-.blog-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(12,15,20,.12)}
-.bc-img{position:relative;aspect-ratio:16/9;overflow:hidden}
-.bc-img img{width:100%;height:100%;object-fit:cover;transition:transform 7s ease}
-.blog-card:hover .bc-img img{transform:scale(1.06)}
-.bc-cat{position:absolute;top:16px;left:16px;background:var(--gold);color:var(--night);font-size:.54rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;padding:5px 12px}
-.bc-body{padding:24px 26px 28px}
-.bc-dest{font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:600}
-.bc-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:10px}
-.bc-excerpt{font-size:.78rem;line-height:1.65;color:var(--muted);margin-bottom:16px}
-.bc-meta{display:flex;align-items:center;justify-content:space-between;font-size:.65rem;color:var(--muted)}
-.bc-read{color:var(--gold);font-weight:600;letter-spacing:.1em;text-transform:uppercase}
-
-/* ── HOW ── */
-.how-section{background:var(--night);padding:100px 60px}
-@media(max-width:768px){.how-section{padding:70px 24px}}
-.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:60px}
-@media(max-width:700px){.how-grid{grid-template-columns:1fr}}
-.how-step{padding:40px;border-right:1px solid rgba(255,255,255,.06)}
-.how-step:last-child{border-right:none}
-@media(max-width:700px){.how-step{border-right:none;border-bottom:1px solid rgba(255,255,255,.06);padding:28px 0}}
-.how-num{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:rgba(212,175,106,.08);line-height:1;margin-bottom:-14px}
-.how-icon{font-size:1.8rem;margin-bottom:16px;display:block}
-.how-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:white;margin-bottom:10px}
-.how-desc{font-size:.82rem;line-height:1.7;color:rgba(255,255,255,.4);font-weight:300}
+.blog-section { padding:100px 56px; background:var(--cream); }
+.blog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; max-width:1300px; margin:0 auto; }
+.blog-card { background:white; overflow:hidden; cursor:pointer; transition:transform .4s var(--ease), box-shadow .4s; }
+.blog-card:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,0,0,.1); }
+.bc-img { aspect-ratio:16/9; overflow:hidden; background:var(--night2); position:relative; }
+.bc-img img { transition:transform 8s ease; }
+.blog-card:hover .bc-img img { transform:scale(1.06); }
+.bc-cat { position:absolute; bottom:14px; left:14px; background:var(--gold); color:var(--night); font-size:.5rem; letter-spacing:.25em; text-transform:uppercase; font-weight:700; padding:4px 12px; }
+.bc-body { padding:28px; }
+.bc-dest { font-size:.54rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; font-weight:600; }
+.bc-title { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:400; color:var(--ink); margin-bottom:10px; line-height:1.2; }
+.bc-excerpt { font-size:.76rem; color:var(--muted); line-height:1.7; margin-bottom:16px; font-weight:300; }
+.bc-meta { display:flex; align-items:center; justify-content:space-between; font-size:.6rem; color:var(--muted); border-top:1px solid var(--rule); padding-top:14px; }
+.bc-read { color:var(--gold); font-weight:600; }
 
 /* ── TESTIMONIALS ── */
-.testi-section{background:var(--cream);padding:100px 60px}
-@media(max-width:768px){.testi-section{padding:70px 24px}}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:50px}
-@media(max-width:900px){.testi-grid{grid-template-columns:1fr}}
-.testi-card{background:var(--ivory);padding:32px;border-left:3px solid var(--gold);position:relative;overflow:hidden}
-.testi-card::before{content:'"';font-family:'Cormorant Garamond',serif;font-size:6rem;font-weight:300;color:rgba(184,151,58,.1);position:absolute;top:8px;right:16px;line-height:1}
-.testi-stars{font-size:.8rem;color:var(--gold);margin-bottom:14px;letter-spacing:2px}
-.testi-text{font-size:.85rem;line-height:1.75;color:var(--muted);font-weight:300;margin-bottom:20px;font-style:italic}
-.testi-author{display:flex;align-items:center;gap:12px}
-.testi-avatar{width:38px;height:38px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--night);font-weight:700;flex-shrink:0}
-.testi-name{font-weight:600;font-size:.82rem;color:var(--ink)}
-.testi-trip{font-size:.7rem;color:var(--muted);margin-top:2px}
+.testimonials { background:var(--night); padding:100px 56px; }
+.testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; max-width:1200px; margin:0 auto; }
+.testi-card { background:var(--night2); padding:48px 40px; }
+.testi-stars { color:var(--gold2); font-size:.85rem; letter-spacing:4px; margin-bottom:20px; }
+.testi-text { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:300; font-style:italic; color:rgba(255,255,255,.7); line-height:1.7; margin-bottom:28px; }
+.testi-author { display:flex; align-items:center; gap:14px; }
+.testi-avatar { width:40px; height:40px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--night); flex-shrink:0; font-weight:600; }
+.testi-name { font-size:.72rem; color:white; font-weight:500; }
+.testi-trip { font-size:.6rem; color:rgba(255,255,255,.3); }
 
-/* ── CTA ── */
-.cta-section{background:var(--night);padding:120px 60px;text-align:center;position:relative;overflow:hidden}
-.cta-section::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1400&q=80') center/cover;opacity:.06}
-.cta-section::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(184,151,58,.08),transparent)}
-.cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
-.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:300;color:white;line-height:1.1;margin-bottom:16px}
-.cta-title em{font-style:italic;color:var(--gold2)}
-.cta-sub{font-size:.9rem;line-height:1.7;color:rgba(255,255,255,.45);margin-bottom:40px}
+/* ── CTA SECTION ── */
+.cta-section { background:var(--ivory); padding:120px 56px; text-align:center; position:relative; overflow:hidden; }
+.cta-section::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:600px; height:600px; background:radial-gradient(ellipse,rgba(184,151,58,.08),transparent 70%); pointer-events:none; }
+.cta-section .section-title { font-size:clamp(2.8rem,5vw,4.5rem); max-width:700px; margin:0 auto 40px; }
 
 /* ── FOOTER ── */
-footer{background:var(--ink);padding:80px 60px 40px}
-@media(max-width:768px){footer{padding:60px 24px 32px}}
-.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:64px}
-@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr}}
-@media(max-width:500px){.footer-top{grid-template-columns:1fr}}
-.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:white;margin-bottom:14px}
-.footer-brand span{color:var(--gold2);font-style:italic}
-.footer-desc{font-size:.8rem;line-height:1.7;color:rgba(255,255,255,.28);max-width:270px}
-.footer-col-title{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:600}
-.footer-link{display:block;font-size:.8rem;color:rgba(255,255,255,.32);text-decoration:none;margin-bottom:9px;transition:color .25s}
-.footer-link:hover{color:var(--gold2)}
-.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding-top:28px;border-top:1px solid rgba(255,255,255,.06)}
-.footer-copy{font-size:.68rem;color:rgba(255,255,255,.18);letter-spacing:.1em}
-.footer-legal{display:flex;gap:20px}
-.footer-legal a{font-size:.65rem;color:rgba(255,255,255,.22);text-decoration:none;transition:color .25s}
-.footer-legal a:hover{color:var(--gold2)}
+footer { background:var(--night); border-top:1px solid rgba(255,255,255,.05); }
+.footer-main { padding:80px 56px 56px; display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:56px; max-width:1400px; margin:0 auto; }
+.footer-brand { }
+.footer-logo { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:400; letter-spacing:.22em; text-transform:uppercase; color:white; margin-bottom:16px; }
+.footer-logo span { color:var(--gold2); font-style:italic; }
+.footer-desc { font-size:.76rem; color:rgba(255,255,255,.3); line-height:1.8; font-weight:300; max-width:260px; }
+.footer-col h4 { font-size:.56rem; letter-spacing:.35em; text-transform:uppercase; color:var(--gold2); margin-bottom:20px; font-weight:600; }
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-col ul li a { font-size:.76rem; color:rgba(255,255,255,.3); transition:color .3s; }
+.footer-col ul li a:hover { color:var(--gold2); }
+.footer-bottom { padding:24px 56px; border-top:1px solid rgba(255,255,255,.05); display:flex; align-items:center; justify-content:space-between; max-width:1400px; margin:0 auto; }
+.footer-copy { font-size:.6rem; color:rgba(255,255,255,.2); letter-spacing:.1em; }
+.footer-legal { display:flex; gap:24px; }
+.footer-legal a { font-size:.6rem; color:rgba(255,255,255,.2); transition:color .3s; }
+.footer-legal a:hover { color:var(--gold2); }
+
+/* ── ANIMATIONS ── */
+.rv { opacity:0; transform:translateY(32px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+.rv.in { opacity:1; transform:none; }
+.rv-l { opacity:0; transform:translateX(-24px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+.rv-l.in { opacity:1; transform:none; }
+.rv-s { opacity:0; transform:scale(.95); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+.rv-s.in { opacity:1; transform:none; }
 
 /* ── MODAL ── */
-#modal{position:fixed;inset:0;z-index:9999;background:rgba(12,15,20,.94);opacity:0;pointer-events:none;transition:opacity .35s;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(10px)}
-#modal.on{opacity:1;pointer-events:all}
-.modal-box{background:var(--ivory);max-width:500px;width:100%;max-height:90vh;overflow-y:auto;animation:modalIn .4s var(--ease) both}
-@keyframes modalIn{from{transform:translateY(28px) scale(.96);opacity:0}to{transform:none;opacity:1}}
-.modal-head{background:var(--night);padding:30px 32px;position:relative}
-.modal-close{position:absolute;top:18px;right:18px;width:32px;height:32px;background:rgba(255,255,255,.1);border:none;border-radius:50%;cursor:pointer;color:rgba(255,255,255,.5);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .25s}
-.modal-close:hover{background:rgba(255,255,255,.2);color:white}
-.modal-guide-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:white;margin-bottom:4px}
-.modal-sub{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2)}
-.modal-body{padding:32px}
-.modal-section-label{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px;display:block}
-.modal-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
-.modal-opt{border:2px solid var(--rule);padding:16px;cursor:pointer;transition:all .25s;position:relative}
-.modal-opt.sel{border-color:var(--gold);background:rgba(184,151,58,.05)}
-.opt-plan{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.opt-name{font-weight:600;font-size:.88rem;color:var(--ink);margin-bottom:6px}
-.opt-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);font-weight:300}
-.opt-check{position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:50%;background:var(--gold);display:none;align-items:center;justify-content:center;color:white;font-size:.7rem}
-.modal-opt.sel .opt-check{display:flex}
-.form-group{margin-bottom:16px}
-.form-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:block;font-weight:500}
-.form-input{width:100%;padding:12px 16px;border:1px solid var(--rule);background:white;font-family:'Jost',sans-serif;font-size:.88rem;color:var(--ink);outline:none;transition:border-color .25s;border-radius:1px}
-.form-input:focus{border-color:var(--gold)}
-.modal-total{background:var(--cream);padding:16px 20px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;border-left:3px solid var(--gold)}
-.modal-total-label{font-size:.78rem;color:var(--muted)}
-.modal-total-price{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--gold)}
-.modal-pay-btn{width:100%;padding:18px;background:var(--gold);color:var(--night);font-family:'Jost',sans-serif;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;transition:all .25s;box-shadow:0 4px 20px rgba(184,151,58,.4);border-radius:1px}
-.modal-pay-btn:hover{background:var(--gold2);transform:translateY(-1px)}
-.modal-secure{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:.65rem;color:var(--muted)}
+.modal-overlay { position:fixed; inset:0; background:rgba(12,10,6,.92); z-index:1000; display:none; align-items:center; justify-content:center; backdrop-filter:blur(8px); }
+.modal-overlay.open { display:flex; }
+.modal { background:var(--night2); padding:56px; max-width:480px; width:90%; position:relative; animation:modalIn .4s var(--ease); }
+@keyframes modalIn { from{opacity:0;transform:scale(.96) translateY(16px)} to{opacity:1;transform:none} }
+.modal-close { position:absolute; top:20px; right:20px; background:none; border:none; cursor:pointer; color:rgba(255,255,255,.3); font-size:1.2rem; transition:color .3s; }
+.modal-close:hover { color:white; }
+.modal-eyebrow { font-size:.54rem; letter-spacing:.4em; text-transform:uppercase; color:var(--gold2); margin-bottom:12px; display:block; }
+.modal-title { font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:300; color:white; margin-bottom:8px; }
+.modal-dest { font-size:.7rem; color:rgba(255,255,255,.3); margin-bottom:32px; }
+.modal-price { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:300; color:var(--gold2); margin-bottom:8px; }
+.modal-sub { font-size:.7rem; color:rgba(255,255,255,.3); margin-bottom:32px; }
+.modal-features { display:flex; flex-direction:column; gap:10px; margin-bottom:36px; }
+.modal-feat { display:flex; align-items:center; gap:12px; font-size:.76rem; color:rgba(255,255,255,.5); }
+.modal-feat::before { content:'✦'; color:var(--gold); font-size:.6rem; }
+.modal-btn { width:100%; padding:16px; background:var(--gold); color:var(--night); border:none; cursor:pointer; font-family:'Jost',sans-serif; font-size:.62rem; letter-spacing:.25em; text-transform:uppercase; font-weight:700; transition:background .3s; }
+.modal-btn:hover { background:var(--gold2); }
+.modal-secure { text-align:center; margin-top:14px; font-size:.6rem; color:rgba(255,255,255,.2); }
 
-/* ── TOAST ── */
-#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(16px);z-index:99999;background:var(--ink);color:white;padding:14px 28px;font-size:.75rem;opacity:0;pointer-events:none;transition:all .4s var(--ease);border-left:3px solid var(--gold);border-radius:1px;white-space:nowrap}
-#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+/* ── RESPONSIVE ── */
+@media (max-width:1024px) {
+  .guides-grid, .footer-main { grid-template-columns:repeat(2,1fr); }
+  .featured-inner { grid-template-columns:1fr; gap:48px; }
+  .stats-band { grid-template-columns:repeat(2,1fr); }
+  .testi-grid, .blog-grid { grid-template-columns:1fr 1fr; }
+  .how-grid { grid-template-columns:1fr; }
+}
+@media (max-width:768px) {
+  nav { padding:0 24px; }
+  .nav-links { display:none; }
+  .nav-burger { display:block; }
+  .hero-content, .guides-section, .featured, .how, .blog-section, .testimonials, .cta-section { padding-left:24px; padding-right:24px; }
+  .hero h1 { font-size:clamp(3rem,12vw,5rem); }
+  .guides-grid, .blog-grid, .testi-grid { grid-template-columns:1fr; }
+  .stats-band { padding:0 24px; }
+  .footer-main { grid-template-columns:1fr; padding:56px 24px 40px; }
+  .footer-bottom { padding:20px 24px; flex-direction:column; gap:12px; text-align:center; }
+}
 </style>
 </head>
 <body>
 
+<div id="pb"></div>
+
 <!-- NAV -->
-<nav id="nav">
+<nav id="main-nav">
   <a href="/" class="nav-logo">YHI<span> Conciergerie</span></a>
   <div class="nav-links">
-    <a href="#guides" class="nav-link">Guides</a>
-    <a href="#blog" class="nav-link">Blog</a>
-    <a href="#comment" class="nav-link">Comment ça marche</a>
-    <a href="#guides" class="nav-cta">Parcourir →</a>
+    <a href="#guides" data-fr="Guides" data-en="Guides">Guides</a>
+    <a href="#blog" data-fr="Blog" data-en="Blog">Blog</a>
+    <a href="/upsell.html" data-fr="Premium" data-en="Premium">Premium</a>
+    <a href="/admin/" data-fr="Admin" data-en="Admin" style="color:rgba(212,175,106,.4)">Admin</a>
   </div>
+  <div style="display:flex;align-items:center;gap:20px">
+    <div class="nav-lang">
+      <button class="active" onclick="setLang('fr')">FR</button>
+      <span style="color:rgba(255,255,255,.2)">|</span>
+      <button onclick="setLang('en')">EN</button>
+    </div>
+    <button class="nav-cta btn-outline" onclick="document.getElementById('guides').scrollIntoView({behavior:'smooth'})" data-fr="Voir les guides" data-en="Browse guides">Voir les guides</button>
+  </div>
+  <button class="nav-burger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-slides">
-    <div class="hero-slide active"></div>
-    <div class="hero-slide"></div>
-    <div class="hero-slide"></div>
-    <div class="hero-slide"></div>
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=80" alt="YHI Conciergerie" loading="eager">
   </div>
-  <div class="hero-overlay"></div>
+  <div class="hero-grad"></div>
   <div class="hero-content">
-    <div class="hero-badge">✦ Guides de Voyage &nbsp;|&nbsp; Experts Locaux ✦</div>
-    <h1>Voyagez<br><em>autrement</em></h1>
-    <p class="hero-sub">Des guides rédigés par des experts locaux. Chaque itinéraire, chaque adresse, chaque conseil — pensé pour vous, pas pour la masse.</p>
-    <div class="hero-actions">
-      <a href="#guides" class="btn-gold">✦ Découvrir les guides</a>
-      <a href="#comment" class="btn-outline">Comment ça marche →</a>
+    <div class="hero-eyebrow" data-fr="✦ Conciergerie Voyage | Guides Premium ✦" data-en="✦ Travel Concierge | Premium Guides ✦">✦ Conciergerie Voyage | Guides Premium ✦</div>
+    <h1>Voyagez<br><em>Autrement</em></h1>
+    <p class="hero-sub" data-fr="Des guides de voyage d'exception, générés par intelligence artificielle et validés par des experts locaux. Chaque destination, chaque détail — pensé pour vous." data-en="Exceptional travel guides, AI-generated and validated by local experts. Every destination, every detail — crafted for you.">Des guides de voyage d'exception, générés par intelligence artificielle et validés par des experts locaux. Chaque destination, chaque détail — pensé pour vous.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('guides').scrollIntoView({behavior:'smooth'})" data-fr="✦ Découvrir les guides" data-en="✦ Browse guides">✦ Découvrir les guides</button>
+      <button class="btn-outline" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})" data-fr="Comment ça marche →" data-en="How it works →">Comment ça marche →</button>
     </div>
   </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-n" data-count="8">0</div><div class="stat-l">Guides</div></div>
-    <div class="stat"><div class="stat-n" data-count="6">0</div><div class="stat-l">Destinations</div></div>
-    <div class="stat"><div class="stat-n" data-count="124">0</div><div class="stat-l">Voyageurs</div></div>
-  </div>
-  <div class="scroll-cue"><div class="scroll-line"></div><span>Défiler</span></div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Défiler</span></div>
 </section>
 
-<!-- TRUST -->
-<div class="trust">
-  <div class="trust-item"><span class="trust-icon">🔒</span> Paiement sécurisé Stripe</div>
-  <div class="trust-item"><span class="trust-icon">⚡</span> Livraison immédiate</div>
-  <div class="trust-item"><span class="trust-icon">♾️</span> Accès à vie</div>
-  <div class="trust-item"><span class="trust-icon">🌍</span> FR + EN disponibles</div>
-  <div class="trust-item"><span class="trust-icon">↩️</span> Remboursement 14 jours</div>
-</div>
-
-<!-- FEATURED GUIDE -->
-<section class="section" style="padding-bottom:0">
-  <div class="section-inner">
-    <span class="eyebrow rv">Guide à la Une</span>
-    <h2 class="section-title rv" style="transition-delay:.1s">Notre dernière <em>création</em></h2>
-    <div class="gold-line rv" style="transition-delay:.15s"></div>
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stat-item">
+    <span class="stat-num"><span id="cnt-guides">0</span></span>
+    <span class="stat-label" data-fr="Guides disponibles" data-en="Available guides">Guides disponibles</span>
   </div>
-</section>
-
-<div class="featured-guide rv-s" style="max-width:1400px;margin:0 auto">
-  <div class="fg-img">
-    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=900&q=85" alt="Albania Riviera" loading="lazy">
-    <div class="fg-new">✦ Nouveau</div>
+  <div class="stat-item">
+    <span class="stat-num"><span id="cnt-dest">0</span></span>
+    <span class="stat-label" data-fr="Destinations" data-en="Destinations">Destinations</span>
   </div>
-  <div class="fg-content" style="background:var(--night2)">
-    <div class="fg-kicker">Albanie · Riviera Ionienne</div>
-    <div class="fg-title">Albania<br><em>Road Trip</em><br>8 Jours</div>
-    <p class="fg-desc">De Durrës à Dhërmi en passant par Saranda et Ksamil — le guide complet de la Riviera albanaise. Plages secrètes, boat trips, beach clubs et sunsets légendaires.</p>
-    <div class="fg-meta">
-      <div class="fg-meta-item"><span>📅</span> 8 jours</div>
-      <div class="fg-meta-item"><span>📍</span> 4 étapes</div>
-      <div class="fg-meta-item"><span>🏖️</span> 9 plages</div>
-    </div>
-    <div class="fg-price-row">
-      <div>
-        <div class="fg-price">14,90€</div>
-        <div style="font-size:.65rem;color:rgba(255,255,255,.25);margin-top:4px">PDF + accès web · à vie</div>
-      </div>
-      <button class="btn-gold" onclick="openModal('Albania Road Trip 8 Jours','albania','14.90','29.90')">Acheter ce guide →</button>
-    </div>
+  <div class="stat-item">
+    <span class="stat-num"><span id="cnt-clients">0</span></span>
+    <span class="stat-label" data-fr="Voyageurs satisfaits" data-en="Happy travelers">Voyageurs satisfaits</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">★ <span id="cnt-rating">0</span></span>
+    <span class="stat-label" data-fr="Note moyenne" data-en="Average rating">Note moyenne</span>
   </div>
 </div>
 
-<!-- ALL GUIDES -->
-<section class="section" id="guides">
-  <div class="section-inner">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:8px">
-      <div>
-        <span class="eyebrow rv">Catalogue Complet</span>
-        <h2 class="section-title rv" style="transition-delay:.1s">Tous nos <em>guides</em></h2>
+<!-- FEATURED -->
+<section class="featured rv">
+  <div class="featured-inner">
+    <div class="featured-img rv-l">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Ksamil%2C_Albania_-_beach.JPG/1280px-Ksamil%2C_Albania_-_beach.JPG" alt="Albania">
+      <div class="featured-badge" data-fr="★ Guide à la une" data-en="★ Featured guide">★ Guide à la une</div>
+    </div>
+    <div class="featured-content rv">
+      <div class="featured-dest" data-fr="Albanie · Riviera Ionienne" data-en="Albania · Ionian Riviera">Albanie · Riviera Ionienne</div>
+      <h2 class="featured-title">Albania<br><em>Road Trip</em><br>8 Jours</h2>
+      <p class="featured-desc" data-fr="De Durrës à Dhërmi en passant par Saranda et Ksamil — le guide complet de la Riviera albanaise. Plages secrètes, boat trips, beach clubs et sunsets légendaires." data-en="From Durrës to Dhërmi via Saranda and Ksamil — the complete Albanian Riviera guide. Secret beaches, boat trips, beach clubs and legendary sunsets.">De Durrës à Dhërmi en passant par Saranda et Ksamil — le guide complet de la Riviera albanaise. Plages secrètes, boat trips, beach clubs et sunsets légendaires.</p>
+      <div class="featured-pills">
+        <span class="pill">🏖️ 9 plages</span>
+        <span class="pill">⛵ Boat trip</span>
+        <span class="pill">🎉 Beach clubs</span>
+        <span class="pill">🌅 Sunsets</span>
       </div>
-      <div class="filter-bar rv">
-        <button class="f-btn active" data-f="all">Tous</button>
-        <button class="f-btn" data-f="beach">Plage</button>
-        <button class="f-btn" data-f="city">Ville</button>
-        <button class="f-btn" data-f="adventure">Aventure</button>
+      <div class="featured-footer">
+        <div class="featured-price">14,90€<small data-fr="Guide complet PDF + Web" data-en="Full guide PDF + Web">Guide complet PDF + Web</small></div>
+        <button class="btn-primary" onclick="openModal('Albania Road Trip','Albanie · Riviera Ionienne','14,90€','#')">✦ Acheter</button>
       </div>
     </div>
-    <div class="gold-line rv"></div>
-
-    <div class="guides-grid">
-<!-- GUIDES_LIST -->
-      <!-- GUIDE:miami -->
-      <div class="guide-card rv" data-cat="beach city">
-        <div class="gc-img">
-          <img src="https://images.unsplash.com/photo-1506905925-346ff2136cf3?w=600&q=80" alt="Miami" loading="lazy">
-          <div class="gc-tag tag-new">✦ Nouveau</div>
-        </div>
-        <div class="gc-body">
-          <div class="gc-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star-c">Nouveau</span></div>
-          <div class="gc-dest">États-Unis · Miami</div>
-          <div class="gc-title">Miami en 5 Jours</div>
-          <div class="gc-desc">South Beach, Wynwood, Little Havana, Everglades. La Magic City dans tous ses états.</div>
-          <div class="gc-pills"><span class="gc-pill">🏖️ Plages</span><span class="gc-pill">🎨 Art</span><span class="gc-pill">🎉 Nightlife</span></div>
-          <div class="gc-footer">
-            <span class="gc-price">16,90€</span>
-            <a href="/guides/miami.html" class="gc-btn">Voir le guide</a>
-          </div>
-        </div>
-      </div>
-      <!-- /GUIDE:miami -->
-      <!-- Albania -->
-      <div class="guide-card rv" data-cat="beach adventure">
-        <div class="gc-img">
-          <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80" alt="Albania" loading="lazy">
-          <div class="gc-tag tag-new">✦ Nouveau</div>
-        </div>
-        <div class="gc-body">
-          <div class="gc-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star-c">4.9 (42)</span></div>
-          <div class="gc-dest">Albanie · Riviera Ionienne</div>
-          <div class="gc-title">Albania Road Trip 8 Jours</div>
-          <div class="gc-desc">Ksamil, Saranda, Gjipe Canyon, Dhërmi. Plages, clubs et sunsets inoubliables.</div>
-          <div class="gc-pills"><span class="gc-pill">🏖️ 9 plages</span><span class="gc-pill">⛵ Boat trip</span><span class="gc-pill">🎉 Nightlife</span></div>
-          <div class="gc-footer">
-            <span class="gc-price">14,90€</span>
-            <button class="gc-btn" onclick="openModal('Albania Road Trip 8 Jours','albania','14.90','29.90')">Acheter</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bali -->
-      <div class="guide-card rv" style="transition-delay:.1s" data-cat="beach adventure">
-        <div class="gc-img">
-          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Bali" loading="lazy">
-          <div class="gc-tag tag-hot">🔥 Populaire</div>
-        </div>
-        <div class="gc-body">
-          <div class="gc-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star-c">4.8 (128)</span></div>
-          <div class="gc-dest">Indonésie · Bali</div>
-          <div class="gc-title">Bali Essentiel 10 Jours</div>
-          <div class="gc-desc">Ubud, Seminyak, Uluwatu, Nusa Penida. Temples, rizières, surf et couchers de soleil.</div>
-          <div class="gc-pills"><span class="gc-pill">🌿 Nature</span><span class="gc-pill">🏄 Surf</span><span class="gc-pill">🕌 Temples</span></div>
-          <div class="gc-footer">
-            <span class="gc-price">19,90€</span>
-            <button class="gc-btn" onclick="openModal('Bali Essentiel 10 Jours','bali','19.90','34.90')">Acheter</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tokyo -->
-      <div class="guide-card rv" style="transition-delay:.2s" data-cat="city">
-        <div class="gc-img">
-          <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80" alt="Tokyo" loading="lazy">
-        </div>
-        <div class="gc-body">
-          <div class="gc-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star-c">4.9 (203)</span></div>
-          <div class="gc-dest">Japon · Tokyo</div>
-          <div class="gc-title">Tokyo 7 Jours Immersion</div>
-          <div class="gc-desc">Shibuya, Shinjuku, Asakusa. La capitale japonaise sans se perdre.</div>
-          <div class="gc-pills"><span class="gc-pill">🍜 Street food</span><span class="gc-pill">⛩️ Temples</span><span class="gc-pill">🚄 Transport</span></div>
-          <div class="gc-footer">
-            <span class="gc-price">24,90€</span>
-            <button class="gc-btn" onclick="openModal('Tokyo 7 Jours Immersion','tokyo','24.90','39.90')">Acheter</button>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /guides-grid -->
   </div>
 </section>
 
-<!-- BLOG SEO -->
-<section class="section" id="blog" style="background:var(--cream)">
-  <div class="section-inner">
-    <span class="eyebrow rv">Conseils & Inspiration</span>
-    <h2 class="section-title rv" style="transition-delay:.1s">Le Blog <em>Voyage</em></h2>
-    <div class="gold-line rv"></div>
-    <div class="blog-grid">
-<!-- BLOG_LIST -->
-      <!-- BLOG:thailande -->
-      <a href="blog/thailande.html" class="blog-card rv">
-        <div class="bc-img"><img src="https://source.unsplash.com/600x400/?Thailande%2Ctravel" alt="Thailande" loading="lazy"><div class="bc-cat">Itinéraire</div></div>
-        <div class="bc-body">
-          <div class="bc-dest">Thailande</div>
-          <div class="bc-title">10 jours à Thailande : l'itinéraire complet 2025</div>
-          <div class="bc-excerpt">Programme jour par jour, meilleures adresses, conseils de conciergerie et budget détaillé pour votre voyage à Thailande.</div>
-          <div class="bc-meta"><span>15 min de lecture</span><span class="bc-read">Lire →</span></div>
-        </div>
-      </a>
-      <!-- /BLOG:thailande -->
-      <a href="blog/meilleure-periode-bali.html" class="blog-card rv">
-        <div class="bc-img"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Bali" loading="lazy"><div class="bc-cat">Guide</div></div>
-        <div class="bc-body">
-          <div class="bc-dest">Bali · Indonésie</div>
-          <div class="bc-title">Quelle est la meilleure période pour aller à Bali ?</div>
-          <div class="bc-excerpt">Saison sèche, mousson, fêtes locales... Tout ce qu'il faut savoir pour choisir la bonne date.</div>
-          <div class="bc-meta"><span>8 min de lecture</span><span class="bc-read">Lire →</span></div>
-        </div>
-      </a>
-      <a href="blog/albania-budget.html" class="blog-card rv" style="transition-delay:.1s">
-        <div class="bc-img"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80" alt="Albania" loading="lazy"><div class="bc-cat">Budget</div></div>
-        <div class="bc-body">
-          <div class="bc-dest">Albanie · Riviera</div>
-          <div class="bc-title">Combien coûte un voyage en Albanie ? Budget complet 2025</div>
-          <div class="bc-excerpt">Hébergement, restaurants, transports, activités — tout détaillé pour un voyage de 8 jours.</div>
-          <div class="bc-meta"><span>6 min de lecture</span><span class="bc-read">Lire →</span></div>
-        </div>
-      </a>
-      <a href="blog/tokyo-itineraire.html" class="blog-card rv" style="transition-delay:.2s">
-        <div class="bc-img"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80" alt="Tokyo" loading="lazy"><div class="bc-cat">Itinéraire</div></div>
-        <div class="bc-body">
-          <div class="bc-dest">Japon · Tokyo</div>
-          <div class="bc-title">7 jours à Tokyo : l'itinéraire parfait pour une première fois</div>
-          <div class="bc-excerpt">De Shinjuku à Asakusa, de Harajuku à Akihabara — comment organiser chaque journée.</div>
-          <div class="bc-meta"><span>10 min de lecture</span><span class="bc-read">Lire →</span></div>
-        </div>
-      </a>
+<!-- GUIDES GRID -->
+<section class="guides-section" id="guides">
+  <div class="section-header rv">
+    <span class="eyebrow" data-fr="Catalogue Complet" data-en="Full Catalog">Catalogue Complet</span>
+    <h2 class="section-title" data-fr="Tous nos <em>Guides</em>" data-en="All our <em>Guides</em>">Tous nos <em>Guides</em></h2>
+    <div class="rule"></div>
+  </div>
+  <div class="filter-bar rv">
+    <button class="filter-btn active" data-filter="all" data-fr="Tous" data-en="All">Tous</button>
+    <button class="filter-btn" data-filter="beach" data-fr="Plage" data-en="Beach">Plage</button>
+    <button class="filter-btn" data-filter="city" data-fr="Ville" data-en="City">Ville</button>
+    <button class="filter-btn" data-filter="adventure" data-fr="Aventure" data-en="Adventure">Aventure</button>
+    <button class="filter-btn" data-filter="food" data-fr="Gastronomie" data-en="Food">Gastronomie</button>
+  </div>
+  <div class="guides-grid">
+    <!-- GUIDES_LIST -->
+    <div class="guide-card rv" data-cat="beach city">
+      <div class="gc-img"><img src="https://images.unsplash.com/photo-1506905925-346ff2136cf3?w=600&q=80" alt="Miami" loading="lazy"><div class="gc-badge new">✦ Nouveau</div></div>
+      <div class="gc-body">
+        <div class="gc-dest">États-Unis · Miami</div>
+        <div class="gc-title">Miami en 5 Jours</div>
+        <div class="gc-desc">South Beach, Wynwood, Little Havana, Everglades. La Magic City dans tous ses états.</div>
+        <div class="gc-pills"><span class="gc-pill">🏖️ Plages</span><span class="gc-pill">🎨 Art</span><span class="gc-pill">🎉 Nightlife</span></div>
+        <div class="gc-footer"><span class="gc-price">16,90€</span><button class="gc-btn" onclick="openModal('Miami en 5 Jours','États-Unis · Miami','16,90€','/guides/miami.html')">Voir</button></div>
+      </div>
     </div>
+    <div class="guide-card rv" data-cat="beach adventure" style="transition-delay:.08s">
+      <div class="gc-img"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Bali" loading="lazy"><div class="gc-badge hot">🔥 Populaire</div></div>
+      <div class="gc-body">
+        <div class="gc-dest">Indonésie · Bali</div>
+        <div class="gc-title">Bali Essentiel 10 Jours</div>
+        <div class="gc-desc">Ubud, Seminyak, Uluwatu, Nusa Penida. Temples, rizières, surf et couchers de soleil.</div>
+        <div class="gc-pills"><span class="gc-pill">🌿 Nature</span><span class="gc-pill">🏄 Surf</span><span class="gc-pill">🕌 Temples</span></div>
+        <div class="gc-footer"><span class="gc-price"><s>29€</s>19,90€</span><button class="gc-btn" onclick="openModal('Bali Essentiel 10 Jours','Indonésie · Bali','19,90€','#')">Voir</button></div>
+      </div>
+    </div>
+    <div class="guide-card rv" data-cat="city food" style="transition-delay:.16s">
+      <div class="gc-img"><img src="https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600&q=80" alt="Marrakech" loading="lazy"><div class="gc-badge top">Incontournable</div></div>
+      <div class="gc-body">
+        <div class="gc-dest">Maroc · Marrakech</div>
+        <div class="gc-title">Marrakech Week-end Luxe</div>
+        <div class="gc-desc">Médina, souks, riads, Djemaa El-Fna. L'art de vivre marocain en 4 jours.</div>
+        <div class="gc-pills"><span class="gc-pill">🏛️ Culture</span><span class="gc-pill">🛍️ Shopping</span><span class="gc-pill">🍽️ Gastronomie</span></div>
+        <div class="gc-footer"><span class="gc-price">12,90€</span><button class="gc-btn" onclick="openModal('Marrakech Week-end Luxe','Maroc · Marrakech','12,90€','#')">Voir</button></div>
+      </div>
+    </div>
+    <div class="guide-card rv" data-cat="city" style="transition-delay:.04s">
+      <div class="gc-img"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80" alt="Tokyo" loading="lazy"></div>
+      <div class="gc-body">
+        <div class="gc-dest">Japon · Tokyo</div>
+        <div class="gc-title">Tokyo 7 Jours Immersion</div>
+        <div class="gc-desc">Shibuya, Shinjuku, Asakusa, Harajuku. La capitale japonaise sans se perdre.</div>
+        <div class="gc-pills"><span class="gc-pill">🍜 Street food</span><span class="gc-pill">⛩️ Temples</span><span class="gc-pill">🚄 Transport</span></div>
+        <div class="gc-footer"><span class="gc-price">24,90€</span><button class="gc-btn" onclick="openModal('Tokyo 7 Jours Immersion','Japon · Tokyo','24,90€','#')">Voir</button></div>
+      </div>
+    </div>
+    <div class="guide-card rv" data-cat="beach" style="transition-delay:.12s">
+      <div class="gc-img"><img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80" alt="Santorini" loading="lazy"></div>
+      <div class="gc-body">
+        <div class="gc-dest">Grèce · Santorin</div>
+        <div class="gc-title">Santorin Escapade Romantique</div>
+        <div class="gc-desc">Oia, Fira, Akrotiri. Couchers de soleil, caves à vin, plages de lave noire.</div>
+        <div class="gc-pills"><span class="gc-pill">🌅 Sunset</span><span class="gc-pill">🍷 Vin local</span><span class="gc-pill">🤿 Snorkeling</span></div>
+        <div class="gc-footer"><span class="gc-price">17,90€</span><button class="gc-btn" onclick="openModal('Santorin Escapade Romantique','Grèce · Santorin','17,90€','#')">Voir</button></div>
+      </div>
+    </div>
+    <div class="guide-card rv" data-cat="beach city adventure" style="transition-delay:.2s">
+      <div class="gc-img"><img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=600&q=80" alt="Colombie" loading="lazy"><div class="gc-badge hot">🔥 Tendance</div></div>
+      <div class="gc-body">
+        <div class="gc-dest">Colombie · Cartagena</div>
+        <div class="gc-title">Cartagena 5 Jours Couleur</div>
+        <div class="gc-desc">Vieille ville coloniale, îles du Rosario, cumbia et mer des Caraïbes.</div>
+        <div class="gc-pills"><span class="gc-pill">🏝️ Îles</span><span class="gc-pill">💃 Salsa</span><span class="gc-pill">🌮 Food</span></div>
+        <div class="gc-footer"><span class="gc-price">15,90€</span><button class="gc-btn" onclick="openModal('Cartagena 5 Jours Couleur','Colombie · Cartagena','15,90€','#')">Voir</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="guides-more rv">
+    <button class="btn-outline" style="color:var(--ink);border-color:var(--rule)" data-fr="Voir tous les guides →" data-en="See all guides →">Voir tous les guides →</button>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="how-section" id="comment">
-  <div style="max-width:1100px;margin:0 auto">
-    <span class="eyebrow" style="color:var(--gold2)">Processus</span>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;color:white;margin-bottom:6px">Simple comme <em style="font-style:italic;color:var(--gold2)">bonjour</em></h2>
-    <div class="how-grid">
-      <div class="how-step">
-        <div class="how-num">01</div>
-        <span class="how-icon">🔍</span>
-        <div class="how-title">Choisissez votre destination</div>
-        <p class="how-desc">Parcourez nos guides par destination, durée ou style de voyage. Chaque guide est rédigé par un expert local.</p>
-      </div>
-      <div class="how-step">
-        <div class="how-num">02</div>
-        <span class="how-icon">💳</span>
-        <div class="how-title">Achetez en toute sécurité</div>
-        <p class="how-desc">Paiement Stripe sécurisé. CB, Apple Pay, Google Pay acceptés. Confirmation et livraison en moins de 60 secondes.</p>
-      </div>
-      <div class="how-step">
-        <div class="how-num">03</div>
-        <span class="how-icon">📲</span>
-        <div class="how-title">Voyagez avec confiance</div>
-        <p class="how-desc">Guide reçu par email immédiatement. PDF téléchargeable + accès web illimité à vie. Mis à jour régulièrement.</p>
-      </div>
+<section class="how" id="how">
+  <div class="section-header rv">
+    <span class="eyebrow" data-fr="Processus" data-en="Process">Processus</span>
+    <h2 class="section-title light" data-fr="Simple comme <em>bonjour</em>" data-en="Simple as <em>that</em>">Simple comme <em>bonjour</em></h2>
+    <div class="rule"></div>
+  </div>
+  <div class="how-grid">
+    <div class="how-step rv">
+      <span class="how-num">01</span>
+      <span class="how-icon">🔍</span>
+      <div class="how-title" data-fr="Choisissez" data-en="Choose">Choisissez</div>
+      <p class="how-desc" data-fr="Parcourez notre catalogue. Filtrez par destination, durée, style de voyage." data-en="Browse our catalog. Filter by destination, duration, travel style.">Parcourez notre catalogue. Filtrez par destination, durée, style de voyage.</p>
+    </div>
+    <div class="how-step rv" style="transition-delay:.1s">
+      <span class="how-num">02</span>
+      <span class="how-icon">💳</span>
+      <div class="how-title" data-fr="Achetez" data-en="Purchase">Achetez</div>
+      <p class="how-desc" data-fr="Paiement sécurisé via Stripe. CB, Apple Pay, Google Pay. Confirmation immédiate." data-en="Secure payment via Stripe. Card, Apple Pay, Google Pay. Immediate confirmation.">Paiement sécurisé via Stripe. CB, Apple Pay, Google Pay. Confirmation immédiate.</p>
+    </div>
+    <div class="how-step rv" style="transition-delay:.2s">
+      <span class="how-num">03</span>
+      <span class="how-icon">📲</span>
+      <div class="how-title" data-fr="Accédez" data-en="Access">Accédez</div>
+      <p class="how-desc" data-fr="Guide livré par email en moins d'une minute. PDF téléchargeable + accès web illimité." data-en="Guide delivered by email in under a minute. Downloadable PDF + unlimited web access.">Guide livré par email en moins d'une minute. PDF téléchargeable + accès web illimité.</p>
     </div>
   </div>
 </section>
 
+<!-- BLOG -->
+<section class="blog-section rv" id="blog">
+  <div class="section-header rv">
+    <span class="eyebrow" data-fr="Blog Voyage" data-en="Travel Blog">Blog Voyage</span>
+    <h2 class="section-title" data-fr="Inspirations &amp; <em>Conseils</em>" data-en="Inspirations &amp; <em>Tips</em>">Inspirations &amp; <em>Conseils</em></h2>
+    <div class="rule"></div>
+  </div>
+  <div class="blog-grid">
+    <!-- BLOG_LIST -->
+    <a href="blog/albania.html" class="blog-card rv">
+      <div class="bc-img"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Ksamil%2C_Albania_-_beach.JPG/800px-Ksamil%2C_Albania_-_beach.JPG" alt="Albania" loading="lazy"><div class="bc-cat">Itinéraire</div></div>
+      <div class="bc-body">
+        <div class="bc-dest">Albanie · Riviera</div>
+        <div class="bc-title">8 jours sur la Riviera albanaise : l'itinéraire 2025</div>
+        <div class="bc-excerpt">Ksamil, Gjipe Canyon, Dhërmi. Notre guide complet pour explorer la côte albanaise.</div>
+        <div class="bc-meta"><span>12 min de lecture</span><span class="bc-read">Lire →</span></div>
+      </div>
+    </a>
+    <a href="blog/bali.html" class="blog-card rv" style="transition-delay:.1s">
+      <div class="bc-img"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Bali" loading="lazy"><div class="bc-cat">Guide</div></div>
+      <div class="bc-body">
+        <div class="bc-dest">Indonésie · Bali</div>
+        <div class="bc-title">10 jours à Bali : temples, rizières et plages</div>
+        <div class="bc-excerpt">Ubud, Seminyak, Uluwatu. L'essentiel de Bali en 10 jours avec budget et conseils.</div>
+        <div class="bc-meta"><span>15 min de lecture</span><span class="bc-read">Lire →</span></div>
+      </div>
+    </a>
+    <a href="blog/miami.html" class="blog-card rv" style="transition-delay:.2s">
+      <div class="bc-img"><img src="https://images.unsplash.com/photo-1506905925-346ff2136cf3?w=600&q=80" alt="Miami" loading="lazy"><div class="bc-cat">Itinéraire</div></div>
+      <div class="bc-body">
+        <div class="bc-dest">États-Unis · Miami</div>
+        <div class="bc-title">5 jours à Miami : South Beach, Wynwood et Everglades</div>
+        <div class="bc-excerpt">Art Déco, street art, cuisine cubaine et nature sauvage. Miami en 5 jours chrono.</div>
+        <div class="bc-meta"><span>10 min de lecture</span><span class="bc-read">Lire →</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
 <!-- TESTIMONIALS -->
-<section class="testi-section">
-  <div style="max-width:1100px;margin:0 auto">
-    <span class="eyebrow rv">Ils nous font confiance</span>
-    <h2 class="section-title rv" style="transition-delay:.1s">Ce que disent <em>nos clients</em></h2>
-    <div class="gold-line rv"></div>
-    <div class="testi-grid">
-      <div class="testi-card rv">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Le guide Albanie était parfait. Chaque recommandation était juste — de Ksamil à Gjipe. On a suivi le planning heure par heure et c'était magique."</p>
-        <div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sophie M.</div><div class="testi-trip">Albania · Juillet 2024</div></div></div>
-      </div>
-      <div class="testi-card rv" style="transition-delay:.1s">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Guide Bali excellent. Les adresses sont impossibles à trouver ailleurs. Le rapport qualité-prix est imbattable pour ce niveau de détail."</p>
-        <div class="testi-author"><div class="testi-avatar">T</div><div><div class="testi-name">Thomas L.</div><div class="testi-trip">Bali · Mars 2024</div></div></div>
-      </div>
-      <div class="testi-card rv" style="transition-delay:.2s">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Qualité professionnelle, design magnifique. J'ai acheté 3 guides et je reviens pour chaque voyage. Rien de comparable sur le marché."</p>
-        <div class="testi-author"><div class="testi-avatar">C</div><div><div class="testi-name">Camille D.</div><div class="testi-trip">Tokyo + Marrakech · 2024</div></div></div>
-      </div>
+<section class="testimonials">
+  <div class="section-header rv">
+    <span class="eyebrow" data-fr="Avis Voyageurs" data-en="Traveler Reviews">Avis Voyageurs</span>
+    <h2 class="section-title light" data-fr="Ce que disent <em>nos clients</em>" data-en="What our <em>clients say</em>">Ce que disent <em>nos clients</em></h2>
+    <div class="rule"></div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card rv">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Le guide Albanie était absolument parfait. Chaque recommandation était juste — de Ksamil à Gjipe. On a suivi le planning heure par heure et c'était magique."</p>
+      <div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sophie M.</div><div class="testi-trip">Albania Road Trip · Juillet 2024</div></div></div>
+    </div>
+    <div class="testi-card rv" style="transition-delay:.1s">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Guide Bali excellent. Les adresses sont impossibles à trouver ailleurs. Le rapport qualité-prix est imbattable pour ce niveau de détail."</p>
+      <div class="testi-author"><div class="testi-avatar">T</div><div><div class="testi-name">Thomas L.</div><div class="testi-trip">Bali 10 Jours · Mars 2024</div></div></div>
+    </div>
+    <div class="testi-card rv" style="transition-delay:.2s">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Qualité professionnelle, design magnifique. On dirait un magazine de luxe. J'ai acheté 3 guides et je reviens pour chaque voyage."</p>
+      <div class="testi-author"><div class="testi-avatar">C</div><div><div class="testi-name">Camille D.</div><div class="testi-trip">Tokyo + Marrakech · 2024</div></div></div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section">
-  <div class="cta-inner rv">
-    <span class="eyebrow" style="color:var(--gold2)">Prêt à partir ?</span>
-    <h2 class="cta-title">Votre prochain voyage<br>commence <em>maintenant</em></h2>
-    <p class="cta-sub">Rejoignez 2 840 voyageurs qui font confiance à nos guides pour explorer le monde autrement.</p>
-    <a href="#guides" class="btn-gold">Parcourir les guides ✦</a>
+  <div class="section-header rv">
+    <span class="eyebrow" data-fr="Votre prochain voyage" data-en="Your next trip">Votre prochain voyage</span>
+    <h2 class="section-title" data-fr="Commencez <em>ici</em>" data-en="Starts <em>here</em>">Commencez <em>ici</em></h2>
+    <div class="rule"></div>
+  </div>
+  <p class="rv" style="font-size:.88rem;color:var(--muted);max-width:500px;margin:0 auto 48px;line-height:1.85;text-align:center" data-fr="Rejoignez des milliers de voyageurs qui explorent le monde avec nos guides premium." data-en="Join thousands of travelers exploring the world with our premium guides.">Rejoignez des milliers de voyageurs qui explorent le monde avec nos guides premium.</p>
+  <div class="rv" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+    <button class="btn-primary" onclick="document.getElementById('guides').scrollIntoView({behavior:'smooth'})" data-fr="✦ Parcourir les guides" data-en="✦ Browse guides">✦ Parcourir les guides</button>
+    <a href="/upsell.html" class="btn-outline" style="color:var(--ink);border-color:var(--rule)" data-fr="Premium — Accès illimité" data-en="Premium — Unlimited access">Premium — Accès illimité</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-brand">YHI<span> Conciergerie</span></div>
-      <p class="footer-desc">Des guides de voyage premium rédigés par des experts locaux. Chaque destination, chaque détail — pensé pour vous.</p>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="footer-logo">YHI<span> Conciergerie</span></div>
+      <p class="footer-desc" data-fr="Des guides de voyage premium conçus par IA et validés par des experts locaux. Chaque guide est une invitation à découvrir le monde autrement." data-en="Premium travel guides crafted by AI and validated by local experts. Each guide is an invitation to discover the world differently.">Des guides de voyage premium conçus par IA et validés par des experts locaux.</p>
     </div>
-    <div>
-      <div class="footer-col-title">Destinations</div>
-      <a href="guides/albania.html" class="footer-link">Albanie</a>
-      <a href="guides/bali.html" class="footer-link">Bali</a>
-      <a href="guides/tokyo.html" class="footer-link">Tokyo</a>
-      <a href="#guides" class="footer-link">Voir tout →</a>
+    <div class="footer-col">
+      <h4 data-fr="Destinations" data-en="Destinations">Destinations</h4>
+      <ul>
+        <li><a href="#">Albanie</a></li>
+        <li><a href="#">Bali</a></li>
+        <li><a href="#">Miami</a></li>
+        <li><a href="#">Tokyo</a></li>
+        <li><a href="#">Marrakech</a></li>
+      </ul>
     </div>
-    <div>
-      <div class="footer-col-title">Ressources</div>
-      <a href="#blog" class="footer-link">Blog Voyage</a>
-      <a href="#comment" class="footer-link">Comment ça marche</a>
-      <a href="upsell.html" class="footer-link">Accès Premium</a>
+    <div class="footer-col">
+      <h4 data-fr="Informations" data-en="Information">Informations</h4>
+      <ul>
+        <li><a href="#how" data-fr="Comment ça marche" data-en="How it works">Comment ça marche</a></li>
+        <li><a href="/upsell.html" data-fr="Premium" data-en="Premium">Premium</a></li>
+        <li><a href="#" data-fr="À propos" data-en="About">À propos</a></li>
+        <li><a href="#" data-fr="Contact" data-en="Contact">Contact</a></li>
+      </ul>
     </div>
-    <div>
-      <div class="footer-col-title">Légal</div>
-      <a href="#" class="footer-link">CGV</a>
-      <a href="#" class="footer-link">Confidentialité</a>
-      <a href="#" class="footer-link">Remboursements</a>
-      <a href="#" class="footer-link">Contact</a>
+    <div class="footer-col">
+      <h4 data-fr="Légal" data-en="Legal">Légal</h4>
+      <ul>
+        <li><a href="#" data-fr="CGV" data-en="Terms">CGV</a></li>
+        <li><a href="#" data-fr="Confidentialité" data-en="Privacy">Confidentialité</a></li>
+        <li><a href="#" data-fr="Mentions légales" data-en="Legal notice">Mentions légales</a></li>
+        <li><a href="#" data-fr="Remboursements" data-en="Refunds">Remboursements</a></li>
+      </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 YHI Conciergerie — Tous droits réservés</div>
-    <div class="footer-legal"><a href="#">CGV</a><a href="#">Confidentialité</a></div>
+    <span class="footer-copy">© 2025 YHI Conciergerie · Tous droits réservés</span>
+    <div class="footer-legal">
+      <a href="#">CGV</a>
+      <a href="#">Confidentialité</a>
+      <a href="#">Cookies</a>
+    </div>
   </div>
 </footer>
 
-<!-- MODAL CHECKOUT -->
-<div id="modal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div style="font-size:.56rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold2);margin-bottom:8px">Guide Premium</div>
-      <div class="modal-guide-title" id="m-title">Guide</div>
-      <div class="modal-sub">YHI Conciergerie · Livraison immédiate</div>
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <span class="modal-eyebrow">YHI Conciergerie · Guide Voyage</span>
+    <div class="modal-title" id="modal-title">Guide</div>
+    <div class="modal-dest" id="modal-dest">Destination</div>
+    <div class="modal-price" id="modal-price">14,90€</div>
+    <div class="modal-sub" data-fr="PDF téléchargeable + accès web illimité + accès à vie" data-en="Downloadable PDF + unlimited web access + lifetime access">PDF téléchargeable + accès web illimité + accès à vie</div>
+    <div class="modal-features">
+      <div class="modal-feat" data-fr="Programme heure par heure" data-en="Hour by hour schedule">Programme heure par heure</div>
+      <div class="modal-feat" data-fr="Adresses exclusives et conseils concierge" data-en="Exclusive addresses and concierge tips">Adresses exclusives et conseils concierge</div>
+      <div class="modal-feat" data-fr="Informations pratiques complètes" data-en="Complete practical information">Informations pratiques complètes</div>
+      <div class="modal-feat" data-fr="PDF téléchargeable haute qualité" data-en="High quality downloadable PDF">PDF téléchargeable haute qualité</div>
     </div>
-    <div class="modal-body">
-      <span class="modal-section-label">Choisir votre formule</span>
-      <div class="modal-options">
-        <label class="modal-opt sel" id="opt-pdf">
-          <div class="opt-plan">Essentiel</div>
-          <div class="opt-name">PDF seul</div>
-          <div class="opt-price" id="p-pdf">14,90€</div>
-          <div class="opt-check">✓</div>
-          <input type="radio" name="plan" value="pdf" checked style="display:none" onchange="selPlan('pdf')">
-        </label>
-        <label class="modal-opt" id="opt-full">
-          <div class="opt-plan">Premium</div>
-          <div class="opt-name">PDF + Web illimité</div>
-          <div class="opt-price" id="p-full">29,90€</div>
-          <div class="opt-check">✓</div>
-          <input type="radio" name="plan" value="full" style="display:none" onchange="selPlan('full')">
-        </label>
-      </div>
-      <span class="modal-section-label">Vos informations</span>
-      <div class="form-group"><label class="form-label">Prénom & Nom</label><input class="form-input" type="text" id="f-name" placeholder="Sophie Martin"></div>
-      <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="f-email" placeholder="votre@email.com"></div>
-      <div class="modal-total">
-        <div class="modal-total-label">Total</div>
-        <div class="modal-total-price" id="m-total">14,90€</div>
-      </div>
-      <button class="modal-pay-btn" onclick="pay()">🔒 &nbsp; Payer maintenant · Stripe</button>
-      <div class="modal-secure">🔒 SSL · Stripe · Remboursement 14 jours</div>
-    </div>
+    <button class="modal-btn" id="modal-btn" data-fr="🔒 Acheter maintenant" data-en="🔒 Buy now">🔒 Acheter maintenant</button>
+    <div class="modal-secure" data-fr="Paiement sécurisé · Stripe · Livraison immédiate" data-en="Secure payment · Stripe · Instant delivery">Paiement sécurisé · Stripe · Livraison immédiate</div>
   </div>
 </div>
 
-<div id="toast"></div>
-
 <script>
-/* NAV */
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>60),{passive:true});
+// ── PROGRESS BAR ──
+var pb = document.getElementById('pb');
+var nav = document.getElementById('main-nav');
+window.addEventListener('scroll', function() {
+  var sy = window.scrollY;
+  var dh = document.documentElement.scrollHeight - window.innerHeight;
+  pb.style.width = (dh > 0 ? sy / dh * 100 : 0) + '%';
+  nav.classList.toggle('scrolled', sy > 60);
+}, { passive: true });
 
-/* HERO SLIDESHOW */
-const slides=document.querySelectorAll('.hero-slide');
-let si=0;
-setInterval(()=>{slides[si].classList.remove('active');si=(si+1)%slides.length;slides[si].classList.add('active');},5000);
-
-/* COUNTERS */
-function cnt(el,target,dur=2000){
-  let s=null;
-  const ease=t=>1-Math.pow(1-t,3);
-  const run=ts=>{if(!s)s=ts;const p=Math.min((ts-s)/dur,1);el.textContent=Math.floor(ease(p)*target)+(p>=1&&target>100?'+':'');if(p<1)requestAnimationFrame(run);};
-  requestAnimationFrame(run);
+// ── COUNTERS ──
+function animateCounter(id, target, suffix, duration) {
+  var el = document.getElementById(id);
+  var start = 0; var step = target / (duration / 16);
+  var timer = setInterval(function() {
+    start += step;
+    if (start >= target) { start = target; clearInterval(timer); }
+    el.textContent = Math.floor(start) + (suffix || '');
+  }, 16);
 }
-setTimeout(()=>{
-  document.querySelectorAll('[data-count]').forEach(el=>cnt(el,parseInt(el.dataset.count)));
-},1600);
+var countersStarted = false;
+function startCounters() {
+  if (countersStarted) return; countersStarted = true;
+  animateCounter('cnt-guides', 8, '', 1200);
+  animateCounter('cnt-dest', 12, '', 1400);
+  animateCounter('cnt-clients', 247, '+', 1800);
+  animateCounter('cnt-rating', 4.9, '', 1000);
+}
 
-/* REVEAL */
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:0.08,rootMargin:'0px 0px -50px 0px'});
-document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-s').forEach(el=>obs.observe(el));
+// ── SCROLL REVEAL ──
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      obs.unobserve(e.target);
+      if (e.target.closest('.stats-band')) startCounters();
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv, .rv-l, .rv-s').forEach(function(el) { obs.observe(el); });
 
-/* FILTER */
-document.querySelectorAll('.f-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const f=btn.dataset.f;
-    document.querySelectorAll('.guide-card').forEach(c=>{
-      const show=f==='all'||c.dataset.cat?.includes(f);
-      c.style.opacity=show?'1':'0.2';
-      c.style.transform=show?'':'scale(.97)';
+// ── FILTER ──
+document.querySelectorAll('.filter-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    var filter = this.dataset.filter;
+    document.querySelectorAll('.guide-card').forEach(function(card) {
+      var cats = card.dataset.cat || '';
+      card.style.display = (filter === 'all' || cats.includes(filter)) ? '' : 'none';
     });
   });
 });
 
-/* MODAL */
-let cur={};
-function openModal(title,slug,p1,p2){
-  cur={title,slug,p1,p2};
-  document.getElementById('m-title').textContent=title;
-  document.getElementById('p-pdf').textContent=p1+'€';
-  document.getElementById('p-full').textContent=p2+'€';
-  document.getElementById('m-total').textContent=p1+'€';
-  selPlan('pdf');
-  document.getElementById('modal').classList.add('on');
-  document.body.style.overflow='hidden';
+// ── MODAL ──
+function openModal(title, dest, price, url) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-dest').textContent = dest;
+  document.getElementById('modal-price').textContent = price;
+  document.getElementById('modal-btn').onclick = function() {
+    if (url && url !== '#') window.location.href = url;
+  };
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
-function closeModal(){document.getElementById('modal').classList.remove('on');document.body.style.overflow='';}
-function selPlan(p){
-  document.getElementById('opt-pdf').classList.toggle('sel',p==='pdf');
-  document.getElementById('opt-full').classList.toggle('sel',p==='full');
-  document.getElementById('m-total').textContent=(p==='pdf'?cur.p1:cur.p2)+'€';
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 }
-document.getElementById('modal').addEventListener('click',e=>{if(e.target===document.getElementById('modal'))closeModal();});
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-function pay(){
-  const n=document.getElementById('f-name').value.trim();
-  const e=document.getElementById('f-email').value.trim();
-  if(!n||!e){toast('❌ Remplis tous les champs');return;}
-  if(!e.includes('@')){toast('❌ Email invalide');return;}
-  toast('⏳ Redirection vers Stripe...');
-  setTimeout(()=>{closeModal();window.location.href='upsell.html?guide='+cur.slug+'&email='+encodeURIComponent(e);},1400);
+// ── LANGUAGE ──
+var currentLang = 'fr';
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('[data-fr]').forEach(function(el) {
+    var text = el.getAttribute('data-' + lang);
+    if (text) {
+      if (el.tagName === 'INPUT' || el.tagName === 'BUTTON' || el.tagName === 'A') {
+        el.textContent = text;
+      } else {
+        el.innerHTML = text;
+      }
+    }
+  });
+  document.querySelectorAll('.nav-lang button').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+  });
 }
 
-/* SMOOTH ANCHORS */
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});
-});
-
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),3000);}
+// ── MOBILE MENU ──
+function toggleMenu() {
+  var links = document.querySelector('.nav-links');
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+  links.style.flexDirection = 'column';
+  links.style.position = 'absolute';
+  links.style.top = '72px'; links.style.left = '0'; links.style.right = '0';
+  links.style.background = 'rgba(12,10,6,.98)';
+  links.style.padding = '24px'; links.style.gap = '20px';
+}
 </script>
 </body>
 </html>
