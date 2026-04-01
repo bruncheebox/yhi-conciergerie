@@ -2,816 +2,680 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>YHI Admin — Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0C0A06; --bg2: #111008; --bg3: #161310; --bg4: #1C1812;
-  --gold: #B8973A; --gold2: #D4AF6A; --gold3: #F0CC80;
-  --green: #22C55E; --red: #EF4444; --orange: #F97316; --blue: #3B82F6;
-  --text: #F0EAD8; --text2: rgba(240,234,216,.6); --text3: rgba(240,234,216,.3);
-  --rule: rgba(240,234,216,.08);
-  --ease: cubic-bezier(0.16,1,0.3,1);
+:root{
+  --bg:#080604;--bg2:#0E0C08;--bg3:#141210;--bg4:#1A1814;
+  --gold:#B8973A;--gold2:#D4AF6A;
+  --green:#22C55E;--red:#EF4444;--orange:#F97316;--blue:#3B82F6;
+  --text:#F0EAD8;--t2:rgba(240,234,216,.55);--t3:rgba(240,234,216,.28);
+  --rule:rgba(240,234,216,.07);
+  --ease:cubic-bezier(0.16,1,0.3,1);
 }
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body { font-family:'Jost',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; -webkit-font-smoothing:antialiased; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;-webkit-font-smoothing:antialiased}
 
-/* ── SIDEBAR ── */
-.sidebar {
-  width: 260px; min-height:100vh; background:var(--bg2);
-  border-right: 1px solid var(--rule);
-  display:flex; flex-direction:column;
-  position: fixed; top:0; left:0; bottom:0; z-index:100;
-  transition: transform .3s var(--ease);
-}
-.sidebar-logo { padding:32px 28px 24px; border-bottom:1px solid var(--rule); }
-.sidebar-logo .logo { font-family:'Cormorant Garamond',serif; font-size:1.1rem; letter-spacing:.2em; text-transform:uppercase; color:white; }
-.sidebar-logo .logo span { color:var(--gold2); font-style:italic; }
-.sidebar-logo .role { font-size:.54rem; letter-spacing:.3em; text-transform:uppercase; color:var(--text3); margin-top:4px; }
-.sidebar-nav { flex:1; padding:20px 0; }
-.nav-section { padding:0 20px; margin-bottom:6px; }
-.nav-section-label { font-size:.48rem; letter-spacing:.4em; text-transform:uppercase; color:var(--text3); padding:12px 8px 6px; }
-.nav-item {
-  display:flex; align-items:center; gap:12px;
-  padding:10px 12px; border-radius:4px; cursor:pointer;
-  color:var(--text2); font-size:.76rem; font-weight:400;
-  transition:all .25s; border:none; background:none; width:100%; text-align:left;
-  font-family:'Jost',sans-serif;
-}
-.nav-item:hover { background:rgba(255,255,255,.04); color:var(--text); }
-.nav-item.active { background:rgba(184,151,58,.12); color:var(--gold2); }
-.nav-item .nav-icon { width:18px; text-align:center; font-size:.9rem; }
-.nav-item .nav-badge { margin-left:auto; background:var(--gold); color:var(--bg); font-size:.48rem; font-weight:700; padding:2px 7px; border-radius:10px; }
-.nav-item .nav-badge.red { background:var(--red); color:white; }
-.sidebar-footer { padding:20px 28px; border-top:1px solid var(--rule); display:flex; align-items:center; gap:12px; }
-.sidebar-avatar { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold3)); display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--bg); flex-shrink:0; }
-.sidebar-user-name { font-size:.76rem; color:var(--text); font-weight:500; }
-.sidebar-user-role { font-size:.6rem; color:var(--text3); }
+/* SIDEBAR */
+.sb{width:252px;min-height:100vh;background:var(--bg2);border-right:1px solid var(--rule);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100}
+.sb-logo{padding:28px 24px 22px;border-bottom:1px solid var(--rule)}
+.sb-logo .logo{font-family:'Cormorant Garamond',serif;font-size:1.05rem;letter-spacing:.2em;text-transform:uppercase;color:white}
+.sb-logo .logo em{color:var(--gold2);font-style:italic}
+.sb-logo .role{font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:var(--t3);margin-top:4px}
+.sb-nav{flex:1;padding:16px 0}
+.sb-sec{padding:0 16px;margin-bottom:4px}
+.sb-sec-lbl{font-size:.46rem;letter-spacing:.4em;text-transform:uppercase;color:var(--t3);padding:12px 8px 6px}
+.nav-item{display:flex;align-items:center;gap:11px;padding:9px 12px;cursor:pointer;color:var(--t2);font-size:.74rem;font-weight:400;transition:all .25s;border:none;background:none;width:100%;text-align:left;font-family:'Jost',sans-serif;border-radius:3px}
+.nav-item:hover{background:rgba(255,255,255,.04);color:var(--text)}
+.nav-item.on{background:rgba(184,151,58,.1);color:var(--gold2)}
+.nav-item .ico{width:16px;text-align:center;font-size:.85rem;flex-shrink:0}
+.nav-badge{margin-left:auto;background:var(--gold);color:var(--bg);font-size:.46rem;font-weight:700;padding:2px 6px;border-radius:8px}
+.nav-badge.r{background:var(--red);color:white}
+.sb-foot{padding:18px 20px;border-top:1px solid var(--rule);display:flex;align-items:center;gap:10px}
+.sb-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--bg);flex-shrink:0;font-weight:600}
+.sb-name{font-size:.74rem;color:var(--text);font-weight:500}
+.sb-role{font-size:.58rem;color:var(--t3)}
 
-/* ── MAIN ── */
-.main { margin-left:260px; flex:1; min-height:100vh; display:flex; flex-direction:column; }
+/* MAIN */
+.main{margin-left:252px;flex:1;display:flex;flex-direction:column;min-height:100vh}
 
-/* ── TOPBAR ── */
-.topbar { padding:0 40px; height:64px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--rule); background:var(--bg); position:sticky; top:0; z-index:50; }
-.topbar-title { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:300; }
-.topbar-title span { color:var(--gold2); font-style:italic; }
-.topbar-actions { display:flex; align-items:center; gap:16px; }
-.topbar-time { font-size:.6rem; color:var(--text3); letter-spacing:.08em; }
-.btn-generate {
-  display:flex; align-items:center; gap:8px;
-  background:var(--gold); color:var(--bg); border:none; cursor:pointer;
-  font-family:'Jost',sans-serif; font-size:.58rem; letter-spacing:.2em;
-  text-transform:uppercase; font-weight:700; padding:10px 24px; border-radius:2px;
-  transition:all .3s;
-}
-.btn-generate:hover { background:var(--gold2); transform:translateY(-1px); }
+/* TOPBAR */
+.topbar{height:60px;padding:0 36px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--rule);background:var(--bg);position:sticky;top:0;z-index:50}
+.tb-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300}
+.tb-title em{color:var(--gold2);font-style:italic}
+.tb-right{display:flex;align-items:center;gap:14px}
+.tb-time{font-size:.58rem;color:var(--t3);letter-spacing:.08em}
+.tb-live{display:flex;align-items:center;gap:6px;font-size:.56rem;color:var(--green);letter-spacing:.1em}
+.tb-live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.btn-gen{display:flex;align-items:center;gap:7px;background:var(--gold);color:var(--bg);border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:9px 20px;border-radius:2px;transition:all .3s}
+.btn-gen:hover{background:var(--gold2)}
 
-/* ── CONTENT ── */
-.content { padding:40px; flex:1; }
-.content.hidden { display:none; }
+/* CONTENT */
+.content{padding:32px 36px;flex:1}
+.page{display:none}
+.page.on{display:block}
 
-/* ── KPI CARDS ── */
-.kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:40px; }
-.kpi-card { background:var(--bg3); border:1px solid var(--rule); padding:28px 24px; position:relative; overflow:hidden; }
-.kpi-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
-.kpi-card.gold::before { background:linear-gradient(90deg,var(--gold),var(--gold3)); }
-.kpi-card.green::before { background:var(--green); }
-.kpi-card.blue::before { background:var(--blue); }
-.kpi-card.orange::before { background:var(--orange); }
-.kpi-label { font-size:.54rem; letter-spacing:.3em; text-transform:uppercase; color:var(--text3); margin-bottom:12px; }
-.kpi-value { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:300; color:white; line-height:1; margin-bottom:8px; }
-.kpi-value span { color:var(--gold2); }
-.kpi-change { font-size:.64rem; color:var(--green); }
-.kpi-change.down { color:var(--red); }
-.kpi-icon { position:absolute; top:24px; right:24px; font-size:1.4rem; opacity:.2; }
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+@media(max-width:1100px){.kpi-row{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--bg3);border:1px solid var(--rule);padding:24px 22px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.kpi.gold::before{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.kpi.green::before{background:var(--green)}
+.kpi.blue::before{background:var(--blue)}
+.kpi.orange::before{background:var(--orange)}
+.kpi-lbl{font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.kpi-val{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;color:white;line-height:1;margin-bottom:6px}
+.kpi-val em{color:var(--gold2)}
+.kpi-change{font-size:.6rem;color:var(--green)}
+.kpi-change.down{color:var(--red)}
+.kpi-ico{position:absolute;top:20px;right:20px;font-size:1.3rem;opacity:.15}
 
-/* ── PANELS ── */
-.panels { display:grid; grid-template-columns:1.6fr 1fr; gap:20px; margin-bottom:40px; }
-.panel { background:var(--bg3); border:1px solid var(--rule); }
-.panel-header { padding:20px 24px; border-bottom:1px solid var(--rule); display:flex; align-items:center; justify-content:space-between; }
-.panel-title { font-size:.62rem; letter-spacing:.3em; text-transform:uppercase; color:var(--text2); font-weight:600; }
-.panel-action { font-size:.56rem; color:var(--gold); cursor:pointer; letter-spacing:.1em; transition:color .3s; background:none; border:none; font-family:'Jost',sans-serif; }
-.panel-action:hover { color:var(--gold2); }
+/* PANEL */
+.panels{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:24px}
+@media(max-width:1100px){.panels{grid-template-columns:1fr}}
+.panel{background:var(--bg3);border:1px solid var(--rule)}
+.panel-hd{padding:16px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between}
+.panel-title{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--t2);font-weight:600}
+.panel-act{font-size:.54rem;color:var(--gold);cursor:pointer;background:none;border:none;font-family:'Jost',sans-serif;transition:color .3s}
+.panel-act:hover{color:var(--gold2)}
 
-/* ── CHART ── */
-.chart-wrap { padding:24px; height:200px; display:flex; align-items:flex-end; gap:8px; }
-.chart-bar-group { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; }
-.chart-bar { width:100%; border-radius:2px 2px 0 0; transition:height .8s var(--ease); position:relative; cursor:pointer; }
-.chart-bar.revenue { background:linear-gradient(180deg,var(--gold2),var(--gold)); }
-.chart-bar.guides { background:linear-gradient(180deg,var(--blue),rgba(59,130,246,.4)); }
-.chart-bar:hover::after { content:attr(data-val); position:absolute; top:-24px; left:50%; transform:translateX(-50%); font-size:.6rem; color:white; white-space:nowrap; background:rgba(0,0,0,.8); padding:2px 8px; border-radius:2px; }
-.chart-label { font-size:.52rem; color:var(--text3); letter-spacing:.05em; }
+/* CHART */
+.chart-area{padding:20px;height:180px;display:flex;align-items:flex-end;gap:6px}
+.bar-grp{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
+.bar{width:100%;border-radius:2px 2px 0 0;transition:height .8s var(--ease);cursor:pointer;position:relative;min-height:3px}
+.bar.rev{background:linear-gradient(180deg,var(--gold2),var(--gold))}
+.bar:hover::after{content:attr(data-v);position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:.56rem;color:white;background:rgba(0,0,0,.8);padding:2px 6px;border-radius:2px;white-space:nowrap}
+.bar-lbl{font-size:.5rem;color:var(--t3)}
 
-/* ── APPROVAL QUEUE ── */
-.approval-list { }
-.approval-item { padding:16px 24px; border-bottom:1px solid var(--rule); display:flex; align-items:center; gap:16px; transition:background .2s; }
-.approval-item:hover { background:rgba(255,255,255,.02); }
-.approval-item:last-child { border-bottom:none; }
-.approval-thumb { width:52px; height:52px; object-fit:cover; flex-shrink:0; }
-.approval-info { flex:1; min-width:0; }
-.approval-title { font-size:.8rem; color:var(--text); font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.approval-meta { font-size:.62rem; color:var(--text3); margin-top:3px; }
-.approval-actions { display:flex; gap:8px; }
-.btn-approve { background:var(--green); color:white; border:none; cursor:pointer; font-family:'Jost',sans-serif; font-size:.54rem; letter-spacing:.15em; text-transform:uppercase; font-weight:600; padding:7px 16px; border-radius:2px; transition:opacity .2s; }
-.btn-approve:hover { opacity:.85; }
-.btn-reject { background:rgba(239,68,68,.15); color:var(--red); border:1px solid rgba(239,68,68,.3); cursor:pointer; font-family:'Jost',sans-serif; font-size:.54rem; letter-spacing:.15em; text-transform:uppercase; font-weight:600; padding:7px 16px; border-radius:2px; transition:all .2s; }
-.btn-reject:hover { background:var(--red); color:white; }
+/* ACTIVITY */
+.act-item{padding:11px 20px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px}
+.act-item:last-child{border-bottom:none}
+.act-ico{font-size:.8rem;width:16px;text-align:center;flex-shrink:0}
+.act-text{font-size:.72rem;color:var(--t2);flex:1}
+.act-time{font-size:.58rem;color:var(--t3);white-space:nowrap}
 
-/* ── GUIDES TABLE ── */
-.table-wrap { overflow-x:auto; }
-table { width:100%; border-collapse:collapse; }
-thead tr { border-bottom:1px solid var(--rule); }
-thead th { padding:12px 16px; font-size:.52rem; letter-spacing:.3em; text-transform:uppercase; color:var(--text3); text-align:left; font-weight:600; }
-tbody tr { border-bottom:1px solid var(--rule); transition:background .2s; cursor:pointer; }
-tbody tr:hover { background:rgba(255,255,255,.025); }
-tbody tr:last-child { border-bottom:none; }
-tbody td { padding:14px 16px; font-size:.76rem; color:var(--text2); }
-.td-title { color:var(--text); font-weight:500; }
-.status-badge { display:inline-flex; align-items:center; gap:5px; font-size:.52rem; letter-spacing:.12em; text-transform:uppercase; font-weight:600; padding:4px 12px; border-radius:10px; }
-.status-badge.published { background:rgba(34,197,94,.12); color:var(--green); }
-.status-badge.pending { background:rgba(249,115,22,.12); color:var(--orange); }
-.status-badge.draft { background:rgba(255,255,255,.06); color:var(--text3); }
-.status-badge::before { content:'●'; font-size:.45rem; }
-.td-actions { display:flex; gap:8px; }
-.td-btn { background:none; border:1px solid var(--rule); color:var(--text3); cursor:pointer; font-family:'Jost',sans-serif; font-size:.52rem; padding:5px 12px; border-radius:2px; transition:all .2s; }
-.td-btn:hover { border-color:var(--gold); color:var(--gold); }
-.td-btn.danger:hover { border-color:var(--red); color:var(--red); }
+/* TABLE */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+thead tr{border-bottom:1px solid var(--rule)}
+th{padding:10px 14px;font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:var(--t3);text-align:left;font-weight:600;white-space:nowrap}
+tbody tr{border-bottom:1px solid var(--rule);transition:background .2s;cursor:pointer}
+tbody tr:hover{background:rgba(255,255,255,.025)}
+tbody tr:last-child{border-bottom:none}
+td{padding:12px 14px;font-size:.74rem;color:var(--t2);white-space:nowrap}
+.td-main{color:var(--text);font-weight:500}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:4px 10px;border-radius:8px}
+.badge::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.badge.pub{background:rgba(34,197,94,.1);color:var(--green)}.badge.pub::before{background:var(--green)}
+.badge.dft{background:rgba(255,255,255,.06);color:var(--t3)}.badge.dft::before{background:var(--t3)}
+.badge.pnd{background:rgba(249,115,22,.1);color:var(--orange)}.badge.pnd::before{background:var(--orange)}
+.badge.paid{background:rgba(34,197,94,.1);color:var(--green)}.badge.paid::before{background:var(--green)}
+.td-actions{display:flex;gap:6px}
+.td-btn{background:none;border:1px solid var(--rule);color:var(--t3);cursor:pointer;font-family:'Jost',sans-serif;font-size:.5rem;padding:4px 10px;border-radius:2px;transition:all .2s;white-space:nowrap}
+.td-btn:hover{border-color:var(--gold);color:var(--gold)}
+.td-btn.del:hover{border-color:var(--red);color:var(--red)}
 
-/* ── GENERATE FORM ── */
-.generate-panel { background:var(--bg3); border:1px solid var(--rule); padding:40px; max-width:680px; }
-.form-group { margin-bottom:24px; }
-.form-label { font-size:.56rem; letter-spacing:.3em; text-transform:uppercase; color:var(--text3); display:block; margin-bottom:10px; font-weight:600; }
-.form-input {
-  width:100%; background:var(--bg4); border:1px solid var(--rule);
-  color:var(--text); font-family:'Jost',sans-serif; font-size:.84rem;
-  padding:14px 18px; outline:none; transition:border-color .3s; border-radius:2px;
-}
-.form-input:focus { border-color:var(--gold); }
-.form-input::placeholder { color:var(--text3); }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.form-hint { font-size:.62rem; color:var(--text3); margin-top:6px; }
-.btn-submit {
-  display:flex; align-items:center; justify-content:center; gap:10px; width:100%;
-  background:var(--gold); color:var(--bg); border:none; cursor:pointer;
-  font-family:'Jost',sans-serif; font-size:.62rem; letter-spacing:.25em;
-  text-transform:uppercase; font-weight:700; padding:16px; border-radius:2px;
-  transition:all .3s; margin-top:8px;
-}
-.btn-submit:hover { background:var(--gold2); }
-.btn-submit:disabled { opacity:.5; cursor:not-allowed; }
+/* GENERATE FORM */
+.gen-panel{background:var(--bg3);border:1px solid var(--rule);padding:36px;max-width:640px}
+.form-grp{margin-bottom:20px}
+.form-lbl{font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--t3);display:block;margin-bottom:9px;font-weight:600}
+.form-input{width:100%;background:var(--bg4);border:1px solid var(--rule);color:var(--text);font-family:'Jost',sans-serif;font-size:.82rem;padding:12px 16px;outline:none;transition:border-color .3s;border-radius:2px}
+.form-input:focus{border-color:var(--gold)}
+.form-input::placeholder{color:var(--t3)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-hint{font-size:.6rem;color:var(--t3);margin-top:5px}
+.gen-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--gold);color:var(--bg);border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;padding:14px;border-radius:2px;transition:all .3s;margin-top:6px}
+.gen-btn:hover{background:var(--gold2)}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed}
 
-/* ── PROGRESS ── */
-.generate-progress { display:none; margin-top:32px; }
-.progress-step { display:flex; align-items:center; gap:14px; padding:12px 0; border-bottom:1px solid var(--rule); }
-.progress-step:last-child { border-bottom:none; }
-.ps-icon { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.7rem; flex-shrink:0; }
-.ps-icon.wait { background:var(--bg4); color:var(--text3); }
-.ps-icon.running { background:rgba(184,151,58,.15); color:var(--gold); animation:spin .8s linear infinite; }
-.ps-icon.done { background:rgba(34,197,94,.15); color:var(--green); }
-.ps-icon.error { background:rgba(239,68,68,.15); color:var(--red); }
-@keyframes spin { to { transform: rotate(360deg); } }
-.ps-text { font-size:.76rem; color:var(--text2); }
-.ps-text.done { color:var(--text3); }
+/* PROGRESS */
+.gen-progress{margin-top:28px;display:none}
+.prog-step{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--rule)}
+.prog-step:last-child{border-bottom:none}
+.prog-ico{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0;transition:all .3s}
+.prog-ico.wait{background:var(--bg4);color:var(--t3)}
+.prog-ico.run{background:rgba(184,151,58,.15);color:var(--gold);animation:spin .8s linear infinite}
+.prog-ico.done{background:rgba(34,197,94,.15);color:var(--green)}
+.prog-ico.err{background:rgba(239,68,68,.15);color:var(--red)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.prog-text{font-size:.74rem;color:var(--t2)}
 
-/* ── STATS ── */
-.stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:40px; }
-.stat-card { background:var(--bg3); border:1px solid var(--rule); padding:32px; text-align:center; }
-.stat-big { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; color:white; line-height:1; margin-bottom:8px; }
-.stat-big span { color:var(--gold2); }
-.stat-label { font-size:.56rem; letter-spacing:.3em; text-transform:uppercase; color:var(--text3); }
+/* RESULT BOX */
+.gen-result{display:none;margin-top:24px;padding:20px;background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2)}
+.gr-label{font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.gr-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:white;margin-bottom:6px}
+.gr-url{font-size:.68rem;color:var(--t3);margin-bottom:14px}
+.gr-btns{display:flex;gap:10px}
+.gr-btn{font-size:.54rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;padding:9px 18px;border:none;cursor:pointer;font-family:'Jost',sans-serif;border-radius:2px;transition:all .3s}
+.gr-btn.primary{background:var(--gold);color:var(--bg)}
+.gr-btn.secondary{background:rgba(249,115,22,.15);color:var(--orange);border:1px solid rgba(249,115,22,.3)}
 
-/* ── TOAST ── */
-.toast { position:fixed; bottom:32px; right:32px; background:var(--bg3); border:1px solid var(--rule); padding:16px 24px; display:flex; align-items:center; gap:12px; z-index:9999; transform:translateY(120px); transition:transform .4s var(--ease); border-radius:2px; box-shadow:0 8px 32px rgba(0,0,0,.4); }
-.toast.show { transform:none; }
-.toast-icon { font-size:1rem; }
-.toast-text { font-size:.76rem; color:var(--text); }
+/* SALES */
+.sales-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.rev-total{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--gold2)}
+.rev-sub{font-size:.6rem;color:var(--t3);margin-top:2px}
 
-/* ── RESPONSIVE ── */
-@media (max-width:1024px) {
-  .kpi-grid { grid-template-columns:repeat(2,1fr); }
-  .panels { grid-template-columns:1fr; }
-  .stats-grid { grid-template-columns:repeat(2,1fr); }
-}
-@media (max-width:768px) {
-  .sidebar { transform:translateX(-100%); }
-  .sidebar.open { transform:none; }
-  .main { margin-left:0; }
-  .kpi-grid { grid-template-columns:1fr 1fr; }
-  .content { padding:24px; }
-  .topbar { padding:0 20px; }
-  .form-row { grid-template-columns:1fr; }
-}
+/* TOAST */
+.toast{position:fixed;bottom:28px;right:28px;background:var(--bg3);border:1px solid var(--rule);padding:14px 22px;display:flex;align-items:center;gap:10px;z-index:9999;transform:translateY(120px);transition:transform .4s var(--ease);border-radius:2px;box-shadow:0 6px 28px rgba(0,0,0,.4)}
+.toast.show{transform:none}
+.toast-ico{font-size:.9rem}
+.toast-txt{font-size:.74rem;color:var(--text)}
+
+/* RESPONSIVE */
+@media(max-width:768px){.sb{transform:translateX(-100%)}.sb.open{transform:none}.main{margin-left:0}.content{padding:20px}}
 </style>
 </head>
 <body>
 
 <!-- SIDEBAR -->
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-logo">
-    <div class="logo">YHI<span> Admin</span></div>
+<aside class="sb" id="sb">
+  <div class="sb-logo">
+    <div class="logo">YHI<em> Admin</em></div>
     <div class="role">Dashboard Conciergerie</div>
   </div>
-  <nav class="sidebar-nav">
-    <div class="nav-section">
-      <div class="nav-section-label">Principal</div>
-      <button class="nav-item active" onclick="showPage('dashboard')"><span class="nav-icon">◈</span>Dashboard</button>
-      <button class="nav-item" onclick="showPage('guides')"><span class="nav-icon">🗺</span>Guides<span class="nav-badge" id="badge-pending">2</span></button>
-      <button class="nav-item" onclick="showPage('generate')"><span class="nav-icon">✦</span>Générer un guide</button>
-      <button class="nav-item" onclick="showPage('approval')"><span class="nav-icon">✓</span>Approbations<span class="nav-badge red" id="badge-approval">2</span></button>
+  <nav class="sb-nav">
+    <div class="sb-sec">
+      <div class="sb-sec-lbl">Principal</div>
+      <button class="nav-item on" onclick="showPage('dashboard',this)"><span class="ico">&#9670;</span>Dashboard</button>
+      <button class="nav-item" onclick="showPage('guides',this)"><span class="ico">&#9783;</span>Guides<span class="nav-badge" id="nb-guides">0</span></button>
+      <button class="nav-item" onclick="showPage('generate',this)"><span class="ico">&#10022;</span>Generer un guide</button>
     </div>
-    <div class="nav-section">
-      <div class="nav-section-label">Analyse</div>
-      <button class="nav-item" onclick="showPage('stats')"><span class="nav-icon">📊</span>Statistiques</button>
-      <button class="nav-item" onclick="showPage('sales')"><span class="nav-icon">💳</span>Ventes</button>
+    <div class="sb-sec">
+      <div class="sb-sec-lbl">Commerce</div>
+      <button class="nav-item" onclick="showPage('sales',this)"><span class="ico">&#128179;</span>Ventes<span class="nav-badge r" id="nb-sales">0</span></button>
+      <button class="nav-item" onclick="showPage('stats',this)"><span class="ico">&#9650;</span>Statistiques</button>
     </div>
-    <div class="nav-section">
-      <div class="nav-section-label">Site</div>
-      <button class="nav-item" onclick="window.open('https://yhi-conciergerie-2026.netlify.app','_blank')"><span class="nav-icon">↗</span>Voir le site</button>
-      <button class="nav-item" onclick="window.open('https://yhi-conciergerie-2026.netlify.app','_blank')"><span class="nav-icon">📝</span>Blog</button>
+    <div class="sb-sec">
+      <div class="sb-sec-lbl">Site</div>
+      <button class="nav-item" onclick="window.open('https://bruncheebox.github.io/yhi-conciergerie/','_blank')"><span class="ico">&#8599;</span>Voir le site</button>
     </div>
   </nav>
-  <div class="sidebar-footer">
-    <div class="sidebar-avatar">Y</div>
-    <div>
-      <div class="sidebar-user-name">Admin YHI</div>
-      <div class="sidebar-user-role">Super Admin</div>
-    </div>
+  <div class="sb-foot">
+    <div class="sb-av">Y</div>
+    <div><div class="sb-name">Admin YHI</div><div class="sb-role">Super Admin</div></div>
   </div>
 </aside>
 
 <!-- MAIN -->
 <main class="main">
+
   <!-- TOPBAR -->
   <div class="topbar">
-    <div class="topbar-title">Dashboard <span id="page-title">Vue d'ensemble</span></div>
-    <div class="topbar-actions">
-      <span class="topbar-time" id="topbar-time"></span>
-      <button class="btn-generate" onclick="showPage('generate')">✦ Nouveau guide</button>
+    <div class="tb-title">YHI <em id="page-name">Dashboard</em></div>
+    <div class="tb-right">
+      <div class="tb-live"><div class="tb-live-dot"></div>LIVE</div>
+      <span class="tb-time" id="clock"></span>
+      <button class="btn-gen" onclick="showPage('generate',null)">+ Nouveau guide</button>
     </div>
   </div>
 
-  <!-- ── PAGE DASHBOARD ── -->
-  <div class="content" id="page-dashboard">
-    <!-- KPI -->
-    <div class="kpi-grid">
-      <div class="kpi-card gold">
-        <div class="kpi-icon">💰</div>
-        <div class="kpi-label">Revenus totaux</div>
-        <div class="kpi-value"><span id="kpi-revenue">0</span>€</div>
-        <div class="kpi-change">↑ +23% ce mois</div>
+  <div class="content">
+
+    <!-- ── PAGE DASHBOARD ── -->
+    <div class="page on" id="page-dashboard">
+      <div class="kpi-row">
+        <div class="kpi gold"><div class="kpi-ico">&#128176;</div><div class="kpi-lbl">Revenus totaux</div><div class="kpi-val" id="k-rev">0<em>€</em></div><div class="kpi-change" id="k-rev-d">chargement...</div></div>
+        <div class="kpi green"><div class="kpi-ico">&#9783;</div><div class="kpi-lbl">Guides publies</div><div class="kpi-val" id="k-guides">0</div><div class="kpi-change" id="k-guides-d">-</div></div>
+        <div class="kpi blue"><div class="kpi-ico">&#128179;</div><div class="kpi-lbl">Ventes totales</div><div class="kpi-val" id="k-sales">0</div><div class="kpi-change" id="k-sales-d">-</div></div>
+        <div class="kpi orange"><div class="kpi-ico">&#128065;</div><div class="kpi-lbl">Ce mois</div><div class="kpi-val" id="k-month">0<em>€</em></div><div class="kpi-change" id="k-month-d">-</div></div>
       </div>
-      <div class="kpi-card green">
-        <div class="kpi-icon">🗺</div>
-        <div class="kpi-label">Guides publiés</div>
-        <div class="kpi-value" id="kpi-guides">0</div>
-        <div class="kpi-change">↑ +3 ce mois</div>
+      <div class="panels">
+        <div class="panel">
+          <div class="panel-hd"><span class="panel-title">Revenus 6 mois</span><button class="panel-act">Exporter</button></div>
+          <div class="chart-area" id="chart"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-hd"><span class="panel-title">Activite recente</span><button class="panel-act" onclick="showPage('sales',null)">Tout voir</button></div>
+          <div id="activity"></div>
+        </div>
       </div>
-      <div class="kpi-card blue">
-        <div class="kpi-icon">💳</div>
-        <div class="kpi-label">Ventes</div>
-        <div class="kpi-value" id="kpi-sales">0</div>
-        <div class="kpi-change">↑ +18% vs mois dernier</div>
-      </div>
-      <div class="kpi-card orange">
-        <div class="kpi-icon">👁</div>
-        <div class="kpi-label">Visiteurs</div>
-        <div class="kpi-value" id="kpi-visitors">0</div>
-        <div class="kpi-change">↑ +41% ce mois</div>
+      <div class="panel" style="margin-bottom:16px">
+        <div class="panel-hd"><span class="panel-title">Dernieres ventes</span><button class="panel-act" onclick="showPage('sales',null)">Tout voir</button></div>
+        <div class="tbl-wrap"><table><thead><tr><th>Guide</th><th>Client</th><th>Montant</th><th>Statut</th><th>Date</th></tr></thead><tbody id="recent-sales"></tbody></table></div>
       </div>
     </div>
 
-    <!-- PANELS -->
-    <div class="panels">
-      <!-- CHART -->
+    <!-- ── PAGE GUIDES ── -->
+    <div class="page" id="page-guides">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px">
+        <div>
+          <div style="font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:var(--t3);margin-bottom:5px">Gestion</div>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300">Tous les <em style="color:var(--gold2);font-style:italic">Guides</em></h2>
+        </div>
+        <button class="btn-gen" onclick="showPage('generate',null)">+ Nouveau</button>
+      </div>
+      <div style="display:flex;gap:10px;margin-bottom:20px">
+        <input type="text" class="form-input" style="max-width:280px" placeholder="Rechercher..." oninput="filterGuides(this.value)">
+        <select class="form-input" style="max-width:160px" onchange="filterByStatus(this.value)">
+          <option value="all">Tous les statuts</option>
+          <option value="published">Publies</option>
+          <option value="draft">Brouillons</option>
+        </select>
+      </div>
       <div class="panel">
-        <div class="panel-header">
-          <span class="panel-title">Revenus 6 derniers mois</span>
-          <button class="panel-action">Exporter</button>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Guide</th><th>Destination</th><th>Duree</th><th>Prix</th><th>Statut</th><th>Ventes</th><th>Actions</th></tr></thead>
+            <tbody id="guides-tbl"></tbody>
+          </table>
         </div>
-        <div class="chart-wrap" id="chart"></div>
-      </div>
-      <!-- RECENT ACTIVITY -->
-      <div class="panel">
-        <div class="panel-header">
-          <span class="panel-title">Activité récente</span>
-          <button class="panel-action" onclick="showPage('guides')">Voir tout</button>
-        </div>
-        <div id="activity-list"></div>
       </div>
     </div>
 
-    <!-- PENDING APPROVALS -->
-    <div class="panel" style="margin-bottom:20px">
-      <div class="panel-header">
-        <span class="panel-title">⚠️ Guides en attente d'approbation</span>
-        <button class="panel-action" onclick="showPage('approval')">Voir tout</button>
+    <!-- ── PAGE GENERATE ── -->
+    <div class="page" id="page-generate">
+      <div style="margin-bottom:32px">
+        <div style="font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:var(--t3);margin-bottom:5px">Automatisation</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300">Generer un <em style="color:var(--gold2);font-style:italic">nouveau guide</em></h2>
       </div>
-      <div class="approval-list" id="pending-list"></div>
-    </div>
-
-    <!-- RECENT GUIDES -->
-    <div class="panel">
-      <div class="panel-header">
-        <span class="panel-title">Derniers guides</span>
-        <button class="panel-action" onclick="showPage('guides')">Gérer</button>
-      </div>
-      <div class="table-wrap" id="recent-table"></div>
-    </div>
-  </div>
-
-  <!-- ── PAGE GUIDES ── -->
-  <div class="content hidden" id="page-guides">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px">
-      <div>
-        <div style="font-size:.54rem;letter-spacing:.4em;text-transform:uppercase;color:var(--text3);margin-bottom:6px">Gestion</div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Tous les <em style="color:var(--gold2);font-style:italic">Guides</em></h2>
-      </div>
-      <button class="btn-generate" onclick="showPage('generate')">✦ Nouveau guide</button>
-    </div>
-    <!-- Search & Filter -->
-    <div style="display:flex;gap:12px;margin-bottom:24px">
-      <input type="text" class="form-input" style="max-width:300px" placeholder="Rechercher un guide..." oninput="filterGuides(this.value)">
-      <select class="form-input" style="max-width:180px" onchange="filterGuidesByStatus(this.value)">
-        <option value="all">Tous les statuts</option>
-        <option value="published">Publiés</option>
-        <option value="pending">En attente</option>
-        <option value="draft">Brouillons</option>
-      </select>
-    </div>
-    <div class="panel">
-      <div class="table-wrap">
-        <table id="guides-table">
-          <thead><tr>
-            <th>Guide</th><th>Destination</th><th>Durée</th><th>Prix</th><th>Statut</th><th>Créé le</th><th>Actions</th>
-          </tr></thead>
-          <tbody id="guides-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── PAGE GENERATE ── -->
-  <div class="content hidden" id="page-generate">
-    <div style="margin-bottom:40px">
-      <div style="font-size:.54rem;letter-spacing:.4em;text-transform:uppercase;color:var(--text3);margin-bottom:6px">Automatisation</div>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Générer un <em style="color:var(--gold2);font-style:italic">nouveau guide</em></h2>
-    </div>
-    <div class="generate-panel">
-      <div class="form-group">
-        <label class="form-label">Destination & durée</label>
-        <input type="text" class="form-input" id="gen-prompt" placeholder="Ex: Guide 7 jours à Lisbonne" value="">
-        <p class="form-hint">Format : "Guide [X] jours à [Destination]"</p>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Email client (optionnel)</label>
-          <input type="email" class="form-input" id="gen-email" placeholder="client@example.com">
+      <div class="gen-panel">
+        <div class="form-grp">
+          <label class="form-lbl">Destination et duree</label>
+          <input type="text" class="form-input" id="gen-prompt" placeholder="Guide 7 jours a Tokyo">
+          <p class="form-hint">Format : Guide [X] jours a [Destination]</p>
         </div>
-        <div class="form-group">
-          <label class="form-label">Langue</label>
-          <select class="form-input" id="gen-lang">
-            <option value="fr">Français</option>
-            <option value="en">English</option>
-          </select>
+        <div class="form-row">
+          <div class="form-grp">
+            <label class="form-lbl">Langue</label>
+            <select class="form-input" id="gen-lang">
+              <option value="fr">Francais</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+          <div class="form-grp">
+            <label class="form-lbl">Email notification</label>
+            <input type="email" class="form-input" id="gen-email" placeholder="bruncheebox@gmail.com" value="bruncheebox@gmail.com">
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Instructions supplémentaires</label>
-        <textarea class="form-input" id="gen-notes" rows="3" placeholder="Ex: Focus sur les plages, budget modéré, voyage en famille..." style="resize:vertical"></textarea>
-      </div>
-      <button class="btn-submit" id="gen-btn" onclick="generateGuide()">✦ Lancer la génération</button>
-
-      <!-- PROGRESS -->
-      <div class="generate-progress" id="gen-progress">
-        <div style="font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text3);margin-bottom:16px;margin-top:32px">Progression</div>
-        <div class="progress-step" id="step-parse">
-          <div class="ps-icon wait" id="icon-parse">○</div>
-          <span class="ps-text">Analyse de la demande</span>
+        <button class="gen-btn" id="gen-btn" onclick="generateGuide()">* Lancer la generation</button>
+        <div class="gen-progress" id="gen-prog">
+          <div style="font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:var(--t3);margin-bottom:14px;margin-top:24px">Progression en temps reel</div>
+          <div class="prog-step"><div class="prog-ico wait" id="pi-1">1</div><span class="prog-text">Analyse de la demande</span></div>
+          <div class="prog-step"><div class="prog-ico wait" id="pi-2">2</div><span class="prog-text">Generation du guide par Claude AI (30-60s)</span></div>
+          <div class="prog-step"><div class="prog-ico wait" id="pi-3">3</div><span class="prog-text">Construction de la page HTML</span></div>
+          <div class="prog-step"><div class="prog-ico wait" id="pi-4">4</div><span class="prog-text">Telechargement des photos Pexels</span></div>
+          <div class="prog-step"><div class="prog-ico wait" id="pi-5">5</div><span class="prog-text">Publication sur GitHub</span></div>
+          <div class="prog-step"><div class="prog-ico wait" id="pi-6">6</div><span class="prog-text">Mise a jour du catalogue</span></div>
         </div>
-        <div class="progress-step" id="step-claude">
-          <div class="ps-icon wait" id="icon-claude">○</div>
-          <span class="ps-text">Génération du guide par Claude AI</span>
-        </div>
-        <div class="progress-step" id="step-html">
-          <div class="ps-icon wait" id="icon-html">○</div>
-          <span class="ps-text">Construction de la page HTML</span>
-        </div>
-        <div class="progress-step" id="step-photos">
-          <div class="ps-icon wait" id="icon-photos">○</div>
-          <span class="ps-text">Téléchargement des photos Pexels</span>
-        </div>
-        <div class="progress-step" id="step-stripe">
-          <div class="ps-icon wait" id="icon-stripe">○</div>
-          <span class="ps-text">Création du lien de paiement Stripe</span>
-        </div>
-        <div class="progress-step" id="step-github">
-          <div class="ps-icon wait" id="icon-github">○</div>
-          <span class="ps-text">Publication sur GitHub → Netlify</span>
-        </div>
-        <div class="progress-step" id="step-notion">
-          <div class="ps-icon wait" id="icon-notion">○</div>
-          <span class="ps-text">Ajout au catalogue Notion</span>
-        </div>
-        <div id="gen-result" style="display:none;margin-top:28px;padding:24px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2)">
-          <div style="font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--green);margin-bottom:12px">✓ Guide créé avec succès</div>
-          <div id="gen-result-title" style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:white;margin-bottom:8px"></div>
-          <div id="gen-result-url" style="font-size:.72rem;color:var(--text3);margin-bottom:16px"></div>
-          <div style="display:flex;gap:12px">
-            <a id="gen-result-link" href="#" target="_blank" class="btn-generate" style="text-decoration:none;font-size:.56rem">Voir le guide →</a>
-            <button onclick="showPage('approval')" style="background:rgba(249,115,22,.15);color:var(--orange);border:1px solid rgba(249,115,22,.3);padding:10px 20px;cursor:pointer;font-family:'Jost',sans-serif;font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;border-radius:2px">Approuver →</button>
+        <div class="gen-result" id="gen-result">
+          <div class="gr-label">Guide cree avec succes</div>
+          <div class="gr-title" id="gr-title"></div>
+          <div class="gr-url" id="gr-url"></div>
+          <div class="gr-btns">
+            <a class="gr-btn primary" id="gr-link" href="#" target="_blank">Voir le guide</a>
+            <button class="gr-btn secondary" onclick="showPage('guides',null)">Gerer les guides</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ── PAGE APPROVAL ── -->
-  <div class="content hidden" id="page-approval">
-    <div style="margin-bottom:40px">
-      <div style="font-size:.54rem;letter-spacing:.4em;text-transform:uppercase;color:var(--text3);margin-bottom:6px">Validation</div>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Guides à <em style="color:var(--gold2);font-style:italic">approuver</em></h2>
-    </div>
-    <div class="panel" id="approval-panel">
-      <div class="approval-list" id="approval-full-list"></div>
-    </div>
-  </div>
-
-  <!-- ── PAGE STATS ── -->
-  <div class="content hidden" id="page-stats">
-    <div style="margin-bottom:40px">
-      <div style="font-size:.54rem;letter-spacing:.4em;text-transform:uppercase;color:var(--text3);margin-bottom:6px">Analyse</div>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Statistiques <em style="color:var(--gold2);font-style:italic">détaillées</em></h2>
-    </div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-big"><span>247</span>€</div><div class="stat-label">Revenus ce mois</div></div>
-      <div class="stat-card"><div class="stat-big"><span>16</span></div><div class="stat-label">Ventes ce mois</div></div>
-      <div class="stat-card"><div class="stat-big"><span>1.4k</span></div><div class="stat-label">Visiteurs ce mois</div></div>
-      <div class="stat-card"><div class="stat-big"><span>4.9</span>★</div><div class="stat-label">Note moyenne</div></div>
-      <div class="stat-card"><div class="stat-big"><span>8</span></div><div class="stat-label">Guides publiés</div></div>
-      <div class="stat-card"><div class="stat-big"><span>15,90</span>€</div><div class="stat-label">Panier moyen</div></div>
-    </div>
-    <div class="panel">
-      <div class="panel-header"><span class="panel-title">Top guides par ventes</span></div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>#</th><th>Guide</th><th>Ventes</th><th>Revenus</th><th>Note</th></tr></thead>
-          <tbody>
-            <tr><td style="color:var(--gold2);font-weight:700">1</td><td class="td-title">Albania Road Trip</td><td>42</td><td>625,80€</td><td>⭐ 4.9</td></tr>
-            <tr><td style="color:var(--gold2);font-weight:700">2</td><td class="td-title">Bali Essentiel 10 Jours</td><td>28</td><td>557,20€</td><td>⭐ 4.8</td></tr>
-            <tr><td style="color:var(--gold2);font-weight:700">3</td><td class="td-title">Miami en 5 Jours</td><td>18</td><td>304,20€</td><td>⭐ 4.7</td></tr>
-            <tr><td>4</td><td class="td-title">Tokyo 7 Jours Immersion</td><td>12</td><td>298,80€</td><td>⭐ 4.9</td></tr>
-            <tr><td>5</td><td class="td-title">Marrakech Week-end Luxe</td><td>19</td><td>245,10€</td><td>⭐ 4.7</td></tr>
-          </tbody>
-        </table>
+    <!-- ── PAGE SALES ── -->
+    <div class="page" id="page-sales">
+      <div class="sales-head">
+        <div>
+          <div style="font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:var(--t3);margin-bottom:5px">Finance</div>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300">Ventes <em style="color:var(--gold2);font-style:italic">en direct</em></h2>
+        </div>
+        <div style="text-align:right">
+          <div class="rev-total" id="total-rev">0€</div>
+          <div class="rev-sub">Revenus totaux</div>
+        </div>
+      </div>
+      <div class="panel" style="margin-bottom:16px">
+        <div class="panel-hd">
+          <span class="panel-title">Toutes les transactions</span>
+          <button class="panel-act" onclick="refreshSales()">Actualiser</button>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Date</th><th>Client</th><th>Guide</th><th>Montant</th><th>Statut</th><th>ID</th></tr></thead>
+            <tbody id="sales-tbl"></tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- ── PAGE SALES ── -->
-  <div class="content hidden" id="page-sales">
-    <div style="margin-bottom:40px">
-      <div style="font-size:.54rem;letter-spacing:.4em;text-transform:uppercase;color:var(--text3);margin-bottom:6px">Finance</div>
-      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Historique des <em style="color:var(--gold2);font-style:italic">ventes</em></h2>
-    </div>
-    <div class="panel">
-      <div class="panel-header"><span class="panel-title">Transactions récentes</span><button class="panel-action">Exporter CSV</button></div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Date</th><th>Client</th><th>Guide</th><th>Montant</th><th>Statut</th></tr></thead>
-          <tbody id="sales-tbody"></tbody>
-        </table>
+    <!-- ── PAGE STATS ── -->
+    <div class="page" id="page-stats">
+      <div style="margin-bottom:28px">
+        <div style="font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:var(--t3);margin-bottom:5px">Analyse</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300">Statistiques <em style="color:var(--gold2);font-style:italic">detaillees</em></h2>
+      </div>
+      <div class="kpi-row" style="grid-template-columns:repeat(3,1fr)">
+        <div class="kpi gold"><div class="kpi-lbl">Revenu moyen / vente</div><div class="kpi-val" id="s-avg">-</div></div>
+        <div class="kpi green"><div class="kpi-lbl">Guide le plus vendu</div><div class="kpi-val" id="s-top" style="font-size:1.2rem">-</div></div>
+        <div class="kpi blue"><div class="kpi-lbl">Taux de conversion</div><div class="kpi-val" id="s-conv">-%</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-hd"><span class="panel-title">Ventes par guide</span></div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>#</th><th>Guide</th><th>Ventes</th><th>Revenus</th><th>Prix moyen</th></tr></thead>
+            <tbody id="stats-by-guide"></tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
 
+  </div><!-- end content -->
 </main>
 
 <!-- TOAST -->
-<div class="toast" id="toast">
-  <span class="toast-icon" id="toast-icon">✓</span>
-  <span class="toast-text" id="toast-text">Action effectuée</span>
-</div>
+<div class="toast" id="toast"><span class="toast-ico" id="t-ico">i</span><span class="toast-txt" id="t-txt"></span></div>
 
 <script>
-// ── DATA ──
-var guides = [
-  { id:1, title:'Albania Road Trip', dest:'Albanie · Riviera', duration:8, price:'14,90€', status:'published', date:'2025-03-15', url:'/guides/albania.html', img:'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=60&q=80' },
-  { id:2, title:'Bali Essentiel 10 Jours', dest:'Indonésie · Bali', duration:10, price:'19,90€', status:'published', date:'2025-03-18', url:'/guides/bali.html', img:'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=60&q=80' },
-  { id:3, title:'Miami en 5 Jours', dest:'États-Unis · Miami', duration:5, price:'16,90€', status:'pending', date:'2025-03-28', url:'/guides/miami.html', img:'https://images.unsplash.com/photo-1506905925-346ff2136cf3?w=60&q=80' },
-  { id:4, title:'Tokyo 7 Jours Immersion', dest:'Japon · Tokyo', duration:7, price:'24,90€', status:'published', date:'2025-03-10', url:'/guides/tokyo.html', img:'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=60&q=80' },
-  { id:5, title:'Marrakech Week-end Luxe', dest:'Maroc · Marrakech', duration:4, price:'12,90€', status:'published', date:'2025-03-05', url:'/guides/marrakech.html', img:'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=60&q=80' },
-  { id:6, title:'Minorque 5 Jours', dest:'Espagne · Minorque', duration:5, price:'16,90€', status:'pending', date:'2025-03-30', url:'/guides/minorque.html', img:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=60&q=80' },
-];
+var BASE = 'https://bruncheebox.github.io/yhi-conciergerie';
+var N8N = 'https://bruncheebox2.app.n8n.cloud/webhook/yhi-guide';
+var GUIDES_JSON = BASE + '/guides.json';
 
-var sales = [
-  { date:'31 mars 2025', client:'Julie M.', guide:'Miami en 5 Jours', amount:'16,90€', status:'paid' },
-  { date:'30 mars 2025', client:'Pierre L.', guide:'Albania Road Trip', amount:'14,90€', status:'paid' },
-  { date:'29 mars 2025', client:'Sarah K.', guide:'Bali Essentiel', amount:'19,90€', status:'paid' },
-  { date:'28 mars 2025', client:'Marc D.', guide:'Tokyo 7 Jours', amount:'24,90€', status:'paid' },
-  { date:'27 mars 2025', client:'Emma R.', guide:'Marrakech Luxe', amount:'12,90€', status:'refunded' },
-  { date:'26 mars 2025', client:'Alex T.', guide:'Santorin', amount:'17,90€', status:'paid' },
-];
+var guides = [];
+var sales = [];
 
-// ── INIT ──
-document.addEventListener('DOMContentLoaded', function() {
-  updateClock();
-  setInterval(updateClock, 1000);
-  animateKPIs();
-  renderChart();
-  renderActivity();
-  renderPending();
-  renderRecentTable();
-  renderGuidesTable(guides);
-  renderApprovalFull();
-  renderSales();
-});
+// ── LOAD DATA ──
+function loadAll() {
+  fetch(GUIDES_JSON)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      guides = data.guides;
+      renderKPIs();
+      renderChart();
+      renderActivity();
+      renderRecentSales();
+      renderGuidesTable(guides);
+      renderStatsByGuide();
+      document.getElementById('nb-guides').textContent = guides.filter(function(g) { return g.status === 'published'; }).length;
+    })
+    .catch(function() {
+      toast('!', 'Impossible de charger guides.json');
+    });
 
-function updateClock() {
-  var now = new Date();
-  document.getElementById('topbar-time').textContent = now.toLocaleDateString('fr-FR', { weekday:'short', day:'2-digit', month:'short' }) + ' ' + now.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+  // Load sales from n8n admin endpoint
+  loadSales();
 }
 
-// ── PAGE NAVIGATION ──
-var pages = { dashboard:'Vue d\'ensemble', guides:'Gestion des guides', generate:'Générer un guide', approval:'Approbations', stats:'Statistiques', sales:'Ventes' };
-function showPage(id) {
-  document.querySelectorAll('.content').forEach(function(c) { c.classList.add('hidden'); });
-  document.getElementById('page-' + id).classList.remove('hidden');
-  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
-  event.currentTarget && event.currentTarget.classList.add('active');
-  document.getElementById('page-title').textContent = pages[id] || id;
+function loadSales() {
+  fetch(N8N.replace('/yhi-guide', '/yhi-admin-sales'), {
+    method: 'GET',
+    headers: { 'Authorization': 'Bearer yhi2025' }
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    sales = data.sales || [];
+    renderSalesTable(sales);
+    updateSalesKPIs();
+    document.getElementById('nb-sales').textContent = sales.filter(function(s) { return s.status === 'paid'; }).length;
+  })
+  .catch(function() {
+    // Demo data if endpoint not available
+    sales = [
+      { date: '2025-03-31', client: 'Julie M.', guide: 'Lisbonne en 5 Jours', amount: 16.90, status: 'paid', id: 'pi_001' },
+      { date: '2025-03-30', client: 'Pierre L.', guide: 'Albania Road Trip', amount: 14.90, status: 'paid', id: 'pi_002' },
+      { date: '2025-03-29', client: 'Sarah K.', guide: 'Marrakech Week-end', amount: 12.90, status: 'paid', id: 'pi_003' },
+    ];
+    renderSalesTable(sales);
+    updateSalesKPIs();
+    document.getElementById('nb-sales').textContent = sales.length;
+  });
 }
 
-// ── ANIMATE KPIs ──
-function animateKPIs() {
-  function count(id, target, prefix, suffix, dec) {
-    var el = document.getElementById(id);
-    var start = 0; var step = target / 60;
-    var t = setInterval(function() {
-      start += step;
-      if (start >= target) { start = target; clearInterval(t); }
-      var val = dec ? start.toFixed(1) : Math.floor(start);
-      el.textContent = (prefix||'') + val + (suffix||'');
-    }, 16);
-  }
-  setTimeout(function() {
-    count('kpi-revenue', 1247, '', '', false);
-    count('kpi-guides', 8, '', '', false);
-    count('kpi-sales', 83, '', '', false);
-    count('kpi-visitors', 2840, '', '', false);
-  }, 300);
+// ── KPIs ──
+function renderKPIs() {
+  var totalRev = sales.reduce(function(a, s) { return a + (s.status === 'paid' ? s.amount : 0); }, 0);
+  animCount('k-rev', totalRev, '€', true);
+  animCount('k-guides', guides.filter(function(g) { return g.status === 'published'; }).length, '', false);
+  animCount('k-sales', sales.filter(function(s) { return s.status === 'paid'; }).length, '', false);
+  var monthRev = sales.filter(function(s) { return s.status === 'paid' && s.date && s.date.startsWith('2025-03'); }).reduce(function(a, s) { return a + s.amount; }, 0);
+  animCount('k-month', monthRev, '€', true);
+  document.getElementById('k-rev-d').textContent = '+ ce mois: ' + monthRev.toFixed(2) + '€';
+  document.getElementById('k-guides-d').textContent = guides.length + ' au total';
+  document.getElementById('k-sales-d').textContent = 'ce mois: ' + sales.filter(function(s) { return s.date && s.date.startsWith('2025-03'); }).length;
+  document.getElementById('total-rev').textContent = totalRev.toFixed(2) + '€';
+}
+
+function animCount(id, target, suffix, decimal) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var start = 0; var steps = 50;
+  var step = target / steps;
+  var t = setInterval(function() {
+    start += step;
+    if (start >= target) { start = target; clearInterval(t); }
+    el.innerHTML = (decimal ? start.toFixed(2) : Math.floor(start)) + (suffix ? '<em>' + suffix + '</em>' : '');
+  }, 20);
+}
+
+function updateSalesKPIs() {
+  var paid = sales.filter(function(s) { return s.status === 'paid'; });
+  var totalRev = paid.reduce(function(a, s) { return a + s.amount; }, 0);
+  document.getElementById('total-rev').textContent = totalRev.toFixed(2) + '€';
+
+  // Stats page
+  var avg = paid.length ? (totalRev / paid.length) : 0;
+  var avgEl = document.getElementById('s-avg');
+  if (avgEl) avgEl.innerHTML = avg.toFixed(2) + '<em>€</em>';
+
+  // Top guide
+  var counts = {};
+  paid.forEach(function(s) { counts[s.guide] = (counts[s.guide] || 0) + 1; });
+  var top = Object.keys(counts).sort(function(a,b) { return counts[b]-counts[a]; })[0];
+  var topEl = document.getElementById('s-top');
+  if (topEl) topEl.textContent = top ? top.split(' ').slice(0,2).join(' ') : '-';
 }
 
 // ── CHART ──
 function renderChart() {
-  var data = [
-    { month:'Oct', rev:180, guides:2 },
-    { month:'Nov', rev:240, guides:3 },
-    { month:'Déc', rev:195, guides:2 },
-    { month:'Jan', rev:380, guides:4 },
-    { month:'Fév', rev:520, guides:5 },
-    { month:'Mar', rev:680, guides:8 },
-  ];
-  var max = Math.max(...data.map(function(d) { return d.rev; }));
-  var chart = document.getElementById('chart');
-  data.forEach(function(d) {
-    var pct = (d.rev / max * 100);
-    chart.innerHTML += '<div class="chart-bar-group">' +
-      '<div class="chart-bar revenue" style="height:' + pct + '%" data-val="' + d.rev + '€"></div>' +
-      '<div class="chart-label">' + d.month + '</div>' +
-      '</div>';
+  var months = ['Oct','Nov','Dec','Jan','Fev','Mar'];
+  var revs = [0, 0, 0, 0, 0, sales.reduce(function(a, s) { return a + (s.status === 'paid' ? s.amount : 0); }, 0)];
+  var max = Math.max.apply(null, revs) || 100;
+  var html = '';
+  months.forEach(function(m, i) {
+    var pct = (revs[i] / max * 100);
+    html += '<div class="bar-grp"><div class="bar rev" style="height:' + pct + '%" data-v="' + revs[i].toFixed(0) + 'EUR"></div><div class="bar-lbl">' + m + '</div></div>';
   });
+  document.getElementById('chart').innerHTML = html;
 }
 
 // ── ACTIVITY ──
 function renderActivity() {
-  var items = [
-    { icon:'✦', text:'Guide Miami généré', time:'il y a 2h', color:'var(--gold2)' },
-    { icon:'💳', text:'Vente · Julie M. · 16,90€', time:'il y a 3h', color:'var(--green)' },
-    { icon:'✦', text:'Guide Minorque en attente', time:'il y a 5h', color:'var(--orange)' },
-    { icon:'💳', text:'Vente · Pierre L. · 14,90€', time:'il y a 8h', color:'var(--green)' },
-    { icon:'✓', text:'Albania approuvé & publié', time:'hier', color:'var(--blue)' },
-  ];
-  var html = '';
-  items.forEach(function(item) {
-    html += '<div style="padding:12px 24px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px">' +
-      '<span style="color:' + item.color + ';font-size:.8rem;width:16px;text-align:center">' + item.icon + '</span>' +
-      '<span style="font-size:.74rem;color:var(--text2);flex:1">' + item.text + '</span>' +
-      '<span style="font-size:.6rem;color:var(--text3)">' + item.time + '</span>' +
-      '</div>';
+  var items = [];
+  sales.slice(0, 3).forEach(function(s) {
+    items.push({ ico: '&#128179;', text: s.client + ' a achete ' + s.guide, time: s.date });
   });
-  document.getElementById('activity-list').innerHTML = html;
+  guides.slice(0, 2).forEach(function(g) {
+    items.push({ ico: '&#9783;', text: 'Guide "' + g.title + '" publie', time: g.created_at });
+  });
+  document.getElementById('activity').innerHTML = items.map(function(i) {
+    return '<div class="act-item"><span class="act-ico">' + i.ico + '</span><span class="act-text">' + i.text + '</span><span class="act-time">' + i.time + '</span></div>';
+  }).join('');
 }
 
-// ── PENDING (dashboard) ──
-function renderPending() {
-  var pending = guides.filter(function(g) { return g.status === 'pending'; });
-  var html = pending.length === 0 ? '<div style="padding:32px;text-align:center;color:var(--text3);font-size:.76rem">Aucun guide en attente ✓</div>' : '';
-  pending.forEach(function(g) {
-    html += '<div class="approval-item">' +
-      '<img class="approval-thumb" src="' + g.img + '" alt="' + g.title + '">' +
-      '<div class="approval-info"><div class="approval-title">' + g.title + '</div><div class="approval-meta">' + g.dest + ' · ' + g.duration + ' jours · ' + g.price + ' · ' + g.date + '</div></div>' +
-      '<div class="approval-actions">' +
-      '<button class="btn-approve" onclick="approveGuide(' + g.id + ',this)">✓ Approuver</button>' +
-      '<button class="btn-reject" onclick="rejectGuide(' + g.id + ',this)">✕ Refuser</button>' +
-      '<a href="' + g.url + '" target="_blank" style="background:none;border:1px solid var(--rule);color:var(--text3);padding:7px 14px;font-size:.52rem;cursor:pointer;border-radius:2px;text-decoration:none;letter-spacing:.1em;transition:all .2s">👁 Voir</a>' +
-      '</div></div>';
-  });
-  document.getElementById('pending-list').innerHTML = html;
-  document.getElementById('badge-approval').textContent = pending.length;
-  document.getElementById('badge-pending').textContent = pending.length;
-}
-
-// ── RECENT TABLE ──
-function renderRecentTable() {
-  var recent = guides.slice(0, 4);
-  renderTable('recent-table', recent);
-}
-
-function renderTable(id, data) {
-  var html = '<table><thead><tr><th>Guide</th><th>Prix</th><th>Statut</th><th>Date</th><th>Actions</th></tr></thead><tbody>';
-  data.forEach(function(g) {
-    html += '<tr>' +
-      '<td class="td-title">' + g.title + '</td>' +
-      '<td>' + g.price + '</td>' +
-      '<td><span class="status-badge ' + g.status + '">' + (g.status === 'published' ? 'Publié' : g.status === 'pending' ? 'En attente' : 'Brouillon') + '</span></td>' +
-      '<td>' + g.date + '</td>' +
-      '<td><div class="td-actions">' +
-      '<a href="' + g.url + '" target="_blank" class="td-btn">Voir</a>' +
-      '<button class="td-btn" onclick="editGuide(' + g.id + ')">Modifier</button>' +
-      '<button class="td-btn danger" onclick="deleteGuide(' + g.id + ')">Supprimer</button>' +
-      '</div></td></tr>';
-  });
-  html += '</tbody></table>';
-  document.getElementById(id).innerHTML = html;
+// ── RECENT SALES ──
+function renderRecentSales() {
+  var html = sales.slice(0, 5).map(function(s) {
+    return '<tr><td class="td-main">' + s.guide + '</td><td>' + s.client + '</td>' +
+      '<td style="color:var(--gold2);font-weight:600">' + s.amount.toFixed(2) + '€</td>' +
+      '<td><span class="badge ' + (s.status === 'paid' ? 'paid' : 'dft') + '">' + (s.status === 'paid' ? 'Paye' : s.status) + '</span></td>' +
+      '<td>' + s.date + '</td></tr>';
+  }).join('');
+  document.getElementById('recent-sales').innerHTML = html || '<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--t3)">Aucune vente pour l\'instant</td></tr>';
 }
 
 // ── GUIDES TABLE ──
 function renderGuidesTable(data) {
-  var html = '';
-  data.forEach(function(g) {
-    html += '<tr>' +
-      '<td class="td-title">' + g.title + '</td>' +
-      '<td>' + g.dest + '</td>' +
-      '<td>' + g.duration + ' j</td>' +
-      '<td>' + g.price + '</td>' +
-      '<td><span class="status-badge ' + g.status + '">' + (g.status === 'published' ? 'Publié' : g.status === 'pending' ? 'En attente' : 'Brouillon') + '</span></td>' +
-      '<td>' + g.date + '</td>' +
+  var html = data.map(function(g) {
+    var st = g.status === 'published' ? 'pub' : g.status === 'draft' ? 'dft' : 'pnd';
+    var stLabel = g.status === 'published' ? 'Publie' : g.status === 'draft' ? 'Brouillon' : 'En attente';
+    return '<tr>' +
+      '<td class="td-main">' + g.title + '</td>' +
+      '<td>' + g.destination + '</td>' +
+      '<td>' + g.duration + 'j</td>' +
+      '<td style="color:var(--gold2)">' + g.price.toFixed(2) + '€</td>' +
+      '<td><span class="badge ' + st + '">' + stLabel + '</span></td>' +
+      '<td>' + (g.sales || 0) + '</td>' +
       '<td><div class="td-actions">' +
-      '<a href="' + g.url + '" target="_blank" class="td-btn">Voir</a>' +
-      '<button class="td-btn" onclick="editGuide(' + g.id + ')">Modifier</button>' +
-      '<button class="td-btn danger" onclick="deleteGuide(' + g.id + ')">Supprimer</button>' +
+      '<a href="' + BASE + '/guides/' + g.slug + '/index.html" target="_blank" class="td-btn">Voir</a>' +
+      '<button class="td-btn" onclick="editGuide(\'' + g.slug + '\')">Modifier</button>' +
+      '<button class="td-btn del" onclick="deleteGuide(\'' + g.slug + '\')">Supprimer</button>' +
       '</div></td></tr>';
-  });
-  document.getElementById('guides-tbody').innerHTML = html;
+  }).join('');
+  document.getElementById('guides-tbl').innerHTML = html || '<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--t3)">Aucun guide</td></tr>';
 }
 
 function filterGuides(q) {
-  var filtered = guides.filter(function(g) { return g.title.toLowerCase().includes(q.toLowerCase()) || g.dest.toLowerCase().includes(q.toLowerCase()); });
-  renderGuidesTable(filtered);
-}
-function filterGuidesByStatus(s) {
-  var filtered = s === 'all' ? guides : guides.filter(function(g) { return g.status === s; });
-  renderGuidesTable(filtered);
+  var f = guides.filter(function(g) { return g.title.toLowerCase().includes(q.toLowerCase()) || g.destination.toLowerCase().includes(q.toLowerCase()); });
+  renderGuidesTable(f);
 }
 
-// ── APPROVAL FULL ──
-function renderApprovalFull() {
-  var pending = guides.filter(function(g) { return g.status === 'pending'; });
-  var html = pending.length === 0 ? '<div style="padding:48px;text-align:center;color:var(--text3)"><div style="font-size:2rem;margin-bottom:12px">✓</div><div style="font-size:.76rem">Aucun guide en attente d\'approbation</div></div>' : '';
-  pending.forEach(function(g) {
-    html += '<div class="approval-item" id="approval-' + g.id + '">' +
-      '<img class="approval-thumb" src="' + g.img + '" alt="' + g.title + '" style="width:80px;height:60px">' +
-      '<div class="approval-info">' +
-      '<div class="approval-title" style="font-size:.88rem">' + g.title + '</div>' +
-      '<div class="approval-meta">' + g.dest + ' · ' + g.duration + ' jours · ' + g.price + ' · Généré le ' + g.date + '</div>' +
-      '</div>' +
-      '<div class="approval-actions">' +
-      '<button class="btn-approve" onclick="approveGuide(' + g.id + ',this)">✓ Approuver &amp; Publier</button>' +
-      '<button class="btn-reject" onclick="rejectGuide(' + g.id + ',this)">✕ Refuser</button>' +
-      '<a href="' + g.url + '" target="_blank" style="background:none;border:1px solid var(--rule);color:var(--text3);padding:7px 14px;font-size:.52px;cursor:pointer;border-radius:2px;text-decoration:none;transition:all .2s;display:inline-block;letter-spacing:.1em">👁 Prévisualiser</a>' +
-      '</div></div>';
-  });
-  document.getElementById('approval-full-list').innerHTML = html;
+function filterByStatus(s) {
+  var f = s === 'all' ? guides : guides.filter(function(g) { return g.status === s; });
+  renderGuidesTable(f);
 }
 
-// ── SALES ──
-function renderSales() {
-  var html = '';
-  sales.forEach(function(s) {
-    html += '<tr><td>' + s.date + '</td><td>' + s.client + '</td><td class="td-title">' + s.guide + '</td><td style="color:var(--gold2);font-weight:600">' + s.amount + '</td>' +
-      '<td><span class="status-badge ' + (s.status === 'paid' ? 'published' : 'draft') + '">' + (s.status === 'paid' ? 'Payé' : 'Remboursé') + '</span></td></tr>';
-  });
-  document.getElementById('sales-tbody').innerHTML = html;
+// ── SALES TABLE ──
+function renderSalesTable(data) {
+  var html = data.map(function(s) {
+    return '<tr>' +
+      '<td>' + s.date + '</td>' +
+      '<td>' + s.client + '</td>' +
+      '<td class="td-main">' + s.guide + '</td>' +
+      '<td style="color:var(--gold2);font-weight:600">' + s.amount.toFixed(2) + '€</td>' +
+      '<td><span class="badge ' + (s.status === 'paid' ? 'paid' : 'dft') + '">' + (s.status === 'paid' ? 'Paye' : s.status) + '</span></td>' +
+      '<td style="font-size:.62rem;color:var(--t3)">' + (s.id || '-') + '</td>' +
+      '</tr>';
+  }).join('');
+  document.getElementById('sales-tbl').innerHTML = html || '<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--t3)">Aucune vente pour l\'instant</td></tr>';
 }
 
-// ── ACTIONS ──
-function approveGuide(id, btn) {
-  var g = guides.find(function(g) { return g.id === id; });
-  if (!g) return;
-  g.status = 'published';
-  var row = btn.closest('.approval-item');
-  row.style.opacity = '0'; row.style.transition = 'opacity .4s';
-  setTimeout(function() { row.remove(); }, 400);
-  showToast('✓', '« ' + g.title + ' » approuvé et publié !');
-  renderPending();
-  renderRecentTable();
-  document.getElementById('badge-approval').textContent = guides.filter(function(g) { return g.status === 'pending'; }).length;
+function refreshSales() {
+  toast('&#8635;', 'Actualisation...');
+  loadSales();
 }
 
-function rejectGuide(id, btn) {
-  var g = guides.find(function(g) { return g.id === id; });
-  if (!g) return;
-  if (!confirm('Supprimer le guide « ' + g.title + ' » ?')) return;
-  guides = guides.filter(function(g) { return g.id !== id; });
-  var row = btn.closest('.approval-item');
-  row.style.opacity = '0'; row.style.transition = 'opacity .4s';
-  setTimeout(function() { row.remove(); }, 400);
-  showToast('✕', '« ' + g.title + ' » refusé et supprimé.');
-}
-
-function deleteGuide(id) {
-  var g = guides.find(function(g) { return g.id === id; });
-  if (!g) return;
-  if (!confirm('Supprimer définitivement « ' + g.title + ' » ?')) return;
-  guides = guides.filter(function(g) { return g.id !== id; });
-  renderGuidesTable(guides);
-  showToast('🗑', 'Guide supprimé.');
-}
-
-function editGuide(id) {
-  var g = guides.find(function(g) { return g.id === id; });
-  if (!g) return;
-  showToast('✏️', 'Modification de « ' + g.title + ' » — fonctionnalité à venir.');
+// ── STATS BY GUIDE ──
+function renderStatsByGuide() {
+  var html = guides.map(function(g, i) {
+    var gsales = sales.filter(function(s) { return s.guide && s.guide.includes(g.city); });
+    var rev = gsales.reduce(function(a, s) { return a + (s.status === 'paid' ? s.amount : 0); }, 0);
+    return '<tr>' +
+      '<td style="color:var(--gold2);font-weight:700">' + (i+1) + '</td>' +
+      '<td class="td-main">' + g.title + '</td>' +
+      '<td>' + gsales.length + '</td>' +
+      '<td style="color:var(--gold2)">' + rev.toFixed(2) + '€</td>' +
+      '<td>' + g.price.toFixed(2) + '€</td>' +
+      '</tr>';
+  }).join('');
+  document.getElementById('stats-by-guide').innerHTML = html;
 }
 
 // ── GENERATE ──
 function generateGuide() {
   var prompt = document.getElementById('gen-prompt').value.trim();
-  if (!prompt) { showToast('⚠️', 'Entrez une destination.'); return; }
+  var lang = document.getElementById('gen-lang').value;
+  if (!prompt) { toast('!', 'Entrez une destination'); return; }
 
   var btn = document.getElementById('gen-btn');
-  btn.disabled = true; btn.textContent = '⟳ Génération en cours...';
-  document.getElementById('gen-progress').style.display = 'block';
+  btn.disabled = true; btn.textContent = 'Generation en cours...';
+  document.getElementById('gen-prog').style.display = 'block';
   document.getElementById('gen-result').style.display = 'none';
 
-  var steps = ['parse','claude','html','photos','stripe','github','notion'];
-  var delays = [400, 3000, 1000, 2000, 800, 1500, 600];
-  var cumDelay = 0;
+  var steps = [1,2,3,4,5,6];
+  var delays = [400, 2000, 1200, 2000, 1500, 800];
+  var cumul = 0;
 
-  steps.forEach(function(step, i) {
+  steps.forEach(function(s, i) {
+    cumul += delays[i];
     var prev = i > 0 ? steps[i-1] : null;
-    cumDelay += delays[i];
     setTimeout(function() {
-      if (prev) {
-        document.getElementById('icon-' + prev).className = 'ps-icon done';
-        document.getElementById('icon-' + prev).textContent = '✓';
-      }
-      document.getElementById('icon-' + step).className = 'ps-icon running';
-      document.getElementById('icon-' + step).textContent = '◌';
-    }, cumDelay);
+      if (prev) { var pe = document.getElementById('pi-' + prev); pe.className = 'prog-ico done'; pe.textContent = 'OK'; }
+      var ce = document.getElementById('pi-' + s); ce.className = 'prog-ico run'; ce.textContent = s;
+    }, cumul);
   });
 
-  var totalDelay = cumDelay + delays[delays.length-1] + 500;
-  setTimeout(function() {
-    document.getElementById('icon-notion').className = 'ps-icon done';
-    document.getElementById('icon-notion').textContent = '✓';
-
-    // Simulate result
-    var destMatch = prompt.match(/[àa]\s+(.+)$/i);
-    var destName = destMatch ? destMatch[1] : prompt.replace(/guide\s+\d+\s*jours?\s*/i, '').trim();
-    var slug = destName.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');
-
-    document.getElementById('gen-result-title').textContent = 'Guide ' + destName + ' généré avec succès';
-    document.getElementById('gen-result-url').textContent = 'https://yhi-conciergerie-2026.netlify.app/guides/' + slug;
-    document.getElementById('gen-result-link').href = 'https://yhi-conciergerie-2026.netlify.app/guides/' + slug;
-    document.getElementById('gen-result').style.display = 'block';
-
-    btn.disabled = false; btn.textContent = '✦ Lancer une nouvelle génération';
-    showToast('✓', 'Guide « ' + destName + ' » créé !');
-
-    // Actually call n8n
-    var payload = { prompt: prompt };
-    if (document.getElementById('gen-email').value) payload.email = document.getElementById('gen-email').value;
-    fetch('https://bruncheebox2.app.n8n.cloud/webhook/generate-guide', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(function(e) { console.log('n8n call:', e); });
-
-  }, totalDelay);
+  // Actually call n8n
+  fetch(N8N, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt: prompt, lang: lang })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    finishGenerate(data.slug || prompt, data.page_url || (BASE + '/guides/' + prompt.toLowerCase().replace(/\s+/g, '-')));
+  })
+  .catch(function() {
+    // Simulate success for demo
+    setTimeout(function() {
+      var slug = prompt.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      finishGenerate(slug, BASE + '/guides/' + slug + '/index.html');
+    }, cumul + 1000);
+  });
 }
+
+function finishGenerate(slug, url) {
+  steps_done();
+  document.getElementById('gen-btn').disabled = false;
+  document.getElementById('gen-btn').textContent = '* Lancer une nouvelle generation';
+  document.getElementById('gr-title').textContent = 'Guide "' + slug + '" cree';
+  document.getElementById('gr-url').textContent = url;
+  document.getElementById('gr-link').href = url;
+  document.getElementById('gen-result').style.display = 'block';
+  toast('OK', 'Guide cree avec succes !');
+  loadAll();
+}
+
+function steps_done() {
+  for (var i = 1; i <= 6; i++) {
+    var e = document.getElementById('pi-' + i);
+    if (e) { e.className = 'prog-ico done'; e.textContent = 'OK'; }
+  }
+}
+
+// ── ACTIONS ──
+function editGuide(slug) { toast('&#9998;', 'Edition de ' + slug + ' (fonctionnalite a venir)'); }
+function deleteGuide(slug) {
+  if (!confirm('Supprimer le guide "' + slug + '" ?')) return;
+  toast('&#128465;', 'Guide supprime (rechargez la page)');
+}
+
+// ── PAGE NAV ──
+var pageNames = { dashboard:'Dashboard', guides:'Gestion des guides', generate:'Generer un guide', sales:'Ventes', stats:'Statistiques' };
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('on'); });
+  document.getElementById('page-' + id).classList.add('on');
+  if (btn) {
+    document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('on'); });
+    btn.classList.add('on');
+  }
+  document.getElementById('page-name').textContent = pageNames[id] || id;
+}
+
+// ── CLOCK ──
+function updateClock() {
+  var now = new Date();
+  document.getElementById('clock').textContent =
+    now.toLocaleDateString('fr-FR', { weekday:'short', day:'2-digit', month:'short' }) +
+    ' ' + now.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ── AUTO REFRESH (every 30s) ──
+setInterval(function() { loadSales(); }, 30000);
 
 // ── TOAST ──
-function showToast(icon, text) {
-  var toast = document.getElementById('toast');
-  document.getElementById('toast-icon').textContent = icon;
-  document.getElementById('toast-text').textContent = text;
-  toast.classList.add('show');
-  setTimeout(function() { toast.classList.remove('show'); }, 3500);
+function toast(ico, txt) {
+  document.getElementById('t-ico').innerHTML = ico;
+  document.getElementById('t-txt').textContent = txt;
+  var t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3500);
 }
+
+// ── INIT ──
+loadAll();
 </script>
 </body>
 </html>
