@@ -1,1 +1,1437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Albania — Guide YHI Conciergerie 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
 
+/* ══════════════════════════════════════════
+   TOKENS
+══════════════════════════════════════════ */
+:root{
+  --ivory:#F9F5EE;
+  --cream:#F3EDE0;
+  --gold:#B8973A;
+  --gold2:#D4AF6A;
+  --gold-pale:#EFE0B8;
+  --ink:#18181A;
+  --ink2:#2D2D30;
+  --muted:#7A7A80;
+  --rule:#E0D8CC;
+  --night:#0C0F14;
+  --night2:#141820;
+  --night3:#1D2330;
+  --teal:#2A8C8C;
+  --white:#FFFFFF;
+}
+
+/* ══════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Jost',sans-serif;
+  background:var(--ivory);
+  color:var(--ink);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* ══════════════════════════════════════════
+   COVER
+══════════════════════════════════════════ */
+.cover{
+  position:relative;
+  height:100vh;
+  min-height:680px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:var(--night);
+}
+.cover-bg{
+  position:absolute;inset:0;
+  overflow:hidden;
+}
+@keyframes bgDrift{
+  from{transform:scale(1.04) translateX(0)}
+  to{transform:scale(1.08) translateX(-1%)}
+}
+.cover-vignette{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom, rgba(12,15,20,.45) 0%, transparent 30%, transparent 60%, rgba(12,15,20,.80) 100%),
+    linear-gradient(to right,  rgba(12,15,20,.3) 0%, transparent 50%, rgba(12,15,20,.2) 100%);
+}
+.cover-inner{
+  position:relative;z-index:2;
+  text-align:center;
+  padding:0 24px;
+  max-width:860px;
+  animation:fadeUp .9s ease both;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.cover-eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:'Jost',sans-serif;
+  font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;
+  color:var(--gold2);
+  border:1px solid rgba(212,175,106,.35);
+  padding:8px 22px;border-radius:1px;
+  background:rgba(0,0,0,.25);
+  backdrop-filter:blur(6px);
+  margin-bottom:28px;
+}
+.cover-eyebrow span{color:rgba(255,255,255,.3)}
+.cover h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(5rem,13vw,10rem);
+  font-weight:300;
+  letter-spacing:.1em;
+  line-height:.88;
+  color:var(--white);
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.cover h1 em{
+  font-style:italic;
+  color:var(--gold2);
+  font-weight:300;
+}
+.cover-subtitle{
+  font-size:.68rem;letter-spacing:.38em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);font-weight:300;
+  margin-bottom:44px;
+}
+.cover-stats{
+  display:flex;gap:0;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.cs-item{
+  padding:0 28px;
+  border-right:1px solid rgba(255,255,255,.12);
+  text-align:center;
+}
+.cs-item:last-child{border-right:none}
+.cs-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;font-weight:400;
+  color:var(--gold2);line-height:1;
+}
+.cs-lbl{
+  font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);margin-top:5px;
+}
+.cover-scroll{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  z-index:2;display:flex;flex-direction:column;align-items:center;gap:9px;
+}
+.cover-scroll span{
+  font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);
+}
+.scroll-bar{
+  width:1px;height:48px;
+  background:linear-gradient(180deg,rgba(212,175,106,.7),transparent);
+  animation:pulse 2.2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* ══════════════════════════════════════════
+   ROUTE BAND
+══════════════════════════════════════════ */
+.route-band{
+  background:var(--ink);
+  padding:36px 40px;
+  display:flex;align-items:center;justify-content:center;
+  gap:0;flex-wrap:wrap;
+  overflow:hidden;
+}
+.rb-stop{text-align:center;padding:0 20px}
+.rb-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.45rem;font-weight:300;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--white);
+}
+.rb-date{
+  font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-top:4px;
+}
+.rb-arrow{color:rgba(212,175,106,.3);font-size:.9rem;padding:0 6px}
+
+/* ══════════════════════════════════════════
+   TYPOGRAPHY HELPERS
+══════════════════════════════════════════ */
+.eyebrow{
+  font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;display:block;margin-bottom:12px;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4.5vw,3.2rem);
+  font-weight:400;line-height:1.15;
+  color:var(--ink);margin-bottom:6px;
+}
+.section-title em{font-style:italic;color:var(--gold)}
+.section-body{
+  font-size:.88rem;line-height:1.85;
+  color:var(--muted);font-weight:300;
+  max-width:680px;
+}
+.rule-gold{
+  width:48px;height:1px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  margin:20px 0;
+}
+
+/* ══════════════════════════════════════════
+   INTRO SECTION
+══════════════════════════════════════════ */
+.intro{
+  max-width:900px;margin:0 auto;
+  padding:90px 40px 70px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+}
+@media(max-width:700px){.intro{grid-template-columns:1fr;gap:40px;padding:60px 24px}}
+.intro-img-wrap{
+  position:relative;
+  aspect-ratio:3/4;
+  overflow:hidden;
+}
+.intro-img-wrap img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 8s ease;
+}
+.intro-img-wrap:hover img{transform:scale(1.05)}
+.intro-img-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:20px;
+  background:linear-gradient(to top,rgba(12,15,20,.8),transparent);
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);
+}
+
+/* ══════════════════════════════════════════
+   CHAPTER — FULL STRUCTURE
+══════════════════════════════════════════ */
+.chapter{margin-bottom:0}
+
+/* Chapter hero — full bleed */
+.ch-hero{
+  position:relative;
+  height:92vh;min-height:560px;
+  overflow:hidden;display:flex;align-items:flex-end;
+  background:var(--night);
+}
+.ch-hero-img{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform 10s ease;
+}
+.ch-hero:hover .ch-hero-img{transform:scale(1.05)}
+.ch-hero-grad{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to top, rgba(12,15,20,.95) 0%, rgba(12,15,20,.35) 45%, transparent 100%),
+    linear-gradient(to right, rgba(12,15,20,.3) 0%, transparent 60%);
+}
+.ch-hero-text{
+  position:relative;z-index:2;
+  padding:60px 64px;
+  max-width:760px;
+  color:var(--white);
+}
+@media(max-width:700px){.ch-hero-text{padding:40px 24px}}
+.ch-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:7rem;font-weight:300;
+  color:rgba(212,175,106,.12);
+  line-height:1;display:block;margin-bottom:-16px;
+}
+.ch-eyebrow{
+  font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold2);display:block;margin-bottom:14px;
+}
+.ch-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.4rem,5.5vw,4.2rem);
+  font-weight:300;line-height:1.05;
+  margin-bottom:14px;
+}
+.ch-title em{font-style:italic;color:var(--gold2)}
+.ch-tagline{
+  font-size:.83rem;color:rgba(255,255,255,.5);
+  font-weight:300;line-height:1.6;
+  max-width:560px;margin-bottom:22px;
+}
+.ch-tags{display:flex;gap:8px;flex-wrap:wrap}
+.ch-tag{
+  border:1px solid rgba(255,255,255,.18);
+  padding:5px 14px;border-radius:1px;
+  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.65);
+  backdrop-filter:blur(4px);background:rgba(0,0,0,.15);
+}
+
+/* Chapter body */
+.ch-body{
+  background:var(--ivory);
+  padding:72px 64px;
+  max-width:1140px;margin:0 auto;
+}
+@media(max-width:900px){.ch-body{padding:52px 24px}}
+
+/* ══════════════════════════════════════════
+   TIMELINE (programme heure par heure)
+══════════════════════════════════════════ */
+.timeline{
+  position:relative;
+  padding-left:24px;
+  border-left:1px solid var(--rule);
+  margin-bottom:64px;
+}
+.tl-item{
+  position:relative;
+  padding:0 0 40px 36px;
+}
+.tl-item::before{
+  content:'';
+  position:absolute;left:-5px;top:18px;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--ivory);
+  border:2px solid var(--gold);
+  box-shadow:0 0 0 3px var(--ivory);
+}
+.tl-item.highlight::before{background:var(--gold);box-shadow:0 0 0 3px var(--ivory),0 0 12px rgba(184,151,58,.4)}
+.tl-item.party::before{background:var(--ink);border-color:var(--ink);box-shadow:0 0 0 3px var(--ivory)}
+.tl-time{
+  font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;margin-bottom:6px;
+}
+.tl-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:400;
+  color:var(--ink);margin-bottom:8px;
+}
+.tl-desc{
+  font-size:.82rem;line-height:1.8;
+  color:var(--muted);font-weight:300;
+  max-width:600px;
+}
+.tl-chips{
+  display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;
+}
+.tl-chip{
+  font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);background:var(--cream);
+  padding:4px 12px;border-radius:1px;
+  border:1px solid var(--rule);
+}
+
+/* ══════════════════════════════════════════
+   SPOT GALLERY — multiple layout variants
+══════════════════════════════════════════ */
+.gallery-label{
+  font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:20px;display:block;
+}
+.gallery-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.9rem;font-weight:400;
+  color:var(--ink);margin-bottom:32px;
+}
+
+/* Full-width single */
+.gal-full{
+  position:relative;width:100%;
+  aspect-ratio:16/7;overflow:hidden;
+  background:var(--night);
+  margin-bottom:3px;
+}
+
+/* 2-col equal */
+.gal-2{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3px;margin-bottom:3px;
+}
+
+/* 3-col equal */
+.gal-3{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:3px;margin-bottom:3px;
+}
+
+/* asymmetric: 2/3 left + 1/3 right */
+.gal-asym{
+  display:grid;grid-template-columns:2fr 1fr;
+  gap:3px;margin-bottom:3px;
+}
+.gal-asym-right{
+  display:grid;grid-template-rows:1fr 1fr;
+  gap:3px;
+}
+
+/* asymmetric reversed */
+.gal-asym-rev{
+  display:grid;grid-template-columns:1fr 2fr;
+  gap:3px;margin-bottom:3px;
+}
+
+/* Mosaic: 1 big left + 2 stacked right */
+.gal-mosaic{
+  display:grid;grid-template-columns:1.4fr 1fr;
+  grid-template-rows:auto;
+  gap:3px;margin-bottom:3px;
+}
+.gal-mosaic-left{grid-row:1/3}
+.gal-mosaic-stack{
+  display:grid;grid-template-rows:1fr 1fr;
+  gap:3px;
+}
+
+@media(max-width:700px){
+  .gal-2,.gal-asym,.gal-asym-rev,.gal-mosaic{grid-template-columns:1fr}
+  .gal-3{grid-template-columns:1fr}
+  .gal-mosaic-left{grid-row:auto}
+}
+
+/* Spot card — the reusable unit */
+.spot{
+  position:relative;overflow:hidden;
+  background:var(--night2);
+  cursor:default;
+}
+.spot-img-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform 7s ease, filter .5s ease;
+}
+.spot:hover .spot-img-bg{transform:scale(1.07);filter:brightness(.82)}
+.spot-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,
+    rgba(12,15,20,.88) 0%,
+    rgba(12,15,20,.15) 50%,
+    transparent 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:26px 28px;
+  transition:background .4s ease;
+}
+.spot:hover .spot-overlay{
+  background:linear-gradient(to top,
+    rgba(12,15,20,.94) 0%,
+    rgba(12,15,20,.25) 55%,
+    transparent 100%);
+}
+.spot-type{
+  font-size:.56rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:6px;font-weight:600;
+}
+.spot-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;font-weight:400;
+  color:var(--white);line-height:1.1;margin-bottom:8px;
+}
+.spot-desc{
+  font-size:.72rem;color:rgba(255,255,255,.58);
+  line-height:1.6;font-weight:300;
+  max-height:0;overflow:hidden;
+  transition:max-height .4s ease, opacity .4s ease;
+  opacity:0;
+}
+.spot:hover .spot-desc{max-height:100px;opacity:1}
+
+/* Aspect ratio helpers */
+.ar-16-9{aspect-ratio:16/9}
+.ar-4-3{aspect-ratio:4/3}
+.ar-3-2{aspect-ratio:3/2}
+.ar-3-4{aspect-ratio:3/4}
+.ar-1-1{aspect-ratio:1/1}
+.ar-2-1{aspect-ratio:2/1}
+.ar-5-3{aspect-ratio:5/3}
+
+/* ══════════════════════════════════════════
+   FEATURED HORIZONTAL CARD
+══════════════════════════════════════════ */
+.featured{
+  position:relative;
+  height:460px;overflow:hidden;
+  background:var(--night);
+  margin:40px 0;
+}
+.featured-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform 9s ease;
+}
+.featured:hover .featured-bg{transform:scale(1.04)}
+.featured-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(110deg,
+    rgba(12,15,20,.88) 0%,
+    rgba(12,15,20,.45) 50%,
+    rgba(12,15,20,.1) 100%);
+}
+.featured-text{
+  position:relative;z-index:2;
+  padding:60px;
+  height:100%;display:flex;flex-direction:column;justify-content:flex-end;
+  max-width:560px;
+}
+@media(max-width:700px){.featured{height:360px}.featured-text{padding:32px 24px}}
+.featured-kicker{
+  font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:14px;display:block;
+}
+.featured-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:300;color:var(--white);line-height:1.1;margin-bottom:14px;
+}
+.featured-body{
+  font-size:.82rem;line-height:1.75;
+  color:rgba(255,255,255,.55);font-weight:300;
+}
+
+/* ══════════════════════════════════════════
+   CONCIERGE NOTE
+══════════════════════════════════════════ */
+.note{
+  background:var(--cream);
+  border-left:3px solid var(--gold);
+  padding:28px 32px;
+  margin:48px 0 0;
+}
+.note-head{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:16px;
+}
+.note-icon{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;
+}
+.note-title{
+  font-family:'Playfair Display',serif;
+  font-size:.95rem;font-style:italic;
+  color:var(--ink2);
+}
+.note ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.note ul li{
+  font-size:.8rem;color:var(--muted);
+  padding-left:20px;position:relative;line-height:1.65;
+}
+.note ul li::before{
+  content:'—';position:absolute;left:0;color:var(--gold);
+}
+
+/* ══════════════════════════════════════════
+   SEPARATOR
+══════════════════════════════════════════ */
+.sep{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--rule),transparent);
+  margin:0;
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer{
+  background:var(--night);
+  padding:80px 40px 60px;
+  text-align:center;
+}
+.footer-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;font-weight:300;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:var(--white);margin-bottom:10px;
+}
+.footer-sub{
+  font-size:.58rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:36px;
+}
+.footer-rule{
+  width:40px;height:1px;
+  background:var(--gold);
+  margin:0 auto 36px;
+}
+.footer-route{
+  font-size:.7rem;letter-spacing:.2em;
+  color:rgba(255,255,255,.28);margin-bottom:32px;
+}
+.footer-small{
+  font-size:.62rem;letter-spacing:.12em;
+  color:rgba(255,255,255,.15);
+}
+
+</style>
+</head>
+<body>
+
+<!-- ██████████ COVER ██████████ -->
+<div class="cover">
+  <div class="cover-bg"><img src="img/ksamil_cover.jpg" alt="Albania Riviera" style="width:100%;height:100%;object-fit:cover;opacity:.6;transform:scale(1.05);animation:bgDrift 20s ease-in-out infinite alternate"></div>
+  <div class="cover-vignette"></div>
+
+  <div class="cover-inner">
+    <div class="cover-eyebrow">
+      ✦ <span>|</span> YHI Conciergerie <span>|</span> ✦
+    </div>
+    <h1>ALBA<em>nia</em></h1>
+    <p class="cover-subtitle">Riviera Ionienne &nbsp;·&nbsp; 20 — 27 Mai 2026 &nbsp;·&nbsp; Voyage sur mesure</p>
+    <div class="cover-stats">
+      <div class="cs-item">
+        <div class="cs-val">8</div>
+        <div class="cs-lbl">Jours</div>
+      </div>
+      <div class="cs-item">
+        <div class="cs-val">3</div>
+        <div class="cs-lbl">Voyageurs</div>
+      </div>
+      <div class="cs-item">
+        <div class="cs-val">4</div>
+        <div class="cs-lbl">Étapes</div>
+      </div>
+      <div class="cs-item">
+        <div class="cs-val">9+</div>
+        <div class="cs-lbl">Plages</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-scroll">
+    <div class="scroll-bar"></div>
+    <span>Découvrir</span>
+  </div>
+</div>
+
+<!-- ██████████ ROUTE BAND ██████████ -->
+<div class="route-band">
+  <div class="rb-stop"><div class="rb-name">Durrës</div><div class="rb-date">20 – 21 Mai &nbsp;·&nbsp; 1 nuit</div></div>
+  <div class="rb-arrow">⟶</div>
+  <div class="rb-stop"><div class="rb-name">Saranda</div><div class="rb-date">21 – 24 Mai &nbsp;·&nbsp; 3 nuits</div></div>
+  <div class="rb-arrow">⟶</div>
+  <div class="rb-stop"><div class="rb-name">Himara / Dhërmi</div><div class="rb-date">24 – 26 Mai &nbsp;·&nbsp; 2 nuits</div></div>
+  <div class="rb-arrow">⟶</div>
+  <div class="rb-stop"><div class="rb-name">Durrës</div><div class="rb-date">26 – 27 Mai &nbsp;·&nbsp; 1 nuit</div></div>
+</div>
+
+<!-- ██████████ INTRO ██████████ -->
+<div class="intro">
+  <div class="intro-img-wrap">
+    <img src="img/Ksamil-main-1.jpg" alt="Ksamil Albania" loading="lazy">
+    <div class="intro-img-caption">Ksamil, Riviera Ionienne</div>
+  </div>
+  <div>
+    <span class="eyebrow">Note du Concierge</span>
+    <h2 class="section-title">L'Albanie —<br><em>Le dernier secret</em><br>méditerranéen</h2>
+    <div class="rule-gold"></div>
+    <p class="section-body">Nous avons conçu pour vous un itinéraire exclusif le long de la Riviera Ionienne albanaise — l'une des côtes les plus préservées d'Europe. Du charme historique de Durrës aux criques secrètes de Gjipe, des sunsets légendaires de Lëkurësi aux nuits électriques de Dhërmi, chaque journée allie découverte authentique, plaisir balnéaire et fête mémorable. La voiture vous offre une liberté totale pour explorer à votre rythme cette Riviera qui n'a pas encore livré tous ses secrets.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     JOUR 1 — DURRËS
+═══════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-hero" style="height:80vh;">
+    <div class="ch-hero-img"><img src="img/Albania.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 9s ease"></div>
+    <div class="ch-hero-grad"></div>
+    <div class="ch-hero-text">
+      <span class="ch-num">01</span>
+      <span class="ch-eyebrow">Mardi 20 Mai &nbsp;·&nbsp; Durrës</span>
+      <h2 class="ch-title">Arrivée sur la<br><em>Côte Adriatique</em></h2>
+      <p class="ch-tagline">Premier contact avec l'Albanie — plage de sable et Ammos Beach  Bar au coucher du soleil</p>
+      <div class="ch-tags">
+        <span class="ch-tag">🏖️ Plage Adriatique</span>
+        <span class="ch-tag">🌙 Ammos Beach Bar</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-body">
+    <span class="eyebrow">Programme heure par heure</span>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">18h00 — Récupération de la voiture</div>
+        <div class="tl-name">Location de voiture</div>
+        <div class="tl-desc">Récupération des clés de la voiture depuis l'agence Sixt.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 20 min</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">18h45 — Arrivée Airbnb</div>
+        <div class="tl-name">Check-in & Installation</div>
+        <div class="tl-desc">Récupération des clés de l'Airbnb, situé à 5 minutes à pied de la plage. Douche, installation, premier regard sur la cité antique de Durrës. La mer Adriatique vous attend.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 1h</span></div>
+      </div>
+      <div class="tl-item party">
+        <div class="tl-time">19h45 — Soirée</div>
+        <div class="tl-name">Ammos Beach Bar</div>
+        <div class="tl-desc">La promenade s'illumine. Sunset, musique et mer à perte de vue : Bienvenue chez Ammos Beach Bar. Première immersion dans la vie nocturne avant la grande route vers le sud.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 5h</span><span class="tl-chip">🍺 Ambiance locale</span></div>
+      </div>
+    </div>
+
+    <!-- Galerie Durrës -->
+    <span class="gallery-label">📍 Durrës — Porte d'Entrée Historique</span>
+    <div class="gallery-title">La Ville</div>
+
+    <div class="gal-asym">
+      <div class="spot ar-3-2">
+        <img src="img/durres-beach.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Plage · Adriatique</div>
+          <div class="spot-name">Plage de Durrës</div>
+          <div class="spot-desc">Grande plage de sable fin, mer calme, bars en bord de mer. Le point de départ idéal du voyage.</div>
+        </div>
+      </div>
+      <div class="gal-asym-right">
+        <div class="spot ar-4-3">
+          <img src="img/Ammos.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+          <div class="spot-overlay">
+            <div class="spot-type">Nightlife</div>
+            <div class="spot-name">Ammos Beach Bar</div>
+            <div class="spot-desc">Cocktails, sunset et vibes méditerranéennes à Ammos Beach Bar</div>
+          </div>
+        </div>
+        <div class="spot ar-4-3">
+          <img src="img/Durres_sunset.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+          <div class="spot-overlay">
+            <div class="spot-type">Restaurant · Panoramique</div>
+            <div class="spot-name">Vila Brais</div>
+            <div class="spot-desc">Dîner avec vue sur l'amphithéâtre et la mer. Le meilleur premier soir possible.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="note-head">
+        <div class="note-icon">✦</div>
+        <div class="note-title">Note de votre concierge — Durrës</div>
+      </div>
+      <ul>
+        <li>Garez la voiture dès l'arrivée — tout le front de mer est accessible à pied, le parking en ville peut être difficile le soir.</li>
+        <li>Retirez des <strong>Lek albanais (ALL)</strong> dans un distributeur en ville dès l'arrivée — les restos et bars locaux préfèrent le cash.</li>
+        <li>Réservez Vila Brais au moins 24h à l'avance : la terrasse avec vue sur l'amphithéâtre est très demandée en soirée.</li>
+        <li>Préférez la zone nord de la plage, plus propre et moins fréquentée que le secteur proche du port.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ═══════════════════════════════════════
+     JOUR 2 — ROUTE VERS SARANDA
+═══════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-hero">
+    <div class="ch-hero-img"><img src="img/riviera-road.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 9s ease"></div>
+    <div class="ch-hero-grad"></div>
+    <div class="ch-hero-text">
+      <span class="ch-num">02</span>
+      <span class="ch-eyebrow">Mercredi 21 Mai &nbsp;·&nbsp; Route → Saranda</span>
+      <h2 class="ch-title">La Route<br><em>des Cimes</em></h2>
+      <p class="ch-tagline">La SH8 côtière — régulièrement classée parmi les plus belles routes d'Europe — vous mène vers le sud ionien à travers cols et falaises</p>
+      <div class="ch-tags">
+        <span class="ch-tag">🚗 SH8 · Llogara Pass</span>
+        <span class="ch-tag">🏰 Lëkurësi Castle</span>
+        <span class="ch-tag">🌅 Sunset Légendaire</span>
+        <span class="ch-tag">🍸 Jericho Bar</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-body">
+    <span class="eyebrow">Programme heure par heure</span>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">09h00 — Départ</div>
+        <div class="tl-name">Check-out & Route Durrës → Saranda</div>
+        <div class="tl-desc">~300 km via Vlora et le col de Llogara (1 027 m d'altitude). Paysages à couper le souffle entre mer ionienne et montagnes cerauniennes. Arrêt café à Vlora, arrêt photo au col. 4 à 5h avec pauses.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 5h</span><span class="tl-chip">⛽ Faire le plein à Vlora</span><span class="tl-chip">📍 Stop Llogara Pass</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14h00 — Arrivée</div>
+        <div class="tl-name">Check-in Airbnb + Lost Seaside Restaurant</div>
+        <div class="tl-desc">Installation à Saranda. Déjeuner tardif au Lost Seaside Restaurant — terrasse sur la mer, risotto aux crevettes, vue sur Corfou à l'horizon. Le restaurant le plus réputé de la ville.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 2h</span><span class="tl-chip">🍽️ Fruits de mer · vue mer</span></div>
+      </div>
+      <div class="tl-item highlight">
+        <div class="tl-time">17h30 — Golden Hour</div>
+        <div class="tl-name">🏰 Lëkurësi Castle — Le Sunset Iconique</div>
+        <div class="tl-desc">Château ottoman du XVIe siècle à 300 m d'altitude. Vue à 360° sur la baie de Saranda, les îlots de Ksamil et Corfou. Le restaurant-terrasse sert pizzas et boissons face au panorama. Arriver avant 19h45 impérativement. Coucher du soleil vers 20h15 en mai.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 2h30</span><span class="tl-chip">🌅 Sunset ~20h15</span><span class="tl-chip">🚗 10 min du centre</span></div>
+      </div>
+      <div class="tl-item party">
+        <div class="tl-time">21h00 — Soirée</div>
+        <div class="tl-name">Jericho Cocktail Bar → Orange Lounge Club</div>
+        <div class="tl-desc">Jericho est le bar le mieux noté de Saranda (4.8/5) — vue marina, cocktails signature "Moonshine", happy hour en début de soirée. Enchaîner sur l'Orange Lounge Club, le club incontournable ouvert 24h, dancefloor extérieur avec vue sur la mer.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 5h+</span><span class="tl-chip">🎶 DJ · Open Air · Vue mer</span></div>
+      </div>
+    </div>
+
+    <!-- Galerie Saranda -->
+    <span class="gallery-label">📍 Saranda & Lëkurësi — La Perle du Sud</span>
+    <div class="gallery-title">La Ville & le Château</div>
+
+    <div class="gal-full" style="aspect-ratio:16/8;">
+      <img src="img/riviera-road.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+      <div class="spot-overlay" style="background:linear-gradient(to right,rgba(12,15,20,.75) 0%,rgba(12,15,20,.15) 60%,transparent 100%);">
+        <div style="max-width:480px;">
+          <div class="spot-type">Route Côtière · SH8</div>
+          <div class="spot-name" style="font-size:2rem;">La Riviera Albanaise</div>
+          <div class="spot-desc" style="max-height:none;opacity:1;">81 km de côte ionienne entre Vlora et Saranda — l'une des plus belles routes d'Europe.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gal-3" style="margin-top:3px;">
+      <div class="spot ar-4-3">
+        <img src="img/lekuresi.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Château · XVIe siècle</div>
+          <div class="spot-name">Lëkurësi Castle</div>
+          <div class="spot-desc">Vue à 360° sur Saranda, Corfou et la mer Ionienne. Le sunset le plus célèbre d'Albanie.</div>
+        </div>
+      </div>
+      <div class="spot ar-4-3">
+        <img src="img/secret_bay.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Baie · Saranda</div>
+          <div class="spot-name">La Baie de Saranda</div>
+          <div class="spot-desc">Face à Corfou, la baie en fer à cheval de Saranda est l'une des plus belles d'Albanie.</div>
+        </div>
+      </div>
+      <div class="spot ar-4-3">
+        <img src="img/sarande-nightlife.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Nightlife · Saranda</div>
+          <div class="spot-name">Saranda by Night</div>
+          <div class="spot-desc">Jericho Cocktail Bar et Orange Lounge Club — la scène nocturne incontournable de Saranda.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="note-head">
+        <div class="note-icon">✦</div>
+        <div class="note-title">Note de votre concierge — Route & Saranda</div>
+      </div>
+      <ul>
+        <li>Faites le plein d'essence à Vlora — c'est la dernière grande ville avant les cols. Ne repartez jamais avec moins d'un demi-réservoir sur la SH8.</li>
+        <li>L'arrêt au col de Llogara est incontournable : panorama à 360° sur les deux côtes, café de montagne authentique, air frais.</li>
+        <li>Pour Lëkurësi Castle, montez en voiture (10 min du centre) et arrivez avant 19h45 pour décrocher une table face à la mer avant le sunset.</li>
+        <li>Jericho : le cocktail signature "Moonshine" est une institution. Demandez à la barmaid Marina ses recommandations personnelles.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ═══════════════════════════════════════
+     JOUR 3 — KSAMIL
+═══════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-hero">
+    <div class="ch-hero-img"><img src="img/ksamil_paradise.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 9s ease"></div>
+    <div class="ch-hero-grad"></div>
+    <div class="ch-hero-text">
+      <span class="ch-num">03</span>
+      <span class="ch-eyebrow">Jeudi 22 Mai &nbsp;·&nbsp; Ksamil</span>
+      <h2 class="ch-title">Ksamil,<br><em>le Paradis Albanais</em></h2>
+      <p class="ch-tagline">Eaux turquoise, sable blanc, quatre îlots à portée de nage — la plage la plus photographiée d'Albanie</p>
+      <div class="ch-tags">
+        <span class="ch-tag">🏝️ Nammos Beach Bar</span>
+        <span class="ch-tag">🌊 Bora Bora Beach</span>
+        <span class="ch-tag">⚓ Pulebardha Bay</span>
+        <span class="ch-tag">🎵 Mango Club</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-body">
+    <span class="eyebrow">Programme heure par heure</span>
+
+    <div class="timeline">
+      <div class="tl-item highlight">
+        <div class="tl-time">10h00 — Beach</div>
+        <div class="tl-name">Nammos Beach Bar — Le Meilleur de Ksamil</div>
+        <div class="tl-desc">Noté 4.6/5, le beach bar le plus apprécié de Ksamil. Eau turquoise à couper le souffle, service attentionné, atmosphère calme. Arriver tôt pour un emplacement au premier rang face aux quatre îlots. Snorkeling spontané possible.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 3h30</span><span class="tl-chip">🤿 Snorkeling · Îlots</span><span class="tl-chip">🌊 Eau ~22°C en mai</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14h00 — Plages</div>
+        <div class="tl-name">Bora Bora Beach + Pulebardha Bay</div>
+        <div class="tl-desc">Enchaîner deux plages emblématiques. Bora Bora : atmosphère festive, eaux translucides, transats colorés. Pulebardha : accès par route de gravier, restaurant en surplomb sur les falaises, vagues parfaites pour la nage.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 3h</span><span class="tl-chip">📸 Photo spots · Vues panoramiques</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">19h00 — Dîner</div>
+        <div class="tl-name">Retour Saranda — Taverne de Poisson</div>
+        <div class="tl-desc">15 min de route. Dîner dans une taverne locale du front de mer — poisson entier grillé, salade grecque, bière locale. Budget raisonnable, ambiance authentique.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 1h30</span></div>
+      </div>
+      <div class="tl-item party">
+        <div class="tl-time">22h00 — Club</div>
+        <div class="tl-name">Mango Beach Club → Orange Lounge</div>
+        <div class="tl-desc">Mango Beach Club en premier : DJ, cocktails flambés, clientèle internationale. Orange Lounge Club pour finir la nuit — dancefloor extérieur avec vue sur la mer noire, ouvert jusqu'à l'aube.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 5h+</span><span class="tl-chip">🎶 DJ · Open Air</span></div>
+      </div>
+    </div>
+
+    <!-- Galerie Ksamil -->
+    <span class="gallery-label">📍 Ksamil & ses Plages — 15 min au sud de Saranda</span>
+    <div class="gallery-title">Les Eaux Turquoise</div>
+
+    <!-- Big feature Ksamil -->
+    <div class="featured" style="height:500px;">
+      <div class="featured-bg"><img src="img/ksamil_maldives.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 9s ease"></div>
+      <div class="featured-grad"></div>
+      <div class="featured-text">
+        <span class="featured-kicker">Plage Principale · Ksamil</span>
+        <div class="featured-title">Le "Maldives"<br>de l'Albanie</div>
+        <p class="featured-body">Eau turquoise, sable blanc et quatre petits îlots à portée de nage. Ksamil est la plage la plus photographiée des Balkans — et elle mérite chaque cliché.</p>
+      </div>
+    </div>
+
+    <div class="gal-3" style="margin-top:3px;">
+      <div class="spot ar-4-3">
+        <img src="img/ksamil-islands.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Îlot · Accessible à la nage</div>
+          <div class="spot-name">Les Îlots de Ksamil</div>
+          <div class="spot-desc">Quatre îlots à 200 m de la plage — accessibles à la nage ou en pédalo.</div>
+        </div>
+      </div>
+      <div class="spot ar-4-3">
+        <img src="img/pulebardha.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Plage · Sauvage</div>
+          <div class="spot-name">Pulebardha Bay</div>
+          <div class="spot-desc">Falaises, eau spectaculaire, restaurant en terrasse. L'une des plus belles de la région.</div>
+        </div>
+      </div>
+      <div class="spot ar-4-3">
+        <img src="img/bora-bora.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Beach Bar · Festif</div>
+          <div class="spot-name">Bora Bora Beach</div>
+          <div class="spot-desc">Eaux translucides, transats colorés, ambiance animée. Idéal pour l'après-midi.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nightlife Saranda -->
+    <div class="gal-2" style="margin-top:3px;">
+      <div class="spot ar-16-9">
+        <img src="img/jericho.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Cocktail Bar · 4.8/5</div>
+          <div class="spot-name">Jericho Cocktail Bar</div>
+          <div class="spot-desc">Vue marina, cocktails signature, happy hour. Le bar le mieux noté de Saranda.</div>
+        </div>
+      </div>
+      <div class="spot ar-16-9">
+        <img src="img/mango.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Club · Open Air 24h</div>
+          <div class="spot-name">Mango Beach Club<br>& Orange Lounge</div>
+          <div class="spot-desc">Les clubs incontournables de Saranda. DJ, dancefloor extérieur, vue sur la mer.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="note-head">
+        <div class="note-icon">✦</div>
+        <div class="note-title">Note de votre concierge — Ksamil</div>
+      </div>
+      <ul>
+        <li>Partez de Saranda avant 9h30 pour arriver à Ksamil avant la foule et obtenir les transats de premier rang au Nammos Beach Bar.</li>
+        <li>Les îlots sont accessibles à la nage depuis la plage principale (~200 m aller). Eau à 22°C en mai — parfaite.</li>
+        <li>La route vers Pulebardha est cahoteuse sur les 2 derniers km — roulez doucement, votre véhicule le supportera.</li>
+        <li>Pour les clubs du soir, l'ambiance monte réellement après 23h. Prévoyez un dîner tôt et un repos en début de soirée.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ═══════════════════════════════════════
+     JOUR 4 — CORFOU
+═══════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-hero">
+    <div class="ch-hero-img"><img src="img/corfu_cover.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 9s ease"></div>
+    <div class="ch-hero-grad"></div>
+    <div class="ch-hero-text">
+      <span class="ch-num">04</span>
+      <span class="ch-eyebrow">Vendredi 23 Mai &nbsp;·&nbsp; Corfou, Grèce</span>
+      <h2 class="ch-title">Escapade<br><em>sur l'Île Grecque</em></h2>
+      <p class="ch-tagline">45 minutes de ferry séparent Saranda de Corfou — vieille ville vénitienne UNESCO, tavernes grecques et plages ioniennes</p>
+      <div class="ch-tags">
+        <span class="ch-tag">⛴️ Ferry 45 min</span>
+        <span class="ch-tag">🏛️ UNESCO Old Town</span>
+        <span class="ch-tag">🏖️ Paleokastritsa Beach</span>
+        <span class="ch-tag">🍋 Taverne Grecque</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-body">
+    <span class="eyebrow">Programme heure par heure</span>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">07h30 — Ferry</div>
+        <div class="tl-name">Embarquement Saranda → Corfou Town</div>
+        <div class="tl-desc">45 minutes sur la mer Ionienne. Vue saisissante sur la côte albanaise qui s'éloigne et les falaises de Corfou qui approchent. Réservation en ligne obligatoire la veille sur ionianseaways.gr. Passeport ou carte d'identité UE requis.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 45 min</span><span class="tl-chip">📄 Passeport requis</span><span class="tl-chip">💻 Réservation online</span></div>
+      </div>
+      <div class="tl-item highlight">
+        <div class="tl-time">09h00 — Découverte</div>
+        <div class="tl-name">Vieille Ville de Corfou — Patrimoine UNESCO</div>
+        <div class="tl-desc">Dédale de ruelles vénitiennes, le Liston, l'ancienne forteresse, les clochers byzantins. Corfou Town est l'une des villes les mieux préservées de Méditerranée. Cafés grecs, galeries, flânerie sans itinéraire fixe. Un contraste saisissant avec l'Albanie — même mer, deux mondes.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 3h</span><span class="tl-chip">🏛️ UNESCO World Heritage</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12h00 — Déjeuner</div>
+        <div class="tl-name">Taverne Grecque dans la Vieille Ville</div>
+        <div class="tl-desc">Moussaka, souvlaki d'agneau, salade grecque et vin blanc de l'île. Les saveurs méditerranéennes dans leur expression la plus authentique. Les prix sont ~30% plus élevés qu'en Albanie.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 2h</span><span class="tl-chip">🇬🇷 Cuisine grecque authentique</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14h30 — Plage</div>
+        <div class="tl-name">Paleokastritsa Beach ou Kontokali</div>
+        <div class="tl-desc">En bus local KTEL (~2€) depuis le port. Paleokastritsa est la plage emblématique de Corfou — sable blond, bars branchés, eau ionienne transparente. Un avant-goût de Grèce avant de repartir vers l'Albanie.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 3h</span><span class="tl-chip">🚌 Bus KTEL ~2€</span></div>
+      </div>
+      <div class="tl-item party">
+        <div class="tl-time">18h30 — Retour</div>
+        <div class="tl-name">Ferry Retour → Saranda + Jericho Bar</div>
+        <div class="tl-desc">Retour à Saranda à la tombée de la nuit. Dîner léger puis dernier soir à Saranda au Jericho — une dernière tournée de cocktails signature avant de migrer vers Himara le lendemain.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 45 min traversée</span></div>
+      </div>
+    </div>
+
+    <!-- Galerie Corfou -->
+    <span class="gallery-label">📍 Corfou — L'Île Grecque à 45 min de Saranda</span>
+    <div class="gallery-title">La Grèce à Portée de Ferry</div>
+
+    <div class="gal-asym-rev">
+      <div class="gal-asym-right" style="display:grid;grid-template-rows:1fr 1fr;gap:3px;">
+        <div class="spot ar-4-3">
+          <img src="img/corfou_town.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+          <div class="spot-overlay">
+            <div class="spot-type">Vieille Ville · UNESCO</div>
+            <div class="spot-name">Corfou Town</div>
+            <div class="spot-desc">Ruelles vénitiennes, forteresse, cafés grecs. Architecture unique en Méditerranée.</div>
+          </div>
+        </div>
+        <div class="spot ar-4-3">
+          <img src="img/corfu_liston.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+          <div class="spot-overlay">
+            <div class="spot-type">Promenade · Le Liston</div>
+            <div class="spot-name">Le Liston</div>
+            <div class="spot-desc">La promenade la plus élégante de Corfou, inspirée de la rue de Rivoli à Paris.</div>
+          </div>
+        </div>
+      </div>
+      <div class="spot ar-3-2">
+        <img src="img/Paleokastritsa.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Plage · Paleokastritsa</div>
+          <div class="spot-name">Paleokastritsa Beach<br>Corfou</div>
+          <div class="spot-desc">La plage emblématique de Corfou — sable blond, eau translucide, bars branchés.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="note-head">
+        <div class="note-icon">✦</div>
+        <div class="note-title">Note de votre concierge — Corfou</div>
+      </div>
+      <ul>
+        <li>Réservez le ferry sur <strong>ionianseaways.gr</strong> au moins la veille — les départs du matin se remplissent rapidement en mai.</li>
+        <li>Prenez le premier ferry (7h30) pour maximiser votre temps sur l'île. La journée passe vite.</li>
+        <li>La voiture reste à Saranda. Pour Paleokastritsa, le bus local KTEL est efficace et économique.</li>
+        <li>Corfou est en zone euro — les prix sont environ 30% supérieurs à l'Albanie. Comptez en conséquence.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ═══════════════════════════════════════
+     JOUR 5 — KAKOME + HIMARA
+═══════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-hero">
+    <div class="ch-hero-img"><img src="img/secret_bay.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 9s ease"></div>
+    <div class="ch-hero-grad"></div>
+    <div class="ch-hero-text">
+      <span class="ch-num">05</span>
+      <span class="ch-eyebrow">Samedi 24 Mai &nbsp;·&nbsp; Kakome + Himara</span>
+      <h2 class="ch-title">La Baie<br><em>Secrète</em></h2>
+      <p class="ch-tagline">Kakome, accessible uniquement par bateau — puis route vers les hauteurs panoramiques d'Himara et le Belvedere Hillbnb</p>
+      <div class="ch-tags">
+        <span class="ch-tag">⚓ Kakome Bay · Bateau</span>
+        <span class="ch-tag">🚗 Route Ionienne</span>
+        <span class="ch-tag">🌅 Zoe Hora · Sunset</span>
+        <span class="ch-tag">🎶 Nazar Beach Club</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-body">
+    <span class="eyebrow">Programme heure par heure</span>
+
+    <div class="timeline">
+      <div class="tl-item highlight">
+        <div class="tl-time">09h30 — Bateau</div>
+        <div class="tl-name">⚓ Kakome Beach — Baie Secrète Inaccessible</div>
+        <div class="tl-desc">Baie entièrement isolée du monde, accessible uniquement par bateau ou après 30 minutes de marche en montagne. Eau d'un bleu irréel, silence absolu, snorkeling dans des eaux à 22°C. Négociez directement au port avec les bateliers (Leonardo Boat Tours recommandé).</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 3h30</span><span class="tl-chip">🤿 Snorkeling · Silence total</span><span class="tl-chip">⚓ Bateau depuis Saranda</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14h30 — Route</div>
+        <div class="tl-name">Saranda → Himara · Belvedere Hillbnb</div>
+        <div class="tl-desc">~80 km de route côtière ionienne. Arrêt photo au virage de Borsh Beach, l'une des criques les plus spectaculaires de la route. Arrivée et check-in au Belvedere Hillbnb — perché sur les hauteurs avec vue panoramique à couper le souffle.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 2h</span><span class="tl-chip">📍 Arrêt Borsh Beach</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">17h30 — Plage</div>
+        <div class="tl-name">Himara Beach — Première Baignade Ionienne</div>
+        <div class="tl-desc">Descente à la plage de Himara. Galets ronds polis par la mer, eau parfaitement translucide, montagnes en arrière-plan. Ambiance beaucoup plus intimiste qu'à Saranda ou Ksamil.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 1h30</span><span class="tl-chip">🌊 Eau ionienne · Galets</span></div>
+      </div>
+      <div class="tl-item highlight">
+        <div class="tl-time">19h30 — Sunset Dîner</div>
+        <div class="tl-name">Zoe Hora Restaurant — Coucher de Soleil Panoramique</div>
+        <div class="tl-desc">Restaurant en hauteur avec vue sur toute la côte ionienne. Spécialités locales — agneau de montagne, poisson grillé du jour, raki et vins albanais. Le coucher de soleil sur la mer depuis cette terrasse est l'un des plus beaux du voyage.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 2h</span><span class="tl-chip">🌅 Sunset ~20h20</span><span class="tl-chip">🍖 Agneau · Poisson</span></div>
+      </div>
+      <div class="tl-item party">
+        <div class="tl-time">22h30 — Club</div>
+        <div class="tl-name">Nazar Beach Club</div>
+        <div class="tl-desc">Beach club chic sur la côte. Cocktails de qualité, DJ, vue nocturne sur la mer. Ambiance plus intimiste qu'à Saranda — clientèle internationale, musique soignée.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 4h</span><span class="tl-chip">🎶 DJ · Vue mer nocturne</span></div>
+      </div>
+    </div>
+
+    <!-- Galerie Kakome & Himara -->
+    <span class="gallery-label">📍 Kakome · Himara — Les Joyaux Cachés</span>
+    <div class="gallery-title">La Côte Secrète</div>
+
+    <div class="gal-mosaic">
+      <div class="spot gal-mosaic-left ar-3-4">
+        <img src="img/gamma_bay.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Côte Ionienne · Himara</div>
+          <div class="spot-name">Grama<br>bay</div>
+          <div class="spot-desc">Falaises, eaux émeraude et villages perchés. La Riviera dans son état le plus sauvage.</div>
+        </div>
+      </div>
+      <div class="gal-mosaic-stack">
+        <div class="spot ar-4-3">
+          <img src="img/kakome_beach.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+          <div class="spot-overlay">
+            <div class="spot-type">Baie Secrète · Accès Bateau</div>
+            <div class="spot-name">Kakome Beach</div>
+            <div class="spot-desc">L'une des plus belles baies d'Albanie. Accessible uniquement par bateau.</div>
+          </div>
+        </div>
+        <div class="spot ar-4-3">
+          <img src="img/nazar-club.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+          <div class="spot-overlay">
+            <div class="spot-type">Beach Club · Élégant</div>
+            <div class="spot-name">Nazar Beach Club</div>
+            <div class="spot-desc">La soirée chic de la Riviera. DJ, vue mer, cocktails de qualité.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ═══════════════════════════════════════
+     JOUR 6 — BOAT TRIP + GJIPE + DHERMI
+═══════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-hero">
+    <div class="ch-hero-img"><img src="img/gjipe.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 9s ease"></div>
+    <div class="ch-hero-grad"></div>
+    <div class="ch-hero-text">
+      <span class="ch-num">06</span>
+      <span class="ch-eyebrow">Dimanche 25 Mai &nbsp;·&nbsp; Gjipe · Dhërmi · Jale</span>
+      <h2 class="ch-title">Le Jour<br><em>le Plus Beau</em></h2>
+      <p class="ch-tagline">Boat trip au lever, Gjipe Canyon, Dhërmi et grande fête au Folie Marine — le jour parfait du voyage</p>
+      <div class="ch-tags">
+        <span class="ch-tag">⛵ Boat Trip Ionien</span>
+        <span class="ch-tag">🏔️ Gjipe Canyon</span>
+        <span class="ch-tag">🏖️ Dhërmi Beach</span>
+        <span class="ch-tag">🔥 Folie Marine</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-body">
+    <span class="eyebrow">Programme heure par heure</span>
+
+    <div class="timeline">
+      <div class="tl-item highlight">
+        <div class="tl-time">09h30 — Bateau</div>
+        <div class="tl-name">⛵ BOAT TRIP — Le Moment Phare du Voyage</div>
+        <div class="tl-desc">Location d'un bateau depuis le port de Himara ou Jale pour 4 à 5 heures. Circuit : Jale Beach → Gjipe Canyon depuis la mer → criques secrètes inaccessibles par la route → snorkeling dans des eaux à 22°C avec fonds marins exceptionnels → retour face aux falaises de Dhërmi. Négocier directement avec les bateliers locaux pour la meilleure expérience.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 4h30</span><span class="tl-chip">🤿 Snorkeling · Criques privées</span><span class="tl-chip">⚓ Bateau depuis le port</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14h30 — Canyon</div>
+        <div class="tl-name">Gjipe Beach — Canyon & Baignade Légendaire</div>
+        <div class="tl-desc">Accès en voiture (route cahoteuse, parking 4€) puis 30 min de marche en descente. La plage s'ouvre sur un canyon spectaculaire — parois rocheuses de 50 m, eau émeraude, deux bars de plage rudimentaires. Les aventuriers remontent le canyon à pied sur 600 m. Une des expériences les plus uniques d'Europe.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 2h30</span><span class="tl-chip">👟 Chaussures fermées</span><span class="tl-chip">🅿️ 4€ parking</span></div>
+      </div>
+      <div class="tl-item highlight">
+        <div class="tl-time">17h30 — Plage</div>
+        <div class="tl-name">Dhërmi Beach — La Plus Belle d'Albanie</div>
+        <div class="tl-desc">Galets blancs arrondis, eau turquoise intense, montagnes cerauniennes en arrière-plan, bars en terrasse. Dhërmiu Beach est la plage la plus photogénique d'Albanie — un décor presque irréel qui justifie à lui seul le voyage dans le sud.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 1h30</span><span class="tl-chip">📸 Spot le plus photogénique</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">19h30 — Sunset</div>
+        <div class="tl-name">Jale Beach — Coucher de Soleil & Dîner</div>
+        <div class="tl-desc">Retour à Jale pour le sunset depuis la plage ou un restaurant local en bord de mer. Poisson frais du jour, raki albanais, dernière lumière dorée sur la Riviera.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 1h30</span><span class="tl-chip">🌅 Sunset ~20h20</span></div>
+      </div>
+      <div class="tl-item party">
+        <div class="tl-time">22h30 — Grande Soirée</div>
+        <div class="tl-name">🔥 Folie Marine Beach Club — La Nuit Ultime</div>
+        <div class="tl-desc">Le moment pour lequel vous avez tout gardé en réserve. Beach club et nightclub de référence sur Jale Beach. Dancefloor en plein air, DJ internationaux, vue sur la mer noire, clientèle cosmopolite. La fête la plus mémorable du voyage — et probablement de l'été entier.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 6h+</span><span class="tl-chip">🔥 Open Air · DJ · Vue mer</span></div>
+      </div>
+    </div>
+
+    <!-- Galerie Jour 6 — le plus dense -->
+    <span class="gallery-label">📍 Gjipe · Dhërmi · Jale · Folie Marine</span>
+    <div class="gallery-title">Le Cœur Sauvage de la Riviera</div>
+
+    <!-- BOAT TRIP feature -->
+    <div class="featured" style="height:520px;">
+      <div class="featured-bg"><img src="img/boat.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 9s ease"></div>
+      <div class="featured-grad"></div>
+      <div class="featured-text">
+        <span class="featured-kicker">Boat Trip · Riviera Ionienne</span>
+        <div class="featured-title">Le Bleu<br>Infini</div>
+        <p class="featured-body">Entre Himara et Dhërmi, la côte recèle des dizaines de criques secrètes inaccessibles par la route. Seul le bateau vous y emmène — vers des eaux que peu de voyageurs ont foulées.</p>
+      </div>
+    </div>
+
+    <!-- GJIPE -->
+    <div class="gal-asym" style="margin-top:3px;">
+      <div class="spot ar-4-3">
+        <img src="img/gjipe.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Canyon · Plage Secrète</div>
+          <div class="spot-name">Gjipe Beach</div>
+          <div class="spot-desc">Canyon spectaculaire, eau émeraude, 30 min à pied. Une des expériences les plus uniques d'Europe.</div>
+        </div>
+      </div>
+      <div class="gal-asym-right">
+        <div class="spot ar-4-3">
+          <img src="img/jale.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+          <div class="spot-overlay">
+            <div class="spot-type">Plage · Ionienne</div>
+            <div class="spot-name">Jale Beach</div>
+            <div class="spot-desc">Baie en demi-lune, eau azurée, sunset depuis les hauteurs inoubliable.</div>
+          </div>
+        </div>
+        <div class="spot ar-4-3">
+          <img src="img/dhermi.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+          <div class="spot-overlay">
+            <div class="spot-type">Plage · La Plus Photogénique</div>
+            <div class="spot-name">Dhërmi Beach</div>
+            <div class="spot-desc">Galets blancs, eau turquoise intense, montagnes. La plage la plus photographiée d'Albanie.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOLIE MARINE NIGHTCLUB -->
+    <div class="gal-full" style="aspect-ratio:16/7;margin-top:3px;">
+      <img src="img/folie_marine.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+      <div class="spot-overlay" style="background:linear-gradient(to right,rgba(12,15,20,.9) 0%,rgba(12,15,20,.4) 60%,rgba(12,15,20,.15) 100%);">
+        <div style="max-width:520px;">
+          <div class="spot-type">Beach Club & Nightclub · Jale Beach</div>
+          <div class="spot-name" style="font-size:2.2rem;">Folie Marine</div>
+          <div class="spot-desc" style="max-height:none;opacity:1;font-size:.82rem;">Dancefloor en plein air, DJ internationaux, vue sur la mer noire. La fête la plus mémorable du voyage. Clientèle cosmopolite, ambiance électrique. L'ambiance monte après minuit.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="note-head">
+        <div class="note-icon">✦</div>
+        <div class="note-title">Note de votre concierge — Le Jour le Plus Important</div>
+      </div>
+      <ul>
+        <li>Réservez le bateau la veille directement au port de Himara. Négociez 4 à 5 heures avec arrêts snorkeling et criques secrètes.</li>
+        <li>Pour Gjipe, portez des chaussures fermées — les galets et la pente sont traîtres en tongs. Arriver avant 10h pour le parking.</li>
+        <li>Dhërmi : la plage publique est entièrement libre d'accès. Transats disponibles mais non obligatoires.</li>
+        <li>Folie Marine : l'ambiance réelle démarre après minuit. Prévoyez de dormir le lendemain matin — vous l'aurez pleinement mérité.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ═══════════════════════════════════════
+     JOUR 7-8 — RETOUR DURRËS
+═══════════════════════════════════════ -->
+<div class="chapter">
+  <div class="ch-hero" style="height:80vh;">
+    <div class="ch-hero-img"><img src="img/jale.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 9s ease"></div>
+    <div class="ch-hero-grad"></div>
+    <div class="ch-hero-text">
+      <span class="ch-num">07–08</span>
+      <span class="ch-eyebrow">Lundi 26 – Mardi 27 Mai &nbsp;·&nbsp; Retour Durrës</span>
+      <h2 class="ch-title">Le Retour<br><em>Nostalgique</em></h2>
+      <p class="ch-tagline">Dernière baignade à Jale, la grande route du retour à travers la Riviera, et un dernier soir à Durrës pour boucler la boucle</p>
+      <div class="ch-tags">
+        <span class="ch-tag">🏖️ Jale — Dernière Baignade</span>
+        <span class="ch-tag">🚗 Route du Retour</span>
+        <span class="ch-tag">🍽️ Vila Brais · Boucle Parfaite</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-body">
+    <span class="eyebrow">Programme des derniers jours</span>
+
+    <div class="timeline">
+      <div class="tl-item highlight">
+        <div class="tl-time">10h00 — Dernière Plage</div>
+        <div class="tl-name">Jale Beach — La Dernière Baignade</div>
+        <div class="tl-desc">Profiter de Jale Beach une dernière fois avant la longue route. L'eau est à son maximum de clarté en matinée. Bars locaux avec un rapport qualité-prix parfait, ambiance détendue, souvenirs qui s'impriment.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 3h</span><span class="tl-chip">🌊 Dernière baignade ionienne</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14h00 — Route</div>
+        <div class="tl-name">Himara → Durrës via SH8</div>
+        <div class="tl-desc">~350 km, 5 heures de route. La même route magnifique qu'à l'aller, mais dans l'autre sens. Arrêt café à Vlora avec vue sur le golfe. La route vous offre une dernière fois ses panoramas inoubliables.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 5h</span><span class="tl-chip">📍 Stop Vlora · Vue sur le golfe</span></div>
+      </div>
+      <div class="tl-item highlight">
+        <div class="tl-time">20h00 — Dîner Final</div>
+        <div class="tl-name">Vila Brais — La Boucle Parfaite</div>
+        <div class="tl-desc">Retour au restaurant du premier soir. Une façon élégante de boucler le voyage là où il a commencé — la même vue sur l'amphithéâtre romain, mais avec une semaine entière de souvenirs lumineux en plus.</div>
+        <div class="tl-chips"><span class="tl-chip">⏱ 2h</span><span class="tl-chip">🍷 Dernier dîner albanais</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">09h00 — Dernier Matin</div>
+        <div class="tl-name">Dernier Café & Départ</div>
+        <div class="tl-desc">Dernier café sur le front de mer de Durrës. Check-out, restitution de la voiture de location. Route vers l'aéroport de Tirana (~40 min). L'Albanie vous aura mis plein les yeux — et le cœur.</div>
+        <div class="tl-chips"><span class="tl-chip">✈️ TIA ~40 min depuis Durrës</span><span class="tl-chip">🅿️ Marge de 2h</span></div>
+      </div>
+    </div>
+
+    <!-- Mosaïque finale -->
+    <span class="gallery-label">📍 La Riviera dans toute sa Splendeur</span>
+    <div class="gallery-title">Souvenirs d'Albanie</div>
+
+    <div class="gal-2">
+      <div class="spot ar-4-3">
+        <img src="img/gjipe.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Souvenir · Gjipe Canyon</div>
+          <div class="spot-name">Gjipe Beach</div>
+        </div>
+      </div>
+      <div class="spot ar-4-3">
+        <img src="img/Ksamil-main-1.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Souvenir · Ksamil</div>
+          <div class="spot-name">Ksamil Beach</div>
+        </div>
+      </div>
+    </div>
+    <div class="gal-3" style="margin-top:3px;">
+      <div class="spot ar-4-3">
+        <img src="img/lekuresi.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Souvenir · Sunset</div>
+          <div class="spot-name">Lëkurësi Castle</div>
+        </div>
+      </div>
+      <div class="spot ar-4-3">
+        <img src="img/dhermi.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Souvenir · Dhërmi</div>
+          <div class="spot-name">Dhërmi Beach</div>
+        </div>
+      </div>
+      <div class="spot ar-4-3">
+        <img src="img/riviera-road.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 7s ease">
+        <div class="spot-overlay">
+          <div class="spot-type">Souvenir · Route</div>
+          <div class="spot-name">La Riviera</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="note-head">
+        <div class="note-icon">✦</div>
+        <div class="note-title">Mot Final de Votre Concierge</div>
+      </div>
+      <ul>
+        <li>Prévoyez toujours 2h de marge avant le vol — la route Durrës → Tirana peut être dense en semaine.</li>
+        <li>Gardez une heure pour flâner une dernière fois sur le front de mer de Durrës — la ville mérite un vrai au revoir.</li>
+        <li>L'Albanie sera peut-être la plus belle surprise de votre été. Revenez en septembre : moins de monde, mer encore chaude, prix encore plus doux.</li>
+        <li>Ce voyage aura été une découverte totale. L'Albanie ne ressemble à rien de ce que vous connaissiez — c'est la meilleure des surprises.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ██████████ FOOTER ██████████ -->
+<footer>
+  <div class="footer-brand">Albania</div>
+  <div class="footer-sub">YHI Conciergerie  · Guide Voyage Sur Mesure · 2026</div>
+  <div class="footer-rule"></div>
+  <div class="footer-route">
+    Durrës &nbsp;⟶&nbsp; Saranda &nbsp;⟶&nbsp; Himara / Dhërmi &nbsp;⟶&nbsp; Durrës
+  </div>
+  <div class="footer-small">
+    20 — 27 Mai 2026 &nbsp;·&nbsp; Riviera Ionienne &nbsp;·&nbsp; 3 Voyageurs &nbsp;·&nbsp; 8 Jours
+  </div>
+</footer>
+
+</body>
+</html>
