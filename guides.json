@@ -1,0 +1,73 @@
+{
+  "guides": [
+    {
+      "slug": "lisbonne",
+      "title": "Lisbonne en 5 Jours",
+      "destination": "Portugal · Lisbonne",
+      "country": "Portugal",
+      "city": "Lisbonne",
+      "duration": 5,
+      "price": 16.90,
+      "price_id": "price_lisbonne_1490",
+      "tagline": "La perle de l'Atlantique — fado, pasteis et tramways centenaires",
+      "description": "Alfama, Belem, Sintra, Chiado. Cinq jours pour tomber amoureux de Lisbonne et ne plus jamais vouloir repartir.",
+      "cover": "guides/lisbonne/img/cover.jpg",
+      "cover_fallback": "https://images.unsplash.com/photo-1588688735973-f148e84c7d67?w=600&q=80",
+      "tags": ["Culture", "Gastronomie", "Architecture"],
+      "pills": ["Tramways", "Fado", "Pasteis de nata"],
+      "category": ["city", "food"],
+      "status": "published",
+      "created_at": "2025-03-28",
+      "featured": false,
+      "sales": 0
+    },
+    {
+      "slug": "albania",
+      "title": "Albania Road Trip 8 Jours",
+      "destination": "Albanie · Riviera Ionienne",
+      "country": "Albanie",
+      "city": "Saranda",
+      "duration": 8,
+      "price": 14.90,
+      "price_id": "price_albania_1490",
+      "tagline": "Le dernier secret mediterraneen — plages cristallines et nuits electriques",
+      "description": "De Durres a Dhermi via Saranda et Ksamil. Plages secretes, boat trips, beach clubs et sunsets legendaires sur la Riviera Ionienne.",
+      "cover": "guides/albania/img/cover.jpg",
+      "cover_fallback": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80",
+      "tags": ["Plage", "Aventure", "Nightlife"],
+      "pills": ["Ksamil", "Boat trip", "Beach clubs"],
+      "category": ["beach", "adventure"],
+      "status": "published",
+      "created_at": "2025-03-15",
+      "featured": true,
+      "sales": 0
+    },
+    {
+      "slug": "marrakech",
+      "title": "Marrakech Week-end Luxe",
+      "destination": "Maroc · Marrakech",
+      "country": "Maroc",
+      "city": "Marrakech",
+      "duration": 4,
+      "price": 12.90,
+      "price_id": "price_marrakech_1290",
+      "tagline": "L'art de vivre oriental dans toute sa splendeur doree",
+      "description": "Medina labyrinthe, souks envoûtants, riads somptueux et Djemaa El-Fna au coucher du soleil.",
+      "cover": "guides/marrakech/img/cover.jpg",
+      "cover_fallback": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600&q=80",
+      "tags": ["Culture", "Shopping", "Gastronomie"],
+      "pills": ["Medina", "Souks", "Riads"],
+      "category": ["city", "food"],
+      "status": "published",
+      "created_at": "2025-03-20",
+      "featured": false,
+      "sales": 0
+    }
+  ],
+  "config": {
+    "base_url": "https://bruncheebox.github.io/yhi-conciergerie",
+    "stripe_pk": "pk_test_51TGfD72OElIpJpkQKDkBMjUDPKWmkWt4KlTY1ZYj9ZQJRUdvFQTC68mFiEWmZmSvIWN3Z1TDIVAA6Q5Vms4Nkcso00bSTt1Wv8",
+    "n8n_webhook": "https://bruncheebox2.app.n8n.cloud/webhook/yhi-guide",
+    "resend_email": "bruncheebox@gmail.com"
+  }
+}
