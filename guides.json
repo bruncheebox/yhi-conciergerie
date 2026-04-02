@@ -72,7 +72,7 @@
       "city": "Marrakech",
       "duration": 3,
       "price": 14.9,
-      "price_id": "price_1THgq22OElIpJpkQhZBVtxs9",
+      "price_id": "price_1THh0M2OElIpJpkQkkTItb9n",
       "tagline": "Là où les minarets touchent le ciel et les épices enivrent l'âme",
       "description": "Là où les minarets touchent le ciel et les épices enivrent l'âme",
       "cover": "guides/marrakech/img/cover.jpg",
@@ -94,8 +94,8 @@
       "created_at": "2026-04-02",
       "featured": false,
       "sales": 0,
-      "stripe_payment_url": "https://buy.stripe.com/test_28E6oA3nSd4G7k8cdz5Rm0E",
-      "stripe_product_id": "prod_UGDGPxaZNcLkQn",
+      "stripe_payment_url": "https://buy.stripe.com/test_3cIeV66A40hU47W0uR5Rm0F",
+      "stripe_product_id": "prod_UGDRbd3b9ltTHu",
       "blog_url": "https://bruncheebox.github.io/yhi-conciergerie/blog/marrakech.html",
       "guide_url": "https://bruncheebox.github.io/yhi-conciergerie/guides/marrakech/index.html"
     }
