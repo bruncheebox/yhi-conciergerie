@@ -139,6 +139,7 @@ body{background:white!important}
 @page{margin:12mm}
 }
 </style>
+<meta property="og:url" content="https://bruncheebox.github.io/yhi-conciergerie/guides/lisbonne/index.html">
 </head>
 <body>
 <!-- =====================================================
@@ -205,7 +206,7 @@ window.addEventListener("scroll", function() {
 var nb = document.getElementById("nav-buy");
 var bb = document.getElementById("buy-btn");
 if (nb) nb.addEventListener("click", function() { var b = document.getElementById("buy"); if (b) b.scrollIntoView({ behavior: "smooth" }); });
-if (bb) bb.addEventListener("click", function() { window.location.href = "STRIPE_URL"; });
+if (bb) bb.addEventListener("click", function() { window.location.href = "https://buy.stripe.com/test_28EcMY1fK0hUcEscdz5Rm0G"; });
 function printGuide() {
   setTimeout(function() { window.print(); }, 100);
 }
