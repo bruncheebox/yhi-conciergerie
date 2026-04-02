@@ -104,21 +104,21 @@
     },
     {
       "slug": "bali",
-      "title": "Guide Bali 7 jours : l'ile des dieux comme vous ne l'avez jamais vue",
+      "title": "Guide Bali 7 jours : l'ile des dieux comme vous ne l'avez jamais vecue",
       "destination": "Bali",
       "city": "Bali",
       "country": "Bali",
       "duration": 7,
       "price": 19.9,
-      "tagline": "Sept jours pour comprendre pourquoi Bali change les voyageurs pour toujours",
-      "description": "Guide Bali 7 jours par YHI Conciergerie : itineraire detaille, meilleures adresses, conseils d'expert pour un sejour parfait a Bali en 2025.",
+      "tagline": "Temples millénaires, rizières en terrasses et plages de reve : votre semaine balinaise sur mesure",
+      "description": "Guide complet Bali 7 jours par YHI Conciergerie : itineraire, restaurants, hotels et conseils d'expert pour un sejour parfait a Bali en 2025.",
       "cover": "guides/bali/img/cover.jpg",
       "cover_fallback": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80",
       "tags": [],
       "pills": [
-        "Temple de Pura Luhur Uluwatu au coucher du soleil",
-        "Rizieres en terrasses de Tegallalang",
-        "Sanctuaire des tortues marines de Serangan"
+        "Tegalalang Rice Terrace au lever du soleil",
+        "Temple d'Uluwatu et kecak au coucher du soleil",
+        "Marché d'Ubud à l'aube"
       ],
       "category": [
         "city"
