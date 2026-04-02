@@ -2,35 +2,38 @@
   "guides": [
     {
       "slug": "lisbonne",
-      "title": "Lisbonne en 5 Jours",
-      "destination": "Portugal · Lisbonne",
-      "country": "Portugal",
+      "title": "Lisbonne en 5 Jours : La Perle de l'Atlantique",
+      "destination": "Lisbonne",
+      "country": "Lisbonne",
       "city": "Lisbonne",
       "duration": 5,
       "price": 16.9,
-      "price_id": "price_lisbonne_1490",
-      "tagline": "La perle de l'Atlantique — fado, pasteis et tramways centenaires",
-      "description": "Alfama, Belem, Sintra, Chiado. Cinq jours pour tomber amoureux de Lisbonne et ne plus jamais vouloir repartir.",
-      "cover": "guides/lisbonne/img/cover.jpg",
-      "cover_fallback": "https://images.unsplash.com/photo-1588688735973-f148e84c7d67?w=600&q=80",
+      "price_id": "price_1THhH12OElIpJpkQxip1xYE5",
+      "tagline": "Là où le fado murmure et l'Atlantique embrasse les collines dorées",
+      "description": "Là où le fado murmure et l'Atlantique embrasse les collines dorées",
+      "cover": "guides/lisbonne/img/Cover - day 1 - Sao jorge castle.jpg",
+      "cover_fallback": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80",
       "tags": [
-        "Culture",
-        "Gastronomie",
-        "Architecture"
+        "Aéroport Humberto Delgado",
+        "Château São Jorge",
+        "Tasca do Chico"
       ],
       "pills": [
-        "Tramways",
-        "Fado",
-        "Pasteis de nata"
+        "[PDF] Telecharger PDF\nYHI ConciergerieObtenir le guide -- 16,90€\n\n\n\n\n\n* | YHI Conciergerie | *\nLisbonne en 5 Jours :La Perle de l'Atlantique\nLisbonne - 5 Jours - Guide Premium\n\nDecouvrir --&gt;\n16,90€\n\n\n5Jours\n5Etapes\n10Spots\n16,90€Guide complet\n\nJour 1de l'AlfamaJour 1 - Arrivée et découverte du cœur historique--&gt;Jour 2de BelémJour 2 - Belém et les grands navigateurs--&gt;Jour 3bohème créatifJour 3 - Baixa, Chiado et Bairro Alto--&gt;Jour 4riviera atlantiqueJour 4 - Sintra et Cascais : escapade royale--&gt;Jour 5et nostalgieJour 5 - LX Factory, Mouraria et au revoir\n\n\nLisbonne\n\nNote de votre concierge\nLisbonne --Là où le fado murmure\n\nLisbonne, capitale enchanteresse du Portugal, dévoile ses trésors au fil de ses sept collines baignées de lumière dorée. Ville millénaire aux ruelles pavées de calcaires blancs, elle mêle harmonieusement l'âme mélancolique du fado, la splendeur de l'architecture manuéline et la vitalité d'une métropole moderne et créative. Des hauteurs de l'Alfama aux berges animées de Belém, chaque quartier raconte une histoire de navigateurs audacieux, de poètes rêveurs et d'habitants chaleureux. Les azulejos bleus illuminent les façades, les tramways jaunes gravissent les pentes escarpées, et les pastéis de nata fondent sous le palais comme une promesse de bonheur simple. Ce guide vous invite à vivre cinq jours inoubliables dans une cité qui séduit instantanément et marque les voyageurs pour toujours.\n\n01Jour 1 - Arrivée et découverte du cœur historique - LisbonnePremier souffle lisboète : l'âme de l'AlfamaarrivéeAlfamafadopanoramaProgramme heure par heure10h00arrivee1hAéroport Humberto DelgadoArrivée à l'aéroport international de Lisbonne. Prenez le métro ligne rouge jusqu'à la station Alameda puis changez pour la ligne verte. Le trajet est simple, économique et dure environ 25 minutes jusqu'au centre-ville. Les billets s'achètent aux bornes automatiques multilingues.Achetez une carte Viva Viagem rechargeable dès l'aéroport pour profiter de tous les transports en commun au meilleur tarif.11h30culture2hChâteau São JorgePerché sur la colline la plus haute de Lisbonne, ce château maure offre une vue panoramique époustouflante sur la ville et le Tage. Explorez ses remparts médiévaux, ses tours, et découvrez l'exposition archéologique permanente qui retrace l'histoire millénaire du site depuis l'âge du fer.Arrivez tôt le matin pour éviter les longues files d'attente et profitez de la lumière matinale pour photographier les toits rouges de l'Alfama.14h00gastronomie1h30Tasca do ChicoRestaurant authentique caché dans les ruelles de l'Alfama, cette tasca familiale sert une cuisine portugaise traditionnelle généreuse. Goûtez la bacalhau à brás, ce savoureux mélange de morue effilochée aux œufs brouillés et pommes de terre paille, accompagné d'un verre de vinho verde frais et pétillant.Réservez à l'avance car ce petit restaurant ne compte que vingt couverts et est très prisé des habitants du quartier.16h00balade2hQuartier de l'AlfamaPerdez-vous volontairement dans le plus ancien quartier de Lisbonne. Ses ruelles sinueuses révèlent des paliers ornés d'azulejos, des étendages de linge coloré, des chats somnolant au soleil et des vieilles dames en noir bavardant sur le pas de leurs portes dans une atmosphère hors du temps.Portez des chaussures confortables à semelles antidérapantes car les pavés calcaires peuvent être glissants, surtout après la pluie.21h00soiree2h30Casa de FadoVivez votre première soirée fado dans une maison authentique de l'Alfama. Ce chant mélancolique portugais inscrit au patrimoine mondial de l'UNESCO vous transportera vers les profondeurs de l'âme lusitanienne. Les fadistas accompagnés de guitare portugaise et de viola baixo créent une atmosphère inoubliable et profondément émouvante.Le dîner est généralement inclus dans le billet d'entrée. Choisissez un établissement recommandé par l'office du tourisme pour garantir une expérience authentique et de qualité.-- Lisbonne - Premier souffle lisboète : l'âme de l'Alfama",
+        "Largo das Portas do Sol",
+        "Jardins de Belém"
       ],
       "category": [
-        "city",
-        "food"
+        "city"
       ],
       "status": "published",
-      "created_at": "2025-03-28",
+      "created_at": "2026-04-02",
       "featured": false,
-      "sales": 0
+      "sales": 0,
+      "stripe_payment_url": "https://buy.stripe.com/test_28EcMY1fK0hUcEscdz5Rm0G",
+      "stripe_product_id": "prod_UGDi4BbeiWHVIE",
+      "blog_url": "https://bruncheebox.github.io/yhi-conciergerie/blog/lisbonne.html",
+      "guide_url": "https://bruncheebox.github.io/yhi-conciergerie/guides/lisbonne/index.html"
     },
     {
       "slug": "albania",
