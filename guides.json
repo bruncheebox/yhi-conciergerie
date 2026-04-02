@@ -7,15 +7,26 @@
       "country": "Portugal",
       "city": "Lisbonne",
       "duration": 5,
-      "price": 16.90,
+      "price": 16.9,
       "price_id": "price_lisbonne_1490",
       "tagline": "La perle de l'Atlantique — fado, pasteis et tramways centenaires",
       "description": "Alfama, Belem, Sintra, Chiado. Cinq jours pour tomber amoureux de Lisbonne et ne plus jamais vouloir repartir.",
       "cover": "guides/lisbonne/img/cover.jpg",
       "cover_fallback": "https://images.unsplash.com/photo-1588688735973-f148e84c7d67?w=600&q=80",
-      "tags": ["Culture", "Gastronomie", "Architecture"],
-      "pills": ["Tramways", "Fado", "Pasteis de nata"],
-      "category": ["city", "food"],
+      "tags": [
+        "Culture",
+        "Gastronomie",
+        "Architecture"
+      ],
+      "pills": [
+        "Tramways",
+        "Fado",
+        "Pasteis de nata"
+      ],
+      "category": [
+        "city",
+        "food"
+      ],
       "status": "published",
       "created_at": "2025-03-28",
       "featured": false,
@@ -28,15 +39,26 @@
       "country": "Albanie",
       "city": "Saranda",
       "duration": 8,
-      "price": 14.90,
+      "price": 14.9,
       "price_id": "price_albania_1490",
       "tagline": "Le dernier secret mediterraneen — plages cristallines et nuits electriques",
       "description": "De Durres a Dhermi via Saranda et Ksamil. Plages secretes, boat trips, beach clubs et sunsets legendaires sur la Riviera Ionienne.",
       "cover": "guides/albania/img/cover.jpg",
       "cover_fallback": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80",
-      "tags": ["Plage", "Aventure", "Nightlife"],
-      "pills": ["Ksamil", "Boat trip", "Beach clubs"],
-      "category": ["beach", "adventure"],
+      "tags": [
+        "Plage",
+        "Aventure",
+        "Nightlife"
+      ],
+      "pills": [
+        "Ksamil",
+        "Boat trip",
+        "Beach clubs"
+      ],
+      "category": [
+        "beach",
+        "adventure"
+      ],
       "status": "published",
       "created_at": "2025-03-15",
       "featured": true,
@@ -44,24 +66,38 @@
     },
     {
       "slug": "marrakech",
-      "title": "Marrakech Week-end Luxe",
-      "destination": "Maroc · Marrakech",
-      "country": "Maroc",
+      "title": "Marrakech en 3 Jours : La Ville Ocre entre Mystère et Splendeur",
+      "destination": "Marrakech",
+      "country": "Marrakech",
       "city": "Marrakech",
-      "duration": 4,
-      "price": 12.90,
-      "price_id": "price_marrakech_1290",
-      "tagline": "L'art de vivre oriental dans toute sa splendeur doree",
-      "description": "Medina labyrinthe, souks envoûtants, riads somptueux et Djemaa El-Fna au coucher du soleil.",
+      "duration": 3,
+      "price": 14.9,
+      "price_id": "price_1THgq22OElIpJpkQhZBVtxs9",
+      "tagline": "Là où les minarets touchent le ciel et les épices enivrent l'âme",
+      "description": "Là où les minarets touchent le ciel et les épices enivrent l'âme",
       "cover": "guides/marrakech/img/cover.jpg",
-      "cover_fallback": "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=600&q=80",
-      "tags": ["Culture", "Shopping", "Gastronomie"],
-      "pills": ["Medina", "Souks", "Riads"],
-      "category": ["city", "food"],
+      "cover_fallback": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80",
+      "tags": [
+        "Riad de charme dans la Médina",
+        "Mosquée de la Koutoubia",
+        "Souks de la Médina"
+      ],
+      "pills": [
+        "[PDF] Telecharger PDF\nYHI ConciergerieObtenir le guide -- 14,90€\n\n\n\n\n\n* | YHI Conciergerie | *\nMarrakech en 3 Jours : LaVille Ocre entre Mystère et Splendeur\nMarrakech - 3 Jours - Guide Premium\n\nDecouvrir --&gt;\n14,90€\n\n\n3Jours\n3Etapes\n9Spots\n14,90€Guide complet\n\nJour 1Cité OcreJour 1 - Arrivée et Découverte de la Médina--&gt;Jour 2Splendeurs DynastiquesJour 2 - Jardins, Palais et Art de Vivre--&gt;Jour 3l'Adieu ParfuméJour 3 - Excursion et Dernières Saveurs\n\n\nMarrakech\n\nNote de votre concierge\nMarrakech --Là où les minarets touchent\n\nMarrakech, perle du Maroc, est une ville qui envoûte tous les sens dès les premiers instants. Nichée au pied du Haut Atlas, la cité ocre mêle avec grâce l'héritage millénaire de la médina et l'effervescence d'une métropole moderne. Ses ruelles labyrinthiques, ses jardins secrets et ses riads ornés de zellige et de stuc vous plongent dans un univers hors du temps. La place Jemaa el-Fna, inscrite au patrimoine immatériel de l'UNESCO, pulse au rythme des conteurs, des musiciens et des marchands dès la tombée du soir. En trois jours, vous découvrirez les souks colorés, les palais impériaux, les jardins luxuriants et les hammams traditionnels. Marrakech est une invitation permanente à ralentir, à observer et à savourer chaque instant avec une intensité rare.\n\n01Jour 1 - Arrivée et Découverte de la Médina - MarrakechLe Baptême des Sens dans la Cité OcremédinasoukshistoiregastronomieProgramme heure par heure09h00arrivée1h30Riad de charme dans la MédinaInstallez-vous dans un riad traditionnel au cœur de la médina. Ces anciennes demeures transformées en hébergements de charme offrent des patios fleuris, des fontaines apaisantes et une architecture mozarabe somptueuse. Prenez le temps de savourer un thé à la menthe avant de partir explorer la ville.Réservez un riad situé dans le quartier Mouassine pour être à distance de marche de tous les sites principaux sans subir le bruit excessif de la place.10h30visite1hMosquée de la KoutoubiaAdmirez l'emblème architectural de Marrakech, dont le minaret de 70 mètres domine toute la ville. Ce chef-d'œuvre de l'art almohade du XIIe siècle est visible depuis presque partout dans la médina. Promenez-vous dans les jardins environnants parfumés de roses et d'orangers en fleur.Les non-musulmans ne peuvent pas entrer dans la mosquée, mais les jardins extérieurs sont accessibles et offrent de magnifiques angles de vue sur le minaret.11h30exploration2hSouks de la MédinaPerdez-vous dans le dédale envoûtant des souks historiques, chacun spécialisé dans un artisanat particulier. Le souk des tanneurs, des tisserands, des forgerons et des épiciers forment un tableau vivant extraordinaire. Laissez-vous guider par vos sens à travers ces ruelles chargées d'odeurs et de couleurs.Acceptez de vous perdre volontairement, c'est la meilleure façon de faire de vraies découvertes. Méfiez-vous des faux guides qui proposent de vous accompagner gratuitement.14h00gastronomie1h30Déjeuner au restaurant NomadInstallez-vous sur la terrasse panoramique de ce restaurant contemporain marocain pour un déjeuner aux saveurs locales revisitées. La vue imprenable sur les toits ocre de la médina accompagne parfaitement une pastilla au pigeon ou un tajine d'agneau aux pruneaux et amandes fondantes.Arrivez avant 14h pour obtenir une table en terrasse. Commandez le jus de fruits frais maison, un délice absolu par la chaleur marrakchie.16h00visite1h30Palais de la BahiaDécouvrez ce palais du XIXe siècle dont le nom signifie La Brillante. Construit pour le grand vizir Ba Ahmed, il déploie sur 8 hectares une succession de cours intérieures, de jardins andalous et de salles décorées de mosaïques de zellige, de plâtre sculpté et de bois de cèdre peint.Visitez en semaine tôt le matin pour éviter les groupes. Un guide local certifié enrichira considérablement votre compréhension de l'histoire et du symbolisme architectural.19h30expérience2hPlace Jemaa el-Fna au coucher du soleilVivez le rituel incontournable de Marrakech en assistant à la métamorphose de la grande place à la tombée du soir. Acrobates, charmeurs de serpents, conteurs en darija, musiciens gnaoua et vendeurs de jus d'orange créent une symphonie chaotique et magique unique au monde. Montez sur une terrasse pour voir la place d'en haut.Goûtez aux escargots dans leur bouillon épicé et aux brochettes grillées des stands numérotés. Vérifiez toujours le prix avant de commander pour éviter les surprises à l'addition.-- Marrakech - Le Baptême des Sens dans la Cité Ocre",
+        "Souk des Teinturiers",
+        "Fontaine Chrob ou Chouf"
+      ],
+      "category": [
+        "city"
+      ],
       "status": "published",
-      "created_at": "2025-03-20",
+      "created_at": "2026-04-02",
       "featured": false,
-      "sales": 0
+      "sales": 0,
+      "stripe_payment_url": "https://buy.stripe.com/test_28E6oA3nSd4G7k8cdz5Rm0E",
+      "stripe_product_id": "prod_UGDGPxaZNcLkQn",
+      "blog_url": "https://bruncheebox.github.io/yhi-conciergerie/blog/marrakech.html",
+      "guide_url": "https://bruncheebox.github.io/yhi-conciergerie/guides/marrakech/index.html"
     }
   ],
   "config": {
