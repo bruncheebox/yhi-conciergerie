@@ -2,206 +2,634 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>YHI Conciergerie — Guides de voyage premium</title>
-<meta name="description" content="Découvrez des guides de voyage premium avec itinéraires optimisés, adresses sélectionnées et conseils exclusifs.">
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YHI Conciergerie — Guides de Voyage Premium</title>
+<meta name="description" content="Des guides de voyage d'exception generés par IA et valides par des experts locaux.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --ivory:#F8F4EC;
-  --gold:#B8973A;
-  --gold2:#D4AF6A;
-  --ink:#14120E;
-  --muted:#7A7268;
+:root{
+  --ivory:#F8F4EC;--cream:#F0E9D8;--gold:#B8973A;--gold2:#D4AF6A;--gold3:#E8C97A;
+  --ink:#14120E;--muted:#7A7268;--rule:#DDD5C0;
+  --night:#0C0A06;--night2:#141310;--night3:#1C1814;
+  --ease:cubic-bezier(0.16,1,0.3,1);
 }
-
-body {
-  margin:0;
-  font-family:'Jost',sans-serif;
-  background:var(--ivory);
-  color:var(--ink);
-}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--night);color:white;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--gold)}
 
 /* NAV */
-nav {
-  display:flex;
-  justify-content:space-between;
-  padding:20px;
-  background:white;
-}
-
-nav a {
-  text-decoration:none;
-  color:var(--ink);
-  margin-left:20px;
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;padding:0 56px;display:flex;align-items:center;justify-content:space-between;transition:all .5s var(--ease)}
+nav.solid{background:rgba(12,10,6,.96);backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,175,106,.1)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:white}
+.nav-logo em{color:var(--gold2);font-style:italic}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.45);transition:color .3s;font-weight:500}
+.nav-links a:hover{color:var(--gold2)}
+.nav-cta{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;padding:9px 22px;border:1px solid rgba(212,175,106,.4);color:var(--gold2);transition:all .3s;cursor:pointer;background:none;font-family:'Jost',sans-serif}
+.nav-cta:hover{background:var(--gold);color:var(--night);border-color:var(--gold)}
+@media(max-width:768px){nav{padding:0 24px}.nav-links{display:none}}
 
 /* HERO */
-.hero {
-  height:80vh;
-  background:url('hero.jpg') center/cover;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:white;
-}
+.hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:flex-end;overflow:hidden;background:var(--night)}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:115%;object-fit:cover;opacity:.55;transform:scale(1.04);animation:hDrift 30s ease-in-out infinite alternate}
+@keyframes hDrift{from{transform:scale(1.04)}to{transform:scale(1.08) translateX(-1%)} }
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,10,6,1) 0%,rgba(12,10,6,.6) 30%,rgba(12,10,6,.1) 65%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:0 56px 80px;max-width:960px}
+.hero-badge{display:inline-flex;align-items:center;gap:14px;font-size:.54rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold2);margin-bottom:28px;opacity:0;animation:slideUp .8s var(--ease) .5s forwards}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,12vw,9rem);font-weight:300;letter-spacing:.05em;line-height:.85;text-transform:uppercase;color:white;margin-bottom:22px;opacity:0;animation:slideUp .9s var(--ease) .75s forwards}
+.hero h1 em{font-style:italic;color:var(--gold2);display:block}
+.hero-sub{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.85;font-weight:300;max-width:560px;margin-bottom:44px;opacity:0;animation:slideUp .8s var(--ease) 1s forwards}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:slideUp .8s var(--ease) 1.2s forwards}
+.btn-gold{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--night);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;padding:15px 34px;border:none;cursor:pointer;font-family:'Jost',sans-serif;transition:all .3s;box-shadow:0 6px 28px rgba(184,151,58,.35)}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.55);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;padding:15px 28px;cursor:pointer;font-family:'Jost',sans-serif;background:none;transition:all .3s}
+.btn-ghost:hover{border-color:var(--gold2);color:var(--gold2)}
+@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 
-.hero h1 {
-  font-family:'Cormorant Garamond',serif;
-  font-size:48px;
-}
+/* STATS */
+.stats{background:var(--night2);border-bottom:1px solid rgba(255,255,255,.05);display:flex}
+.stat{flex:1;padding:36px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.04)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--gold2);line-height:1;display:block}
+.stat-l{font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:5px}
 
-.cta {
-  margin-top:20px;
-  display:inline-block;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  padding:14px 28px;
-  border-radius:8px;
-  color:white;
-  text-decoration:none;
-}
+/* SECTION */
+.section{padding:100px 56px}
+@media(max-width:768px){.section{padding:64px 24px}}
+.sec-head{text-align:center;margin-bottom:60px}
+.eyebrow{font-size:.54rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);font-weight:600;display:block;margin-bottom:14px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:300;line-height:1.1}
+.sec-title em{font-style:italic;color:var(--gold2)}
+.sec-title.dark{color:var(--ink)}
+.sec-rule{width:44px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:18px auto 0}
 
-/* SECTIONS */
-.section {
-  padding:80px 20px;
-  max-width:1100px;
-  margin:auto;
-}
+/* FEATURED */
+.featured-section{background:var(--night3)}
+.featured-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+@media(max-width:900px){.featured-inner{grid-template-columns:1fr;gap:40px}}
+.feat-img{position:relative;aspect-ratio:3/4;overflow:hidden}
+.feat-img img{transition:transform 10s ease}
+.feat-img:hover img{transform:scale(1.06)}
+.feat-badge{position:absolute;top:24px;left:24px;background:var(--gold);color:var(--night);font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;font-weight:700;padding:6px 16px}
+.feat-dest{font-size:.56rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold2);margin-bottom:16px}
+.feat-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4vw,3.8rem);font-weight:300;line-height:.95;margin-bottom:18px}
+.feat-title em{font-style:italic;color:var(--gold2);display:block}
+.feat-desc{font-size:.84rem;color:rgba(255,255,255,.45);line-height:1.85;font-weight:300;margin-bottom:32px}
+.feat-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.pill{font-size:.54rem;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.45);padding:6px 16px}
+.feat-footer{display:flex;align-items:center;justify-content:space-between;padding-top:28px;border-top:1px solid rgba(255,255,255,.08)}
+.feat-price{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;color:var(--gold2)}
+.feat-price small{font-size:.62rem;font-family:'Jost',sans-serif;color:rgba(255,255,255,.28);display:block;letter-spacing:.1em}
 
-h2 {
-  font-family:'Cormorant Garamond',serif;
-  font-size:32px;
-}
+/* GUIDES GRID */
+.catalog-section{background:var(--ivory)}
+.filter-bar{display:flex;gap:8px;justify-content:center;margin-bottom:52px;flex-wrap:wrap}
+.fbtn{font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;padding:9px 22px;border:1px solid var(--rule);background:none;cursor:pointer;color:var(--muted);font-family:'Jost',sans-serif;transition:all .3s}
+.fbtn.on,.fbtn:hover{background:var(--ink);color:white;border-color:var(--ink)}
+.guides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1300px;margin:0 auto}
+@media(max-width:1024px){.guides-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.guides-grid{grid-template-columns:1fr}}
+.gcard{background:white;cursor:pointer;transition:transform .4s var(--ease),box-shadow .4s;opacity:0;transform:translateY(20px)}
+.gcard.visible{opacity:1;transform:none}
+.gcard:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.gc-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--night2)}
+.gc-img img{transition:transform 8s ease}
+.gcard:hover .gc-img img{transform:scale(1.08)}
+.gc-badge{position:absolute;top:14px;left:14px;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;padding:5px 14px}
+.gc-badge.new{background:var(--gold);color:var(--night)}
+.gc-badge.hot{background:#E53E3E;color:white}
+.gc-badge.top{background:var(--night);color:var(--gold2);border:1px solid rgba(212,175,106,.4)}
+.gc-body{padding:26px}
+.gc-dest{font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:600}
+.gc-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:9px;line-height:1.15}
+.gc-desc{font-size:.74rem;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:300}
+.gc-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.gc-pill{font-size:.52rem;background:var(--cream);color:var(--muted);padding:4px 11px}
+.gc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--rule)}
+.gc-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--ink)}
+.gc-btn{font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:8px 18px;background:var(--gold);color:var(--night);border:none;cursor:pointer;font-family:'Jost',sans-serif;transition:background .3s}
+.gc-btn:hover{background:var(--gold2)}
+.loading-grid{text-align:center;padding:80px;color:rgba(255,255,255,.3);font-size:.8rem;letter-spacing:.2em}
 
-/* GRID */
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
+/* HOW */
+.how-section{background:var(--night3)}
+.how-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+@media(max-width:768px){.how-grid{grid-template-columns:1fr}}
+.how-step{padding:52px 44px;background:var(--night2);text-align:center;position:relative;overflow:hidden}
+.how-step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .5s var(--ease)}
+.how-step:hover::before{transform:scaleX(1)}
+.how-n{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:rgba(212,175,106,.07);line-height:1;display:block;margin-bottom:-18px}
+.how-icon{font-size:1.8rem;display:block;margin-bottom:18px}
+.how-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:white;margin-bottom:10px}
+.how-desc{font-size:.74rem;color:rgba(255,255,255,.32);line-height:1.78;font-weight:300}
 
-.card {
-  background:white;
-  border-radius:12px;
-  overflow:hidden;
-  transition:0.3s;
-}
+/* BLOG */
+.blog-section{background:var(--cream)}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1300px;margin:0 auto}
+@media(max-width:900px){.blog-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.blog-grid{grid-template-columns:1fr}}
+.bcard{background:white;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s;display:block}
+.bcard:hover{transform:translateY(-4px);box-shadow:0 14px 44px rgba(0,0,0,.1)}
+.bc-img{aspect-ratio:16/9;overflow:hidden;position:relative;background:var(--night2)}
+.bc-img img{transition:transform 8s ease}
+.bcard:hover .bc-img img{transform:scale(1.06)}
+.bc-tag{position:absolute;bottom:12px;left:12px;background:var(--gold);color:var(--night);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;padding:4px 12px}
+.bc-body{padding:24px}
+.bc-dest{font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;font-weight:600}
+.bc-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--ink);margin-bottom:9px;line-height:1.2}
+.bc-excerpt{font-size:.74rem;color:var(--muted);line-height:1.7;margin-bottom:14px;font-weight:300}
+.bc-meta{display:flex;justify-content:space-between;align-items:center;font-size:.58rem;color:var(--muted);border-top:1px solid var(--rule);padding-top:12px}
+.bc-read{color:var(--gold);font-weight:600}
 
-.card:hover {
-  transform:translateY(-5px);
-}
+/* TESTIMONIALS */
+.testi-section{background:var(--night)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1200px;margin:0 auto}
+@media(max-width:900px){.testi-grid{grid-template-columns:1fr}}
+.tcard{background:var(--night2);padding:44px 36px}
+.t-stars{color:var(--gold2);font-size:.85rem;letter-spacing:3px;margin-bottom:18px}
+.t-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.65);line-height:1.72;margin-bottom:24px}
+.t-author{display:flex;align-items:center;gap:12px}
+.t-av{width:38px;height:38px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--night);font-weight:600;flex-shrink:0}
+.t-name{font-size:.72rem;color:white;font-weight:500}
+.t-trip{font-size:.58rem;color:rgba(255,255,255,.3)}
 
-.card img {
-  width:100%;
-  height:200px;
-  object-fit:cover;
-}
-
-.card-content {
-  padding:15px;
-}
-
-/* FEATURES */
-.features {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:20px;
-  text-align:center;
-}
-
-/* CTA BOX */
-.cta-box {
-  text-align:center;
-  background:white;
-  padding:40px;
-  border-radius:12px;
-}
+/* CTA */
+.cta-section{background:var(--ivory);padding:120px 56px;text-align:center;position:relative}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(184,151,58,.07),transparent)}
 
 /* FOOTER */
-footer {
-  text-align:center;
-  padding:40px;
-  font-size:14px;
-  color:var(--muted);
-}
+footer{background:var(--night);border-top:1px solid rgba(255,255,255,.05)}
+.footer-main{padding:72px 56px 52px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:52px;max-width:1400px;margin:0 auto}
+@media(max-width:900px){.footer-main{grid-template-columns:1fr 1fr;gap:36px}}
+@media(max-width:600px){.footer-main{grid-template-columns:1fr;padding:48px 24px 36px}}
+.f-logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;letter-spacing:.2em;text-transform:uppercase;color:white;margin-bottom:14px}
+.f-logo em{color:var(--gold2);font-style:italic}
+.f-desc{font-size:.74rem;color:rgba(255,255,255,.28);line-height:1.8;font-weight:300;max-width:240px}
+.fc h4{font-size:.54rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold2);margin-bottom:18px;font-weight:600}
+.fc ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fc ul li a{font-size:.74rem;color:rgba(255,255,255,.28);transition:color .3s}
+.fc ul li a:hover{color:var(--gold2)}
+.footer-bottom{padding:22px 56px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto}
+@media(max-width:600px){.footer-bottom{padding:18px 24px;flex-direction:column;gap:10px}}
+.f-copy{font-size:.58rem;color:rgba(255,255,255,.18);letter-spacing:.1em}
+.f-legal{display:flex;gap:22px}
+.f-legal a{font-size:.58rem;color:rgba(255,255,255,.18);transition:color .3s}
+.f-legal a:hover{color:var(--gold2)}
+
+/* CHECKOUT MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(12,10,6,.92);z-index:500;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:20px}
+.modal-bg.open{display:flex}
+.modal{background:var(--night2);padding:52px;max-width:460px;width:100%;position:relative;animation:mIn .4s var(--ease)}
+@keyframes mIn{from{opacity:0;transform:scale(.96) translateY(14px)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;top:18px;right:18px;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.3);font-size:1.1rem;transition:color .3s}
+.modal-close:hover{color:white}
+.m-ey{font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold2);display:block;margin-bottom:10px}
+.m-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:white;margin-bottom:6px}
+.m-dest{font-size:.68rem;color:rgba(255,255,255,.3);margin-bottom:28px}
+.m-price{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:300;color:var(--gold2);line-height:1;margin-bottom:8px}
+.m-sub{font-size:.68rem;color:rgba(255,255,255,.28);margin-bottom:28px}
+.m-feats{display:flex;flex-direction:column;gap:9px;margin-bottom:32px}
+.m-feat{display:flex;align-items:center;gap:10px;font-size:.74rem;color:rgba(255,255,255,.5)}
+.m-feat::before{content:'*';color:var(--gold);font-weight:700}
+.m-form{display:flex;flex-direction:column;gap:12px;margin-bottom:20px}
+.m-input{background:var(--night3);border:1px solid rgba(255,255,255,.08);color:white;font-family:'Jost',sans-serif;font-size:.82rem;padding:13px 16px;outline:none;transition:border-color .3s;width:100%}
+.m-input:focus{border-color:var(--gold)}
+.m-input::placeholder{color:rgba(255,255,255,.2)}
+.m-btn{width:100%;padding:15px;background:var(--gold);color:var(--night);border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;transition:background .3s}
+.m-btn:hover{background:var(--gold2)}
+.m-btn:disabled{opacity:.5;cursor:not-allowed}
+.m-secure{text-align:center;font-size:.58rem;color:rgba(255,255,255,.18);margin-top:12px}
+.m-success{display:none;text-align:center;padding:24px 0}
+.m-success-icon{font-size:2rem;margin-bottom:12px}
+.m-success-text{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:white;margin-bottom:8px}
+.m-success-sub{font-size:.74rem;color:rgba(255,255,255,.4)}
+
+/* SCROLL REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv2{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease) .12s,transform .9s var(--ease) .12s}
+.rv2.in{opacity:1;transform:none}
+.rv3{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease) .24s,transform .9s var(--ease) .24s}
+.rv3.in{opacity:1;transform:none}
 </style>
-
 </head>
-
 <body>
 
-<nav>
-  <strong>YHI Conciergerie</strong>
-  <div>
-    <a href="#">Guides</a>
-    <a href="#">Blog</a>
-    <a href="#">Conciergerie</a>
+<!-- NAV -->
+<nav id="nav">
+  <a href="." class="nav-logo">YHI<em> Conciergerie</em></a>
+  <div class="nav-links">
+    <a href="#guides">Guides</a>
+    <a href="#blog">Blog</a>
+    <a href="upsell.html">Premium</a>
+    <a href="admin/">Admin</a>
   </div>
+  <button class="nav-cta" onclick="scrollTo('#guides')">Voir les guides</button>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div>
-    <h1>Voyagez avec un guide pensé comme un concierge privé</h1>
-    <p>Itinéraires optimisés, adresses sélectionnées, zéro perte de temps</p>
-    <a href="#guides" class="cta">Explorer les guides</a>
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=80" alt="YHI" loading="eager">
+  </div>
+  <div class="hero-grad"></div>
+  <div class="hero-content">
+    <div class="hero-badge">* YHI Conciergerie | Guides Premium *</div>
+    <h1>Voyagez<br><em>Autrement</em></h1>
+    <p class="hero-sub">Des guides de voyage d'exception, generes par IA et valides par des experts locaux. Chaque destination, chaque detail — pense pour vous.</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="scrollTo('#guides')">* Decouvrir les guides</button>
+      <button class="btn-ghost" onclick="scrollTo('#how')">Comment ca marche</button>
+    </div>
   </div>
 </section>
 
-<section class="section" id="guides">
-  <h2>Nos guides</h2>
-  <div class="grid" id="guides-container"></div>
-</section>
+<!-- STATS -->
+<div class="stats" id="stats-band">
+  <div class="stat"><span class="stat-n" id="cnt-g">0</span><div class="stat-l">Guides publiés</div></div>
+  <div class="stat"><span class="stat-n" id="cnt-d">0</span><div class="stat-l">Destinations</div></div>
+  <div class="stat"><span class="stat-n" id="cnt-c">0</span><div class="stat-l">Voyageurs satisfaits</div></div>
+  <div class="stat"><span class="stat-n">4.9</span><div class="stat-l">Note moyenne</div></div>
+</div>
 
-<section class="section">
-  <h2>Pourquoi choisir YHI</h2>
-  <div class="features">
-    <div>Itinéraires optimisés jour par jour</div>
-    <div>Adresses sélectionnées avec soin</div>
-    <div>Gain de temps maximal</div>
-    <div>Expérience premium</div>
+<!-- FEATURED — populated by JS -->
+<section class="section featured-section" id="featured" style="display:none">
+  <div class="featured-inner">
+    <div class="feat-img rv" id="feat-img">
+      <img id="feat-cover" src="" alt="">
+      <div class="feat-badge">* Guide a la une</div>
+    </div>
+    <div class="rv2">
+      <div class="feat-dest" id="feat-dest"></div>
+      <h2 class="feat-title" id="feat-title"></h2>
+      <p class="feat-desc" id="feat-desc"></p>
+      <div class="feat-pills" id="feat-pills"></div>
+      <div class="feat-footer">
+        <div class="feat-price" id="feat-price"></div>
+        <button class="btn-gold" id="feat-btn">* Acheter</button>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="cta-box">
-    <h2>Recevez nos prochains guides</h2>
-    <p>Des idées de voyage exclusives directement dans votre boîte mail</p>
-    <input placeholder="Votre email" style="padding:10px;width:60%">
+<!-- CATALOG -->
+<section class="section catalog-section" id="guides">
+  <div class="sec-head rv">
+    <span class="eyebrow">Catalogue Complet</span>
+    <h2 class="sec-title dark">Tous nos <em>Guides</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="filter-bar rv">
+    <button class="fbtn on" data-f="all">Tous</button>
+    <button class="fbtn" data-f="beach">Plage</button>
+    <button class="fbtn" data-f="city">Ville</button>
+    <button class="fbtn" data-f="adventure">Aventure</button>
+    <button class="fbtn" data-f="food">Gastronomie</button>
+  </div>
+  <div class="guides-grid" id="guides-grid">
+    <div class="loading-grid" style="grid-column:1/-1;color:var(--muted)">Chargement des guides...</div>
   </div>
 </section>
 
+<!-- HOW -->
+<section class="section how-section" id="how">
+  <div class="sec-head rv">
+    <span class="eyebrow">Processus</span>
+    <h2 class="sec-title">Simple comme <em>bonjour</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="how-grid">
+    <div class="how-step rv"><span class="how-n">01</span><span class="how-icon">&#128269;</span><div class="how-title">Choisissez</div><p class="how-desc">Parcourez le catalogue. Chaque guide est un itineraire complet heure par heure avec adresses et conseils exclusifs.</p></div>
+    <div class="how-step rv2"><span class="how-n">02</span><span class="how-icon">&#128179;</span><div class="how-title">Achetez</div><p class="how-desc">Paiement securise via Stripe. CB, Apple Pay, Google Pay acceptes. Confirmation et acces immediats.</p></div>
+    <div class="how-step rv3"><span class="how-n">03</span><span class="how-icon">&#128241;</span><div class="how-title">Explorez</div><p class="how-desc">Le guide arrive par email en moins d'une minute. PDF telecharge + acces web illimite a vie.</p></div>
+  </div>
+</section>
+
+<!-- BLOG — populated by JS -->
+<section class="section blog-section" id="blog">
+  <div class="sec-head rv">
+    <span class="eyebrow">Blog Voyage</span>
+    <h2 class="sec-title dark">Inspirations &amp; <em>Conseils</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="blog-grid" id="blog-grid">
+    <div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:.8rem;padding:40px">Chargement...</div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testi-section">
+  <div class="sec-head rv">
+    <span class="eyebrow">Avis Voyageurs</span>
+    <h2 class="sec-title">Ce que disent <em>nos clients</em></h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="testi-grid">
+    <div class="tcard rv"><div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="t-text">"Le guide Albanie etait absolument parfait. Chaque recommandation etait juste. On a suivi le planning heure par heure et c'etait magique."</p><div class="t-author"><div class="t-av">S</div><div><div class="t-name">Sophie M.</div><div class="t-trip">Albania Road Trip · Juillet 2024</div></div></div></div>
+    <div class="tcard rv2"><div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="t-text">"Guide Lisbonne excellent. Les adresses sont impossibles a trouver ailleurs. Rapport qualite-prix imbattable pour ce niveau de detail."</p><div class="t-author"><div class="t-av">T</div><div><div class="t-name">Thomas L.</div><div class="t-trip">Lisbonne 5 Jours · Mars 2025</div></div></div></div>
+    <div class="tcard rv3"><div class="t-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="t-text">"Qualite professionnelle, design magnifique. On dirait un magazine de luxe. J'ai achete 3 guides et je reviens pour chaque voyage."</p><div class="t-author"><div class="t-av">C</div><div><div class="t-name">Camille D.</div><div class="t-trip">Marrakech + Lisbonne · 2025</div></div></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div style="position:relative;z-index:1">
+    <span class="eyebrow rv">Votre prochain voyage</span>
+    <h2 class="sec-title rv" style="max-width:600px;margin:0 auto 36px;color:var(--ink)">Commencez <em>ici</em></h2>
+    <div class="rv" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-gold" onclick="scrollTo('#guides')">* Parcourir les guides</button>
+      <a href="upsell.html" class="btn-ghost" style="color:var(--ink);border-color:var(--rule)">Premium — Acces illimite</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-© YHI Conciergerie
+  <div class="footer-main">
+    <div>
+      <div class="f-logo">YHI<em> Conciergerie</em></div>
+      <p class="f-desc">Des guides de voyage premium concus par IA et valides par des experts locaux. Chaque guide est une invitation a decouvrir le monde autrement.</p>
+    </div>
+    <div class="fc"><h4>Destinations</h4><ul id="footer-dests"></ul></div>
+    <div class="fc"><h4>Informations</h4><ul><li><a href="#how">Comment ca marche</a></li><li><a href="upsell.html">Premium</a></li><li><a href="#">A propos</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div class="fc"><h4>Legal</h4><ul><li><a href="#">CGV</a></li><li><a href="#">Confidentialite</a></li><li><a href="#">Mentions legales</a></li><li><a href="#">Remboursements</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="f-copy">(c) 2025 YHI Conciergerie · Tous droits reserves</span>
+    <div class="f-legal"><a href="#">CGV</a><a href="#">Confidentialite</a><a href="#">Cookies</a></div>
+  </div>
 </footer>
 
+<!-- CHECKOUT MODAL -->
+<div class="modal-bg" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">x</button>
+    <div id="modal-buy">
+      <span class="m-ey">YHI Conciergerie · Guide Voyage</span>
+      <div class="m-title" id="m-title">Guide</div>
+      <div class="m-dest" id="m-dest">Destination</div>
+      <div class="m-price" id="m-price">14,90&#8364;</div>
+      <div class="m-sub">PDF + acces web illimite + acces a vie</div>
+      <div class="m-feats">
+        <div class="m-feat">Programme heure par heure</div>
+        <div class="m-feat">Adresses exclusives et conseils concierge</div>
+        <div class="m-feat">Informations pratiques completes</div>
+        <div class="m-feat">PDF haute qualite telechargeable</div>
+      </div>
+      <div class="m-form">
+        <input type="text" class="m-input" id="m-name" placeholder="Prenom et nom">
+        <input type="email" class="m-input" id="m-email" placeholder="Votre email">
+      </div>
+      <button class="m-btn" id="m-btn" onclick="processPayment()">&#128274; Acheter maintenant</button>
+      <p class="m-secure">Paiement securise · Stripe · Livraison immediate</p>
+    </div>
+    <div class="m-success" id="modal-success">
+      <div class="m-success-icon">&#10003;</div>
+      <div class="m-success-text">Guide envoye !</div>
+      <div class="m-success-sub">Verifiez votre email pour acceder a votre guide.</div>
+    </div>
+  </div>
+</div>
+
 <script>
-fetch('guides.json')
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById('guides-container');
+var BASE = 'https://bruncheebox.github.io/yhi-conciergerie';
+var GUIDES_JSON = BASE + '/guides.json';
+var N8N_WEBHOOK = 'https://bruncheebox2.app.n8n.cloud/webhook/yhi-guide';
 
-    data.forEach(guide => {
-      const card = document.createElement('div');
-      card.className = 'card';
+var allGuides = [];
+var currentGuide = null;
 
-      card.innerHTML = `
-        <a href="guides/${guide.slug}/">
-          <img src="guides/${guide.slug}/img/cover.jpg">
-          <div class="card-content">
-            <h3>${guide.title}</h3>
-            <p>${guide.description}</p>
-          </div>
-        </a>
-      `;
-
-      container.appendChild(card);
+// ── LOAD GUIDES ──
+function loadGuides() {
+  fetch(GUIDES_JSON)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      allGuides = data.guides.filter(function(g) { return g.status === 'published'; });
+      renderFeatured(data);
+      renderGrid(allGuides);
+      renderBlog(allGuides);
+      renderFooterDests(allGuides);
+      startCounters(allGuides.length, allGuides.length, 48);
+    })
+    .catch(function(e) {
+      console.error('Could not load guides.json:', e);
+      document.getElementById('guides-grid').innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:60px;font-size:.8rem">Aucun guide disponible pour l\'instant.</div>';
     });
-  });
-</script>
+}
 
+// ── FEATURED ──
+function renderFeatured(data) {
+  var feat = allGuides.find(function(g) { return g.featured; }) || allGuides[0];
+  if (!feat) return;
+  var sec = document.getElementById('featured');
+  sec.style.display = 'block';
+  var img = document.getElementById('feat-cover');
+  img.src = feat.cover;
+  img.onerror = function() { this.src = feat.cover_fallback; };
+  img.alt = feat.title;
+  document.getElementById('feat-dest').textContent = feat.destination;
+  var titleEl = document.getElementById('feat-title');
+  var words = feat.title.split(' ');
+  var half = Math.ceil(words.length / 2);
+  titleEl.innerHTML = words.slice(0, half).join(' ') + '<em>' + words.slice(half).join(' ') + '</em>';
+  document.getElementById('feat-desc').textContent = feat.description;
+  var pillsEl = document.getElementById('feat-pills');
+  pillsEl.innerHTML = feat.pills.map(function(p) { return '<span class="pill">' + p + '</span>'; }).join('');
+  document.getElementById('feat-price').innerHTML = formatPrice(feat.price) + '<small>Guide complet PDF + Web</small>';
+  document.getElementById('feat-btn').onclick = function() { openModal(feat); };
+}
+
+// ── GRID ──
+function renderGrid(guides) {
+  var grid = document.getElementById('guides-grid');
+  if (guides.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--muted);padding:60px">Aucun guide dans cette categorie.</div>';
+    return;
+  }
+  grid.innerHTML = guides.map(function(g, i) {
+    var badge = g.featured ? '<div class="gc-badge hot">&#9733; Populaire</div>'
+      : i === 0 ? '<div class="gc-badge new">* Nouveau</div>'
+      : '';
+    return '<div class="gcard" data-cat="' + g.category.join(' ') + '" style="transition-delay:' + (i * 0.08) + 's">' +
+      '<div class="gc-img"><img src="' + g.cover + '" alt="' + g.title + '" loading="lazy" onerror="this.src=\'' + g.cover_fallback + '\'">' + badge + '</div>' +
+      '<div class="gc-body">' +
+      '<div class="gc-dest">' + g.destination + '</div>' +
+      '<div class="gc-title">' + g.title + '</div>' +
+      '<div class="gc-desc">' + g.description.slice(0, 100) + '...</div>' +
+      '<div class="gc-pills">' + g.pills.map(function(p) { return '<span class="gc-pill">' + p + '</span>'; }).join('') + '</div>' +
+      '<div class="gc-footer"><span class="gc-price">' + formatPrice(g.price) + '</span>' +
+      '<button class="gc-btn" onclick="openModal(allGuides[' + allGuides.indexOf(g) + '])">Voir le guide</button>' +
+      '</div></div></div>';
+  }).join('');
+  // Animate in
+  setTimeout(function() {
+    document.querySelectorAll('.gcard').forEach(function(c) { c.classList.add('visible'); });
+  }, 100);
+}
+
+// ── BLOG ──
+function renderBlog(guides) {
+  var grid = document.getElementById('blog-grid');
+  grid.innerHTML = guides.map(function(g, i) {
+    var delay = i * 0.1;
+    return '<a href="blog/' + g.slug + '.html" class="bcard rv" style="transition-delay:' + delay + 's">' +
+      '<div class="bc-img"><img src="' + g.cover + '" alt="' + g.title + '" loading="lazy" onerror="this.src=\'' + g.cover_fallback + '\'">' +
+      '<div class="bc-tag">Itineraire</div></div>' +
+      '<div class="bc-body">' +
+      '<div class="bc-dest">' + g.destination + '</div>' +
+      '<div class="bc-title">' + g.duration + ' jours a ' + g.city + ' : l\'itineraire complet 2025</div>' +
+      '<div class="bc-excerpt">' + g.tagline + '</div>' +
+      '<div class="bc-meta"><span>' + Math.ceil(g.duration * 1.5) + ' min de lecture</span><span class="bc-read">Lire</span></div>' +
+      '</div></a>';
+  }).join('');
+  observeElements();
+}
+
+// ── FOOTER DESTS ──
+function renderFooterDests(guides) {
+  document.getElementById('footer-dests').innerHTML = guides.map(function(g) {
+    return '<li><a href="guides/' + g.slug + '/index.html">' + g.city + '</a></li>';
+  }).join('');
+}
+
+// ── FILTER ──
+document.querySelectorAll('.fbtn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.fbtn').forEach(function(b) { b.classList.remove('on'); });
+    this.classList.add('on');
+    var f = this.dataset.f;
+    var filtered = f === 'all' ? allGuides : allGuides.filter(function(g) { return g.category.includes(f); });
+    renderGrid(filtered);
+  });
+});
+
+// ── MODAL ──
+function openModal(guide) {
+  currentGuide = guide;
+  document.getElementById('m-title').textContent = guide.title;
+  document.getElementById('m-dest').textContent = guide.destination;
+  document.getElementById('m-price').innerHTML = formatPrice(guide.price);
+  document.getElementById('modal-buy').style.display = 'block';
+  document.getElementById('modal-success').style.display = 'none';
+  document.getElementById('m-name').value = '';
+  document.getElementById('m-email').value = '';
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+    currentGuide = null;
+  }
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+// ── PAYMENT ──
+function processPayment() {
+  var name = document.getElementById('m-name').value.trim();
+  var email = document.getElementById('m-email').value.trim();
+  if (!name || !email) { alert('Merci de remplir tous les champs.'); return; }
+  if (!email.includes('@')) { alert('Email invalide.'); return; }
+  if (!currentGuide) return;
+
+  var btn = document.getElementById('m-btn');
+  btn.disabled = true;
+  btn.textContent = 'Traitement...';
+
+  // Create Stripe checkout session via n8n
+  fetch(N8N_WEBHOOK.replace('/yhi-guide', '/yhi-checkout'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      slug: currentGuide.slug,
+      title: currentGuide.title,
+      price: currentGuide.price,
+      price_cents: Math.round(currentGuide.price * 100),
+      price_id: currentGuide.price_id,
+      email: email,
+      name: name,
+      success_url: BASE + '/guides/' + currentGuide.slug + '/index.html',
+      cancel_url: BASE + '/'
+    })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.checkout_url) {
+      window.location.href = data.checkout_url;
+    } else if (data.success) {
+      document.getElementById('modal-buy').style.display = 'none';
+      document.getElementById('modal-success').style.display = 'block';
+    } else {
+      throw new Error('No checkout URL');
+    }
+  })
+  .catch(function() {
+    // Fallback: redirect to guide directly (demo mode)
+    if (currentGuide) {
+      document.getElementById('modal-buy').style.display = 'none';
+      document.getElementById('modal-success').style.display = 'block';
+      setTimeout(function() {
+        window.location.href = BASE + '/guides/' + currentGuide.slug + '/index.html';
+      }, 2000);
+    }
+    btn.disabled = false;
+    btn.innerHTML = '&#128274; Acheter maintenant';
+  });
+}
+
+// ── COUNTERS ──
+function startCounters(guides, dests, clients) {
+  function count(id, target, suffix) {
+    var el = document.getElementById(id);
+    var start = 0;
+    var step = target / 50;
+    var t = setInterval(function() {
+      start += step;
+      if (start >= target) { start = target; clearInterval(t); }
+      el.textContent = Math.floor(start) + (suffix || '');
+    }, 20);
+  }
+  count('cnt-g', guides, '');
+  count('cnt-d', dests, '');
+  count('cnt-c', clients, '+');
+}
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll', function() {
+  document.getElementById('nav').classList.toggle('solid', window.scrollY > 60);
+}, { passive: true });
+
+// ── SCROLL REVEAL ──
+function observeElements() {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rv,.rv2,.rv3').forEach(function(el) { obs.observe(el); });
+}
+observeElements();
+
+// ── SCROLL TO ──
+function scrollTo(sel) {
+  var el = document.querySelector(sel);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ── FORMAT PRICE ──
+function formatPrice(p) {
+  return p.toFixed(2).replace('.', ',') + '\u20ac';
+}
+
+// ── INIT ──
+loadGuides();
+</script>
 </body>
 </html>
