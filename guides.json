@@ -136,21 +136,21 @@
     },
     {
       "slug": "budapest",
-      "title": "Budapest en 4 jours : le guide complet de votre concierge 2025",
+      "title": "Budapest en 4 jours : le guide complet par YHI Conciergerie",
       "destination": "budapest",
       "city": "budapest",
       "country": "budapest",
       "duration": 4,
       "price": 14.9,
-      "tagline": "La perle du Danube révélée par ceux qui la connaissent vraiment",
-      "description": "Découvrez Budapest en 4 jours avec notre guide expert : itinéraire, restaurants, hébergements et conseils exclusifs de concierge. Téléchargez le guide à 14,90€.",
+      "tagline": "La perle du Danube révélée par un concierge qui la connaît vraiment",
+      "description": "Découvrez Budapest en 4 jours : itinéraire expert, meilleures adresses, bains thermaux et quartiers authentiques. Guide premium YHI Conciergerie.",
       "cover": "guides/budapest/img/cover.jpg",
       "cover_fallback": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80",
       "tags": [],
       "pills": [
-        "Les Bains Széchenyi",
-        "Le Palais Royal de Buda et le quartier du Château",
-        "Le Marché Central de Pest (Nagy Vásárcsarnok)"
+        "Le Parlement hongrois vu de nuit depuis Gellért-hegy",
+        "Les bains Széchenyi un mardi matin",
+        "Le Grand Marché Central (Nagyvásárcsarnok)"
       ],
       "category": [
         "city"
