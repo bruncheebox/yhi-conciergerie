@@ -11,8 +11,8 @@
       "price_id": "price_1THhH12OElIpJpkQxip1xYE5",
       "tagline": "Là où le fado murmure et l'Atlantique embrasse les collines dorées",
       "description": "Là où le fado murmure et l'Atlantique embrasse les collines dorées",
-      "cover": "guides/lisbonne/img/Cover - day 1 - Sao jorge castle.jpg",
-      "cover_fallback": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80",
+      "cover": "guides/lisbonne/img/cover.jpg",
+      "cover_fallback": "guides/lisbonne/img/cover.jpg",
       "tags": [
         "Aéroport Humberto Delgado",
         "Château São Jorge",
@@ -47,7 +47,7 @@
       "tagline": "Le dernier secret mediterraneen — plages cristallines et nuits electriques",
       "description": "De Durres a Dhermi via Saranda et Ksamil. Plages secretes, boat trips, beach clubs et sunsets legendaires sur la Riviera Ionienne.",
       "cover": "guides/albania/img/cover.jpg",
-      "cover_fallback": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80",
+      "cover_fallback": "guides/albania/img/cover.jpg",
       "tags": [
         "Plage",
         "Aventure",
@@ -113,7 +113,7 @@
       "tagline": "Temples millénaires, rizières en terrasses et plages de reve : votre semaine balinaise sur mesure",
       "description": "Guide complet Bali 7 jours par YHI Conciergerie : itineraire, restaurants, hotels et conseils d'expert pour un sejour parfait a Bali en 2025.",
       "cover": "guides/bali/img/cover.jpg",
-      "cover_fallback": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80",
+      "cover_fallback": "guides/bali/img/cover.jpg",
       "tags": [],
       "pills": [
         "Tegalalang Rice Terrace au lever du soleil",
@@ -145,7 +145,7 @@
       "tagline": "La perle du Danube révélée par un concierge qui la connaît vraiment",
       "description": "Découvrez Budapest en 4 jours : itinéraire expert, meilleures adresses, bains thermaux et quartiers authentiques. Guide premium YHI Conciergerie.",
       "cover": "guides/budapest/img/cover.jpg",
-      "cover_fallback": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80",
+      "cover_fallback": "guides/budapest/img/cover.jpg",
       "tags": [],
       "pills": [
         "Le Parlement hongrois vu de nuit depuis Gellért-hegy",
